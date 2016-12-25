@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DA1020989126A9E19EF9CD4 /* Pods_LuminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F465826E5B99BB775DBDB57 /* Pods_LuminoTests.framework */; };
+		9FEA49E2B502A3953E390552 /* Pods_Lumino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */; };
 		A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */; };
+		A59CC51F1E1024E900B51B36 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A59CC51E1E1024E900B51B36 /* Podfile */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
 		A5C373891E07405D00697FF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C373871E07405D00697FF6 /* Main.storyboard */; };
 		A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738A1E07405D00697FF6 /* Assets.xcassets */; };
@@ -15,6 +18,7 @@
 		A5C373991E07405D00697FF6 /* LuminoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373981E07405D00697FF6 /* LuminoTests.swift */; };
 		A5C373A41E07405D00697FF6 /* LuminoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373A31E07405D00697FF6 /* LuminoUITests.swift */; };
 		A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */; };
+		EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +39,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FBF9260C92CA50C698C7D1F /* Pods-LuminoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6F465826E5B99BB775DBDB57 /* Pods_LuminoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuminoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77995BFF114357166F183BC4 /* Pods-LuminoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		78A939657D15E549D49273B8 /* Pods-Lumino.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumino.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lumino/Pods-Lumino.release.xcconfig"; sourceTree = "<group>"; };
+		78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lumino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		891963619B8A83B9E8391AF0 /* Pods-Lumino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumino.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumino/Pods-Lumino.debug.xcconfig"; sourceTree = "<group>"; };
+		936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuminoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
+		A57E32461E10340D0044107D /* Color-Picker-for-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Color-Picker-for-iOS"; path = "Pods/Color-Picker-for-iOS"; sourceTree = "<group>"; };
+		A59CC51E1E1024E900B51B36 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		A5C373801E07405D00697FF6 /* Lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C373831E07405D00697FF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C373881E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +62,8 @@
 		A5C373A31E07405D00697FF6 /* LuminoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminoUITests.swift; sourceTree = "<group>"; };
 		A5C373A51E07405D00697FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsUIViewController.swift; sourceTree = "<group>"; };
+		D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.release.xcconfig"; sourceTree = "<group>"; };
+		F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FEA49E2B502A3953E390552 /* Pods_Lumino.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA1020989126A9E19EF9CD4 /* Pods_LuminoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,19 +87,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EE0FE4BA984894E688C7042 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A57E32461E10340D0044107D /* Color-Picker-for-iOS */,
+				78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */,
+				6F465826E5B99BB775DBDB57 /* Pods_LuminoTests.framework */,
+				936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6984E9DFB6AD3A608FADBEFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				891963619B8A83B9E8391AF0 /* Pods-Lumino.debug.xcconfig */,
+				78A939657D15E549D49273B8 /* Pods-Lumino.release.xcconfig */,
+				77995BFF114357166F183BC4 /* Pods-LuminoTests.debug.xcconfig */,
+				D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */,
+				1FBF9260C92CA50C698C7D1F /* Pods-LuminoUITests.debug.xcconfig */,
+				F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A5C373771E07405D00697FF6 = {
 			isa = PBXGroup;
 			children = (
+				A59CC51E1E1024E900B51B36 /* Podfile */,
 				A5C373821E07405D00697FF6 /* Lumino */,
 				A5C373971E07405D00697FF6 /* LuminoTests */,
 				A5C373A21E07405D00697FF6 /* LuminoUITests */,
 				A5C373811E07405D00697FF6 /* Products */,
+				6984E9DFB6AD3A608FADBEFA /* Pods */,
+				3EE0FE4BA984894E688C7042 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5C373A81E07405D00697FF6 /* Build configuration list for PBXNativeTarget "Lumino" */;
 			buildPhases = (
+				78E0BE3D970672E4990FB16F /* [CP] Check Pods Manifest.lock */,
 				A5C3737C1E07405D00697FF6 /* Sources */,
 				A5C3737D1E07405D00697FF6 /* Frameworks */,
 				A5C3737E1E07405D00697FF6 /* Resources */,
+				E109BD870251012AFC9528A9 /* [CP] Embed Pods Frameworks */,
+				20AC935B339DFE9F442E1B66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5C373AB1E07405D00697FF6 /* Build configuration list for PBXNativeTarget "LuminoTests" */;
 			buildPhases = (
+				CA93758CEF3B040FC94BC92A /* [CP] Check Pods Manifest.lock */,
 				A5C373901E07405D00697FF6 /* Sources */,
 				A5C373911E07405D00697FF6 /* Frameworks */,
 				A5C373921E07405D00697FF6 /* Resources */,
+				079E07DF5E0943039E32DF53 /* [CP] Embed Pods Frameworks */,
+				036025A48B4DAA18B02B9C1D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5C373AE1E07405D00697FF6 /* Build configuration list for PBXNativeTarget "LuminoUITests" */;
 			buildPhases = (
+				29FFB7F27FD4ECF17A377834 /* [CP] Check Pods Manifest.lock */,
 				A5C3739B1E07405D00697FF6 /* Sources */,
 				A5C3739C1E07405D00697FF6 /* Frameworks */,
 				A5C3739D1E07405D00697FF6 /* Resources */,
+				7D27DCDBC4748ECF404945B9 /* [CP] Embed Pods Frameworks */,
+				0AB02B8C4AF3E4120F9AF217 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,6 +291,7 @@
 			files = (
 				A5C3738E1E07405D00697FF6 /* LaunchScreen.storyboard in Resources */,
 				A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */,
+				A59CC51F1E1024E900B51B36 /* Podfile in Resources */,
 				A5C373891E07405D00697FF6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +311,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		036025A48B4DAA18B02B9C1D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		079E07DF5E0943039E32DF53 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0AB02B8C4AF3E4120F9AF217 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		20AC935B339DFE9F442E1B66 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lumino/Pods-Lumino-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29FFB7F27FD4ECF17A377834 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		78E0BE3D970672E4990FB16F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7D27DCDBC4748ECF404945B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA93758CEF3B040FC94BC92A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E109BD870251012AFC9528A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lumino/Pods-Lumino-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A5C3737C1E07405D00697FF6 /* Sources */ = {
@@ -412,6 +605,7 @@
 		};
 		A5C373A91E07405D00697FF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 891963619B8A83B9E8391AF0 /* Pods-Lumino.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Lumino/Info.plist;
@@ -424,6 +618,7 @@
 		};
 		A5C373AA1E07405D00697FF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78A939657D15E549D49273B8 /* Pods-Lumino.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Lumino/Info.plist;
@@ -436,6 +631,7 @@
 		};
 		A5C373AC1E07405D00697FF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77995BFF114357166F183BC4 /* Pods-LuminoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -450,6 +646,7 @@
 		};
 		A5C373AD1E07405D00697FF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -464,6 +661,7 @@
 		};
 		A5C373AF1E07405D00697FF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FBF9260C92CA50C698C7D1F /* Pods-LuminoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LuminoUITests/Info.plist;
@@ -477,6 +675,7 @@
 		};
 		A5C373B01E07405D00697FF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LuminoUITests/Info.plist;

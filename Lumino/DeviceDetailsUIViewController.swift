@@ -15,7 +15,7 @@ class DeviceDetailsUIViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.text = text
+       // textView.text = text
     }
 
     
