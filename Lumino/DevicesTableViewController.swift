@@ -20,8 +20,6 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     func start()  {
         print("listening for services...")
         self.services.removeAll()
-        let aNetService = NetService()
-        self.services.append(aNetService)
         self.nsb = NetServiceBrowser()
         self.nsb.delegate = self
         self.nsb.searchForServices(ofType:"_http._tcp", inDomain: "")
@@ -44,7 +42,6 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         return cell
     }
     
-    
     func updateInterface() {
         for service in self.services {
             if service.port == -1 {
@@ -54,7 +51,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
                 service.resolve(withTimeout:10)
             } else {
                 print("service \(service.name) of type \(service.type)," +
-                    "port \(service.port), addresses \(service.addresses)")
+                    "host \(service.hostName), port \(service.port), addresses \(service.addresses)")
             }
         }
         self.tableView.reloadData()

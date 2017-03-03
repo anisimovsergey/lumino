@@ -1,12 +1,21 @@
 PODS:
   - Color-Picker-for-iOS (2.0.2)
+  - iOS-Color-Picker (1.1.4)
+  - Starscream (2.0.3)
+  - SwiftHSVColorPicker (1.1.1)
 
 DEPENDENCIES:
   - Color-Picker-for-iOS (~> 2.0)
+  - iOS-Color-Picker
+  - Starscream (~> 2.0)
+  - SwiftHSVColorPicker
 
 SPEC CHECKSUMS:
   Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
+  iOS-Color-Picker: 0eebf395527785e1ff2180c35b69f6d369051555
+  Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
+  SwiftHSVColorPicker: 69c9028dea168e0f8ee2439d31a899cf1df95678
 
-PODFILE CHECKSUM: 2d6e0b7596696a845804b8aa010790c92bfab1b1
+PODFILE CHECKSUM: e32004f4b4f5e28d4f20115338331545034ae7d9
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

@@ -6,7 +6,10 @@ target 'Lumino' do
   use_frameworks!
 
   # Pods for Lumino
-  pod "Color-Picker-for-iOS", "~> 2.0"  
+  pod "Color-Picker-for-iOS", "~> 2.0"
+  pod "iOS-Color-Picker"
+  pod "SwiftHSVColorPicker"
+  pod "Starscream", "~> 2.0"
 
   target 'LuminoTests' do
     inherit! :search_paths
