@@ -22,6 +22,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Device"
        // textView.text = text
         socket = WebSocket(url: URL(string: "ws://192.168.1.76/ws")!)
         socket.delegate = self

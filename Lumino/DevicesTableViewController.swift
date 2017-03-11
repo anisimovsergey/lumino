@@ -14,14 +14,15 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Lumino"
+        self.nsb = NetServiceBrowser()
+        self.nsb.delegate = self
         self.start()
     }
     
     func start()  {
         print("listening for services...")
         self.services.removeAll()
-        self.nsb = NetServiceBrowser()
-        self.nsb.delegate = self
         self.nsb.searchForServices(ofType:"_http._tcp", inDomain: "")
     }
 
@@ -38,7 +39,6 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
         
         cell.textLabel?.text = services[indexPath.row].name
-        
         return cell
     }
     
@@ -61,8 +61,12 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         self.updateInterface()
     }
     
+    func netServiceBrowserDidStopSearch(_ aNetServiceBrowser: NetServiceBrowser) {
+         print("Search stopped")
+    }
+    
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind aNetService: NetService, moreComing: Bool) {
-        print("adding a service " + aNetService.name)
+        print("Adding a service " + aNetService.name)
         self.services.append(aNetService)
         if !moreComing {
             self.updateInterface()
@@ -72,7 +76,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didRemove aNetService: NetService, moreComing: Bool) {
         if let ix = self.services.index(of:aNetService) {
             self.services.remove(at:ix)
-            print("removing a service")
+            print("Aemoving a service")
             if !moreComing {
                self.updateInterface()
             }
