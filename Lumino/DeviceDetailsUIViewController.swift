@@ -16,7 +16,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate {
     var text = String()
     var socket: WebSocket!
     // IBOutlet for the ColorPicker
-    @IBOutlet var colorPicker: SwiftHSVColorPicker!
+    @IBOutlet var colorWheel: ColorWheel!
     
     var selectedColor: UIColor = UIColor.white
     
@@ -24,15 +24,15 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate {
         super.viewDidLoad()
         self.title = "Device"
        // textView.text = text
-        socket = WebSocket(url: URL(string: "ws://192.168.1.76/ws")!)
-        socket.delegate = self
-        socket.connect()
-        colorPicker.setViewColor(selectedColor)
+      //  socket = WebSocket(url: URL(string: "ws://192.168.1.76/ws")!)
+       // socket.delegate = self
+       // socket.connect()
+        colorWheel.AA()
     }
     
     @IBAction func buttonPressed(sender: AnyObject) {
       //  var a:CGFloat = 0
-        selectedColor = colorPicker.color
+        //selectedColor = colorPicker.color
         var bb:[CGFloat]! = selectedColor.cgColor.components
         var r:CGFloat = bb[0]
         if r < 0 {
@@ -48,8 +48,8 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate {
         }
 
         //if selectedColor.getRed(&r, green: &g, blue: &b, alpha: &a){
-            print("R: \(r) G: \(g) B: \(b)")
-            socket.write(string: "{\"_type\": \"request\", \"requestType\": \"update\", \"resource\": \"color\",\"content\": {\"_type\": \"color\", \"r\": \(Int(r * 255)), \"g\": \(Int(g * 255)), \"b\": \(Int(b * 255))}}")
+          //  print("R: \(r) G: \(g) B: \(b)")
+           // socket.write(string: "{\"_type\": \"request\", \"requestType\": \"update\", \"resource\": \"color\",\"content\": {\"_type\": \"color\", \"r\": \(Int(r * 255)), \"g\": \(Int(g * 255)), \"b\": \(Int(b * 255))}}")
         //}
     }
 

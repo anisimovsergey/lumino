@@ -18,6 +18,7 @@
 		A5C373991E07405D00697FF6 /* LuminoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373981E07405D00697FF6 /* LuminoTests.swift */; };
 		A5C373A41E07405D00697FF6 /* LuminoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373A31E07405D00697FF6 /* LuminoUITests.swift */; };
 		A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */; };
+		A5EB37F21E746BFB003B30F1 /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB37F11E746BFB003B30F1 /* ColorWheel.swift */; };
 		EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		A5C373A31E07405D00697FF6 /* LuminoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminoUITests.swift; sourceTree = "<group>"; };
 		A5C373A51E07405D00697FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsUIViewController.swift; sourceTree = "<group>"; };
+		A5EB37F11E746BFB003B30F1 /* ColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheel.swift; sourceTree = "<group>"; };
 		D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +146,7 @@
 		A5C373821E07405D00697FF6 /* Lumino */ = {
 			isa = PBXGroup;
 			children = (
+				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
 				A5C373831E07405D00697FF6 /* AppDelegate.swift */,
 				A5C373871E07405D00697FF6 /* Main.storyboard */,
 				A5C3738A1E07405D00697FF6 /* Assets.xcassets */,
@@ -171,6 +174,14 @@
 				A5C373A51E07405D00697FF6 /* Info.plist */,
 			);
 			path = LuminoUITests;
+			sourceTree = "<group>";
+		};
+		A5EB37F01E746BE2003B30F1 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				A5EB37F11E746BFB003B30F1 /* ColorWheel.swift */,
+			);
+			name = ColorPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +261,7 @@
 				TargetAttributes = {
 					A5C3737F1E07405D00697FF6 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 6986X3V866;
 						ProvisioningStyle = Automatic;
 					};
 					A5C373931E07405D00697FF6 = {
@@ -458,6 +470,7 @@
 				A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */,
 				A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */,
 				A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */,
+				A5EB37F21E746BFB003B30F1 /* ColorWheel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +546,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Anisimov (L83935CUT9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -582,6 +596,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Anisimov (L83935CUT9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -608,6 +623,7 @@
 			baseConfigurationReference = 891963619B8A83B9E8391AF0 /* Pods-Lumino.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6986X3V866;
 				INFOPLIST_FILE = Lumino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MoiKot.Lumino;
@@ -621,6 +637,7 @@
 			baseConfigurationReference = 78A939657D15E549D49273B8 /* Pods-Lumino.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6986X3V866;
 				INFOPLIST_FILE = Lumino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MoiKot.Lumino;
