@@ -59,7 +59,6 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
     var hueCircleLayer: HueCircleLayer!
     var hueMarkerLayer: CALayer!
     var colorCenterLayer: CALayer!
-    var lineLayer: CAShapeLayer!
     
     var hueGestureRecognizer: UILongPressGestureRecognizer!
     
@@ -69,25 +68,6 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    func CreateLineLayer() -> CAShapeLayer {
-        let width: CGFloat = 130
-        let height: CGFloat = 1
-        
-        let lineLayer = CAShapeLayer()
-        lineLayer.frame = CGRect(x: 0, y: 0,
-                                  width: width, height: height)
-        
-        let path = CGMutablePath()
-        path.move(to: CGPoint(x: 0, y: height / 2))
-        path.addLine(to: CGPoint(x: width, y: height / 2))
-        
-        lineLayer.path = path
-        lineLayer.strokeColor = UIColor.red.cgColor
-        lineLayer.lineWidth = 1
-        lineLayer.anchorPoint = CGPoint(x: 0, y: height / 2)
-        return lineLayer
     }
     
     open func AA() {
@@ -105,11 +85,6 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         colorCenterLayer.contentsScale = UIScreen.main.scale
         colorCenterLayer.setNeedsDisplay()
         self.layer.addSublayer(colorCenterLayer)
-        
-        lineLayer = CreateLineLayer()
-        lineLayer.contentsScale = UIScreen.main.scale
-        lineLayer.setNeedsDisplay()
-        self.layer.addSublayer(lineLayer)
         
         hueGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleDragHue))
         hueGestureRecognizer.minimumPressDuration = 0;
@@ -129,7 +104,7 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         return true
     }
     
-    func move(_ layer: CALayer, from oldHue: CGFloat, to newHue: CGFloat, toRad toRad:CGFloat) {
+    func move(_ layer: CALayer, from oldHue: CGFloat, to newHue: CGFloat) {
         let path: CGMutablePath = CGMutablePath()
         let center = CGPoint(x: CGFloat(self.bounds.size.width / 2.0), y: CGFloat(self.bounds.size.height / 2.0))
 
@@ -151,14 +126,6 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         animation.path = path
         animation.duration = 1
         layer.add(animation, forKey: "animate position along path")
-        
-
-        let transformAnimation = CABasicAnimation(keyPath: "transform")
-        let trans: CATransform3D = CATransform3DMakeRotation(-toRad, 0.0, 0.0, 1.0);
-        transformAnimation.toValue = NSValue(caTransform3D: trans)
-        transformAnimation.duration = 1
-        lineLayer.add(transformAnimation, forKey: "transformAnimation")
-
     }
     
     
@@ -176,16 +143,11 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
                 colorHue += 1.0
             }
             hueMarkerLayer.position = self.getHueMarkerPosition()
-           // lineLayer.transform = CATransform3DMakeRotation(-radians, 0.0, 0.0, 1.0);
-
-            move(hueMarkerLayer, from: oldColorHue, to: colorHue, toRad: radians)
+            move(hueMarkerLayer, from: oldColorHue, to: colorHue)
             
             let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
             hueMarkerLayer.backgroundColor = color.cgColor
             colorCenterLayer.backgroundColor = color.cgColor
-            lineLayer.strokeColor = color.cgColor
-            
-            
         }
     }
 
@@ -244,9 +206,6 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         fillLayer2.fillRule = kCAFillRuleEvenOdd
         fillLayer2.fillColor = UIColor.black.cgColor
         colorCenterLayer.mask = fillLayer2
-        
-        lineLayer.frame = CGRect(origin: CGPoint(x: CGFloat(0), y: CGFloat(0)), size: CGSize(width: radius, height: lineLayer.frame.height))
-        lineLayer.position = center
     }
  
 }
