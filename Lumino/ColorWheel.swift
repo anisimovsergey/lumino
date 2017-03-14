@@ -59,8 +59,10 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
     var hueCircleLayer: HueCircleLayer!
     var hueMarkerLayer: CALayer!
     var colorCenterLayer: CALayer!
+    var panStarted: Bool = false;
     
-    var hueGestureRecognizer: UILongPressGestureRecognizer!
+    var hueTapGestureRecognizer: UITapGestureRecognizer!
+    var huePanGestureRecognizer: UIPanGestureRecognizer!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
@@ -86,28 +88,35 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         colorCenterLayer.setNeedsDisplay()
         self.layer.addSublayer(colorCenterLayer)
         
-        hueGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleDragHue))
-        hueGestureRecognizer.minimumPressDuration = 0;
-        hueGestureRecognizer.delegate = self
-        self.addGestureRecognizer(hueGestureRecognizer)
+        hueTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapHue))
+        self.addGestureRecognizer(hueTapGestureRecognizer)
+        
+        huePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanHue))
+        self.addGestureRecognizer(huePanGestureRecognizer)
+
         
         backgroundColor = UIColor.init(red: 39/256, green: 46/256, blue: 65/256, alpha: 1.0)
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if ( gestureRecognizer == hueGestureRecognizer )
-        {
+    func isTapOnCircle(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
             let position: CGPoint = gestureRecognizer.location(in: self)
             let distanceSquared: CGFloat = (center.x - position.x) * (center.x - position.x) + (center.y - position.y) * (center.y - position.y)
-            return ((radius - thickness) * (radius - thickness) < distanceSquared) && (distanceSquared <= radius * radius)
-        }
-        return true
+            let res: Bool = (distanceSquared >= (radius - 22) * (radius - 22)) &&
+                            (distanceSquared <= (radius + 22) * (radius + 22))
+            return res
     }
     
     func move(_ layer: CALayer, from oldHue: CGFloat, to newHue: CGFloat) {
         let path: CGMutablePath = CGMutablePath()
         let center = CGPoint(x: CGFloat(self.bounds.size.width / 2.0), y: CGFloat(self.bounds.size.height / 2.0))
-
+        
+        let position: CGPoint = (layer.presentation()?.position)!
+        var from_radians: CGFloat = atan2(center.y - position.y, position.x - center.x)
+        from_radians = from_radians / (2.0 * .pi)
+        if from_radians < 0.0 {
+            from_radians += 1.0
+        }
+        let oldHue = from_radians
         if (newHue > oldHue) {
             if (newHue - oldHue < 0.5) {
                 path.addArc(center: center, radius: CGFloat(radius), startAngle: -oldHue * 2.0 * .pi, endAngle: -newHue * 2.0 * .pi, clockwise: true, transform: .identity)
@@ -124,13 +133,41 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.path = path
-        animation.duration = 1
+        layer.removeAllAnimations()
         layer.add(animation, forKey: "animate position along path")
     }
     
+    func handlePanHue(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            panStarted = isTapOnCircle(gestureRecognizer) // Not on circle but on the marker
+        }
+        if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed) &&
+            panStarted {
+            let position: CGPoint = gestureRecognizer.location(in: self)
+            let radians: CGFloat = atan2(center.y - position.y, position.x - center.x)
+            colorHue = radians / (2.0 * .pi)
+            if colorHue < 0.0 {
+                colorHue += 1.0
+            }
+            let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
+            
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            
+            hueMarkerLayer.position = self.getHueMarkerPosition()
+            hueMarkerLayer.backgroundColor = color.cgColor
+            colorCenterLayer.backgroundColor = color.cgColor
+            
+            CATransaction.commit()
+        }
+    }
+
     
-    func handleDragHue(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        if (gestureRecognizer.state == .began) || (gestureRecognizer.state == .changed) {
+    func handleTapHue(_ gestureRecognizer: UITapGestureRecognizer) {
+        if !isTapOnCircle(gestureRecognizer) {
+            return
+        }
+        
             let position: CGPoint = gestureRecognizer.location(in: self)
             let distanceSquared: CGFloat = (center.x - position.x) * (center.x - position.x) + (center.y - position.y) * (center.y - position.y)
             if distanceSquared < 1.0e-3 {
@@ -148,7 +185,6 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
             let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
             hueMarkerLayer.backgroundColor = color.cgColor
             colorCenterLayer.backgroundColor = color.cgColor
-        }
     }
 
     func getHueMarkerPosition() -> CGPoint {
