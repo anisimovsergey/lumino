@@ -1,51 +1,50 @@
 import UIKit
 
 class HueMarker: CALayer {
-    let circleWidth: CGFloat = 4;
+    let lineWidth: CGFloat = 4;
+    let strokeColor: UIColor =  UIColor.init(red: 219/256, green: 219/256, blue: 219/256, alpha: 1)
     
     override func draw(in context: CGContext) {
-        context.setLineWidth(circleWidth)
-        let c = UIColor.init(red: 219/256, green: 219/256, blue: 219/256, alpha: 1)
-        context.setStrokeColor(c.cgColor)
-        let rect = self.bounds.insetBy(dx: self.circleWidth, dy: self.circleWidth)
+        let rect = self.bounds.insetBy(dx: lineWidth, dy: lineWidth)
         context.addEllipse(in: rect)
+        context.setLineWidth(lineWidth)
+        context.setStrokeColor(strokeColor.cgColor)
         context.strokePath()
     }
 }
 
 class ColorCenter: CALayer {
-    let circleWidth: CGFloat = 4;
+    let lineWidth: CGFloat = 4;
+    let strokeColor: UIColor = UIColor.gray.withAlphaComponent(0.5)
     
     override func draw(in context: CGContext) {
-        context.setLineWidth(circleWidth)
-        context.setStrokeColor(UIColor.gray.withAlphaComponent(0.5).cgColor)
-        let rect = self.bounds.insetBy(dx: self.circleWidth / 2, dy: self.circleWidth / 2)
+        let rect = self.bounds.insetBy(dx: lineWidth / 2, dy: lineWidth / 2)
         context.addEllipse(in: rect)
+        context.setLineWidth(lineWidth)
+        context.setStrokeColor(strokeColor.cgColor)
         context.strokePath()
     }
 }
 
 class HueCircleLayer: CALayer {
     let segmentsNum: Int = 256
-    let circleWidth: CGFloat = 0.02
+    let lineWidth: CGFloat = 3
     var radius: CGFloat = 0
     
     
     override func draw(in context: CGContext) {
-        let thickness: CGFloat = radius * circleWidth
-        let sliceAngle: CGFloat = 2.0 * .pi / CGFloat(self.segmentsNum)
+        let sliceAngle: CGFloat = 2.0 * .pi / CGFloat(segmentsNum)
         let path: CGMutablePath = CGMutablePath()
-        path.addArc(center: CGPoint(x: CGFloat(0.0), y: CGFloat(0.0)), radius: CGFloat(radius - thickness), startAngle: CGFloat(-sliceAngle / 2.0), endAngle: CGFloat(sliceAngle / 2.0 + 1.0e-2), clockwise: false, transform: .identity)
-        context.translateBy(x: self.bounds.size.width / 2.0, y: self.bounds.size.height / 2.0)
-        let incrementAngle = 2.0 * .pi / Float(self.segmentsNum)
-        context.setLineWidth(thickness)
+        path.addArc(center: CGPoint(x: 0, y: 0), radius: radius, startAngle: -sliceAngle / 2.0, endAngle: sliceAngle / 2.0 + 1.0e-2, clockwise: false, transform: .identity)
+        context.translateBy(x: bounds.size.width / 2.0, y: bounds.size.height / 2.0)
+        context.setLineWidth(lineWidth)
         for i in 0..<self.segmentsNum {
             let hue = CGFloat(Float(i) / Float(self.segmentsNum))
-            let color = UIColor(hue: hue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
+            let color = UIColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
             context.addPath(path)
             context.setStrokeColor(color.cgColor)
             context.strokePath()
-            context.rotate(by: CGFloat(-incrementAngle))
+            context.rotate(by: -sliceAngle)
         }
     }
     
@@ -99,11 +98,24 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
     }
     
     func isTapOnCircle(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-            let position: CGPoint = gestureRecognizer.location(in: self)
-            let distanceSquared: CGFloat = (center.x - position.x) * (center.x - position.x) + (center.y - position.y) * (center.y - position.y)
-            let res: Bool = (distanceSquared >= (radius - 22) * (radius - 22)) &&
-                            (distanceSquared <= (radius + 22) * (radius + 22))
-            return res
+        let position: CGPoint = gestureRecognizer.location(in: self)
+        let distanceSquared: CGFloat =
+                (center.x - position.x) *
+                (center.x - position.x) +
+                (center.y - position.y) *
+                (center.y - position.y)
+        return (distanceSquared >= (radius - 22) * (radius - 22)) &&
+               (distanceSquared <= (radius + 22) * (radius + 22))
+    }
+
+    func isTapOnMarker(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let position: CGPoint = gestureRecognizer.location(in: self)
+        let distanceSquared: CGFloat =
+                (hueMarkerLayer.position.x - position.x) *
+                (hueMarkerLayer.position.x - position.x) +
+                (hueMarkerLayer.position.y - position.y) *
+                (hueMarkerLayer.position.y - position.y)
+        return (distanceSquared <= 44 * 44)
     }
     
     func move(_ layer: CALayer, from oldHue: CGFloat, to newHue: CGFloat) {
@@ -139,7 +151,7 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
     
     func handlePanHue(_ gestureRecognizer: UIPanGestureRecognizer) {
         if gestureRecognizer.state == .began {
-            panStarted = isTapOnCircle(gestureRecognizer) // Not on circle but on the marker
+            panStarted = isTapOnMarker(gestureRecognizer)
         }
         if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed) &&
             panStarted {
@@ -203,7 +215,6 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         radius = resolution * 0.8 / 2.0
         
         hueCircleLayer.radius = radius
-        radius = radius - 3
         hueCircleLayer.frame = self.bounds
         
         thickness = 0.7 * radius
