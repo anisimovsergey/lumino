@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1DA1020989126A9E19EF9CD4 /* Pods_LuminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F465826E5B99BB775DBDB57 /* Pods_LuminoTests.framework */; };
 		9FEA49E2B502A3953E390552 /* Pods_Lumino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */; };
+		A524E4F91E7DF34000533BB3 /* GradientSilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4F81E7DF34000533BB3 /* GradientSilder.swift */; };
+		A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */; };
+		A524E4FD1E7EDDE900533BB3 /* ColorSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */; };
 		A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */; };
 		A59CC51F1E1024E900B51B36 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A59CC51E1E1024E900B51B36 /* Podfile */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
@@ -47,6 +50,9 @@
 		78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lumino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		891963619B8A83B9E8391AF0 /* Pods-Lumino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumino.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumino/Pods-Lumino.debug.xcconfig"; sourceTree = "<group>"; };
 		936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuminoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A524E4F81E7DF34000533BB3 /* GradientSilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSilder.swift; sourceTree = "<group>"; };
+		A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotLayer.swift; sourceTree = "<group>"; };
+		A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotView.swift; sourceTree = "<group>"; };
 		A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
 		A57E32461E10340D0044107D /* Color-Picker-for-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Color-Picker-for-iOS"; path = "Pods/Color-Picker-for-iOS"; sourceTree = "<group>"; };
 		A59CC51E1E1024E900B51B36 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -180,6 +186,9 @@
 			isa = PBXGroup;
 			children = (
 				A5EB37F11E746BFB003B30F1 /* ColorWheel.swift */,
+				A524E4F81E7DF34000533BB3 /* GradientSilder.swift */,
+				A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */,
+				A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */,
 			);
 			name = ColorPicker;
 			sourceTree = "<group>";
@@ -469,8 +478,11 @@
 			files = (
 				A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */,
 				A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */,
+				A524E4FD1E7EDDE900533BB3 /* ColorSpotView.swift in Sources */,
 				A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */,
 				A5EB37F21E746BFB003B30F1 /* ColorWheel.swift in Sources */,
+				A524E4F91E7DF34000533BB3 /* GradientSilder.swift in Sources */,
+				A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

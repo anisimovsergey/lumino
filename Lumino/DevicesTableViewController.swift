@@ -25,6 +25,10 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         self.services.removeAll()
         self.nsb.searchForServices(ofType:"_http._tcp", inDomain: "")
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

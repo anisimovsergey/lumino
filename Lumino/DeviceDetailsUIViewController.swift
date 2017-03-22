@@ -8,49 +8,95 @@
 
 import UIKit
 import Starscream
-import SwiftHSVColorPicker
 
-class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate {
+class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorWheelDelegate, GradientSiliderDelegate {
 
     @IBOutlet weak var textView: UITextView!
     var text = String()
     var socket: WebSocket!
     // IBOutlet for the ColorPicker
     @IBOutlet var colorWheel: ColorWheel!
+    @IBOutlet var colorSpot: ColorSpotView!
+    @IBOutlet var saturatonSlider: GradientSilider!
+    @IBOutlet var luminanceSlider: GradientSilider!
     
-    var selectedColor: UIColor = UIColor.white
+    var color: UIColor {
+        get {
+            return UIColor(hue: colorWheel.hue, saturation: saturatonSlider.fraction, brightness: luminanceSlider.fraction, alpha: CGFloat(1))
+        }
+        set {
+            var h: CGFloat = 0
+            var s: CGFloat = 0
+            var l: CGFloat = 0
+            var a: CGFloat = 0
+            
+            newValue.getHue(&h, saturation: &s, brightness: &l, alpha: &a)
+            colorWheel.hue = h
+            saturatonSlider.fraction = s
+            luminanceSlider.fraction = l
+            updateColors()
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Device"
        // textView.text = text
-      //  socket = WebSocket(url: URL(string: "ws://192.168.1.76/ws")!)
-       // socket.delegate = self
-       // socket.connect()
-        colorWheel.AA()
+        socket = WebSocket(url: URL(string: "ws://192.168.1.76/ws")!)
+        socket.delegate = self
+        socket.connect()
+        color = UIColor.red
+        colorWheel.delegate = self
+        saturatonSlider.delegate = self
+        luminanceSlider.delegate = self
     }
     
-    @IBAction func buttonPressed(sender: AnyObject) {
-      //  var a:CGFloat = 0
-        //selectedColor = colorPicker.color
-        var bb:[CGFloat]! = selectedColor.cgColor.components
-        var r:CGFloat = bb[0]
-        if r < 0 {
-            r = 0
+    func updateColors() {
+        updateSaturation()
+        updateLuminance()
+        updateColorSpot()
+    }
+    
+    func updateSaturation() {
+        let pureColor = UIColor(hue: colorWheel.hue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
+        saturatonSlider.uicolors = [pureColor, UIColor.white]
+    }
+    
+    func updateLuminance() {
+        let saturatedColor = UIColor(hue: colorWheel.hue, saturation: saturatonSlider.fraction, brightness: CGFloat(1), alpha: CGFloat(1))
+        luminanceSlider.uicolors = [saturatedColor, UIColor.black]
+    }
+    
+    func updateColorSpot() {
+        colorSpot.backgroundColor = color
+        sendColor()
+    }
+    
+    func HueChanged(_ hue: CGFloat, wheel: ColorWheel) {
+        updateColors()
+    }
+    
+    func GradientChanged(_ gradient: CGFloat, slider: GradientSilider) {
+        if (slider == saturatonSlider) {
+            updateLuminance()
         }
-        var g:CGFloat = bb[1]
-        if g < 0 {
-            g = 0
+        updateColorSpot()
+    }
+    
+    func sendColor() {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
+        if color.getRed(&r, green: &g, blue: &b, alpha: &a){
+            print("R: \(r) G: \(g) B: \(b)")
+            socket.write(string: "{\"_type\": \"request\", \"requestType\": \"update\", \"resource\": \"color\",\"content\": {\"_type\": \"color\", \"r\": \(Int(r * 255)), \"g\": \(Int(g * 255)), \"b\": \(Int(b * 255))}}")
         }
-        var b:CGFloat = bb[2]
-        if b < 0 {
-            b = 0
-        }
-
-        //if selectedColor.getRed(&r, green: &g, blue: &b, alpha: &a){
-          //  print("R: \(r) G: \(g) B: \(b)")
-           // socket.write(string: "{\"_type\": \"request\", \"requestType\": \"update\", \"resource\": \"color\",\"content\": {\"_type\": \"color\", \"r\": \(Int(r * 255)), \"g\": \(Int(g * 255)), \"b\": \(Int(b * 255))}}")
-        //}
     }
 
     func websocketDidConnect(socket: WebSocket) {
