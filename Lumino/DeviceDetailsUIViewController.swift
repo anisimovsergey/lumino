@@ -41,11 +41,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Device"
