@@ -11,14 +11,15 @@ import Starscream
 
 class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorWheelDelegate, GradientSiliderDelegate {
 
-    @IBOutlet weak var textView: UITextView!
-    var text = String()
     var socket: WebSocket!
-    // IBOutlet for the ColorPicker
+
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet var colorWheel: ColorWheel!
     @IBOutlet var colorSpot: ColorSpotView!
     @IBOutlet var saturatonSlider: GradientSilider!
     @IBOutlet var luminanceSlider: GradientSilider!
+
+    var lastId: String = ""
     
     var color: UIColor {
         get {
@@ -45,7 +46,6 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Device"
-       // textView.text = text
         socket = WebSocket(url: URL(string: "ws://192.168.1.76/ws")!)
         socket.delegate = self
         socket.connect()
@@ -53,6 +53,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         colorWheel.delegate = self
         saturatonSlider.delegate = self
         luminanceSlider.delegate = self
+        lastId = ""
     }
     
     func updateColors() {
@@ -87,15 +88,37 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         updateColorSpot()
     }
     
+    func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    
     func sendColor() {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
         
+        if !lastId.isEmpty {
+            return
+        }
+        
         if color.getRed(&r, green: &g, blue: &b, alpha: &a){
-            print("R: \(r) G: \(g) B: \(b)")
-            socket.write(string: "{\"_type\": \"request\", \"requestType\": \"update\", \"resource\": \"color\",\"content\": {\"_type\": \"color\", \"r\": \(Int(r * 255)), \"g\": \(Int(g * 255)), \"b\": \(Int(b * 255))}}")
+            lastId = randomString(length:4)
+            
+            print("R: \(r) G: \(g) B: \(b) id: \(lastId)")
+            socket.write(string: "{\"_type\": \"request\", \"id\": \"\(lastId)\", \"requestType\": \"update\", \"resource\": \"color\",\"content\": {\"_type\": \"color\", \"r\": \(Int(r * 255)), \"g\": \(Int(g * 255)), \"b\": \(Int(b * 255))}}")
         }
     }
 
@@ -108,11 +131,27 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     }
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        print("got some text: \(text)")
+        let data: NSData = text.data(using: String.Encoding.utf8)! as NSData
+        do {
+            let json = try JSONSerialization.jsonObject(with: data as Data, options: []) as? [String:AnyObject]
+        
+            if let myDictionary = json
+            {
+                let type = myDictionary["_type"]!
+                if type as! String == "response" {
+                   	if let response = Response(json: json!) {
+                        print(response.id)
+                        if (response.id == lastId) {
+                            lastId = ""
+                        }
+                    }
+                }
+            }
+        } catch let error as NSError {
+            print(error)
+        }
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("got some data: \(data.count)")
     }
-    
 }

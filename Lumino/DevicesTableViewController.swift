@@ -80,7 +80,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didRemove aNetService: NetService, moreComing: Bool) {
         if let ix = self.services.index(of:aNetService) {
             self.services.remove(at:ix)
-            print("Aemoving a service")
+            print("Removing a service")
             if !moreComing {
                self.updateInterface()
             }
@@ -88,10 +88,10 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails"{
-            if let nextViewController = segue.destination as? DeviceDetailsUIViewController{
-                nextViewController.text = "test"
-            }
-        }
+        //if segue.identifier == "showDetails"{
+          //  if let nextViewController = segue.destination as? DeviceDetailsUIViewController{
+                //nextViewController.text = "test"
+          //  }
+        //}
     }
 }

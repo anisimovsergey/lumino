@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1DA1020989126A9E19EF9CD4 /* Pods_LuminoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F465826E5B99BB775DBDB57 /* Pods_LuminoTests.framework */; };
 		9FEA49E2B502A3953E390552 /* Pods_Lumino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */; };
+		A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755E81E89AF4D00AF1A96 /* Response.swift */; };
+		A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755EC1E89B1B300AF1A96 /* Event.swift */; };
 		A524E4F91E7DF34000533BB3 /* GradientSilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4F81E7DF34000533BB3 /* GradientSilder.swift */; };
 		A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */; };
 		A524E4FD1E7EDDE900533BB3 /* ColorSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */; };
@@ -50,6 +52,8 @@
 		78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lumino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		891963619B8A83B9E8391AF0 /* Pods-Lumino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lumino.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lumino/Pods-Lumino.debug.xcconfig"; sourceTree = "<group>"; };
 		936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuminoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50755E81E89AF4D00AF1A96 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		A50755EC1E89B1B300AF1A96 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A524E4F81E7DF34000533BB3 /* GradientSilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSilder.swift; sourceTree = "<group>"; };
 		A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotLayer.swift; sourceTree = "<group>"; };
 		A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotView.swift; sourceTree = "<group>"; };
@@ -126,6 +130,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A50755E71E89ACCB00AF1A96 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A50755E81E89AF4D00AF1A96 /* Response.swift */,
+				A50755EC1E89B1B300AF1A96 /* Event.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		A5C373771E07405D00697FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +165,7 @@
 		A5C373821E07405D00697FF6 /* Lumino */ = {
 			isa = PBXGroup;
 			children = (
+				A50755E71E89ACCB00AF1A96 /* Models */,
 				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
 				A5C373831E07405D00697FF6 /* AppDelegate.swift */,
 				A5C373871E07405D00697FF6 /* Main.storyboard */,
@@ -476,6 +490,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */,
+				A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */,
 				A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */,
 				A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */,
 				A524E4FD1E7EDDE900533BB3 /* ColorSpotView.swift in Sources */,
