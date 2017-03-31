@@ -61,7 +61,7 @@ class GradientSilider: UIView {
         set(newColors) {
             self.colors = newColors
             lineLayer.colors = [colors?[0].cgColor as Any, colors?[1].cgColor as Any]
-            markerLayer.backgroundColor = getSelectedColor().cgColor
+           // markerLayer.backgroundColor = getSelectedColor().cgColor
         }
     }
     
@@ -84,6 +84,7 @@ class GradientSilider: UIView {
         markerLayer = ColorSpot();
         markerLayer.contentsScale = UIScreen.main.scale
         markerLayer.setNeedsDisplay()
+        markerLayer.isOpaque = true
         self.layer.addSublayer(markerLayer)
         
         markerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapHue))
@@ -118,7 +119,7 @@ class GradientSilider: UIView {
     
     func moveMarkerToFrac() {
         markerLayer.position = self.getMarkerPosition()
-        markerLayer.backgroundColor = getSelectedColor().cgColor
+       // markerLayer.backgroundColor = getSelectedColor().cgColor
     }
     
     func handlePanHue(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -132,7 +133,7 @@ class GradientSilider: UIView {
             CATransaction.setDisableActions(true)
             
             markerLayer.position = self.getMarkerPosition()
-            markerLayer.backgroundColor = getSelectedColor().cgColor
+           // markerLayer.backgroundColor = getSelectedColor().cgColor
             
             CATransaction.commit()
         }

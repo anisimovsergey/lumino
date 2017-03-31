@@ -42,11 +42,11 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rFU-rw-e9s" id="nyF-Zh-TRB">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Q9-xE-BpV">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -90,14 +90,12 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwB-Q6-0Ut" customClass="GradientSilider" customModule="Lumino" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="364" width="276" height="44"/>
-                                                <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="iwB-Q6-0Ut" secondAttribute="height" multiplier="69:11" id="Lan-YH-PJY"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcD-zO-KAE" customClass="GradientSilider" customModule="Lumino" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="276" height="44"/>
-                                                <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="KcD-zO-KAE" secondAttribute="height" multiplier="69:11" id="7II-ek-Tz5"/>
                                                 </constraints>
@@ -105,22 +103,19 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbR-Da-mjQ" customClass="ColorWheel" customModule="Lumino" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="66" width="276" height="276"/>
                                                 <subviews>
-                                                    <view autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOY-9w-o88">
+                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOY-9w-o88">
                                                         <rect key="frame" x="0.0" y="0.0" width="276" height="94"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="DOY-9w-o88" secondAttribute="height" multiplier="138:47" id="Evn-57-TbA"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5v-lI-MzH" customClass="ColorSpotView" customModule="Lumino" customModuleProvider="target">
                                                         <rect key="frame" x="94" y="94" width="87" height="87"/>
-                                                        <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="B5v-lI-MzH" secondAttribute="height" multiplier="1:1" id="hxa-BK-Oda"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="LbR-Da-mjQ" secondAttribute="height" multiplier="1:1" id="Hhz-A3-ql5"/>
                                                     <constraint firstItem="B5v-lI-MzH" firstAttribute="centerX" secondItem="DOY-9w-o88" secondAttribute="centerX" id="Qer-7D-i06"/>
@@ -132,7 +127,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="leading" secondItem="LbR-Da-mjQ" secondAttribute="leading" id="4dq-xh-96f"/>
                                             <constraint firstAttribute="top" secondItem="KcD-zO-KAE" secondAttribute="top" id="4nm-g2-bZ2"/>

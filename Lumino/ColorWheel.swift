@@ -72,11 +72,13 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         hueCircleLayer = HueCircleLayer()
         hueCircleLayer.contentsScale = UIScreen.main.scale
         hueCircleLayer.setNeedsDisplay()
+        hueCircleLayer.isOpaque = true
         self.layer.addSublayer(hueCircleLayer)
         
         hueMarkerLayer = ColorSpot();
         hueMarkerLayer.contentsScale = UIScreen.main.scale
         hueMarkerLayer.setNeedsDisplay()
+        hueMarkerLayer.isOpaque = true
         self.layer.addSublayer(hueMarkerLayer)
                 
         hueTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapHue))
