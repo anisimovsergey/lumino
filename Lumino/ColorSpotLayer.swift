@@ -8,40 +8,14 @@
 
 import UIKit
 
-class ColorSpot: CAShapeLayer {
-    
-    override func layoutSublayers() {
-        let path = UIBezierPath(ovalIn: self.bounds.insetBy(dx: lineWidth, dy: lineWidth))
-        
-        self.path = path.cgPath
-        
-        self.strokeColor = UIColor.init(red: 219/256, green: 219/256, blue: 219/256, alpha: 1).cgColor
-        self.fillColor = UIColor.yellow.cgColor
-        updateMask()
-    }
-    
-    /*
-    let lineWidth: CGFloat = 4;
-    let strokeColor: UIColor =  UIColor.init(red: 219/256, green: 219/256, blue: 219/256, alpha: 1)
-    
-    override func draw(in context: CGContext) {
-        context.addEllipse(in: self.bounds.insetBy(dx: lineWidth, dy: lineWidth))
-        context.setLineWidth(lineWidth)
-        context.setStrokeColor(strokeColor.cgColor)
-        context.strokePath()
-    }
+class ColorSpotLayer: CAShapeLayer {
     
     override func layoutSublayers() {
         super.layoutSublayers()
-        updateMask()
-    }
-    */
-    func updateMask() {
+        
         let path = UIBezierPath(ovalIn: self.bounds.insetBy(dx: lineWidth, dy: lineWidth))
-        let mask = CAShapeLayer()
-        mask.frame = self.bounds
-        mask.path = path.cgPath
-        mask.fillColor = UIColor.black.cgColor
-        self.mask = mask
+        self.path = path.cgPath
+        self.lineWidth = 3
+        self.strokeColor = UIColor.init(red: 219/256, green: 219/256, blue: 219/256, alpha: 1).cgColor
     }
 }

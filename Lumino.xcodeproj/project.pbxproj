@@ -11,9 +11,10 @@
 		9FEA49E2B502A3953E390552 /* Pods_Lumino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F7219461FDD911BCECBBC0 /* Pods_Lumino.framework */; };
 		A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755E81E89AF4D00AF1A96 /* Response.swift */; };
 		A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755EC1E89B1B300AF1A96 /* Event.swift */; };
-		A524E4F91E7DF34000533BB3 /* GradientSilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4F81E7DF34000533BB3 /* GradientSilder.swift */; };
+		A50755EF1E9172F400AF1A96 /* ColorLineLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755EE1E9172F400AF1A96 /* ColorLineLayer.swift */; };
+		A50755F11E91750300AF1A96 /* HueCircleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755F01E91750300AF1A96 /* HueCircleLayer.swift */; };
+		A524E4F91E7DF34000533BB3 /* GradientSilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4F81E7DF34000533BB3 /* GradientSilderView.swift */; };
 		A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */; };
-		A524E4FD1E7EDDE900533BB3 /* ColorSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */; };
 		A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */; };
 		A59CC51F1E1024E900B51B36 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A59CC51E1E1024E900B51B36 /* Podfile */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
@@ -23,7 +24,7 @@
 		A5C373991E07405D00697FF6 /* LuminoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373981E07405D00697FF6 /* LuminoTests.swift */; };
 		A5C373A41E07405D00697FF6 /* LuminoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373A31E07405D00697FF6 /* LuminoUITests.swift */; };
 		A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */; };
-		A5EB37F21E746BFB003B30F1 /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB37F11E746BFB003B30F1 /* ColorWheel.swift */; };
+		A5EB37F21E746BFB003B30F1 /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */; };
 		EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,9 +55,10 @@
 		936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuminoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50755E81E89AF4D00AF1A96 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		A50755EC1E89B1B300AF1A96 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		A524E4F81E7DF34000533BB3 /* GradientSilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSilder.swift; sourceTree = "<group>"; };
+		A50755EE1E9172F400AF1A96 /* ColorLineLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorLineLayer.swift; sourceTree = "<group>"; };
+		A50755F01E91750300AF1A96 /* HueCircleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HueCircleLayer.swift; sourceTree = "<group>"; };
+		A524E4F81E7DF34000533BB3 /* GradientSilderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSilderView.swift; sourceTree = "<group>"; };
 		A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotLayer.swift; sourceTree = "<group>"; };
-		A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotView.swift; sourceTree = "<group>"; };
 		A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
 		A57E32461E10340D0044107D /* Color-Picker-for-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Color-Picker-for-iOS"; path = "Pods/Color-Picker-for-iOS"; sourceTree = "<group>"; };
 		A59CC51E1E1024E900B51B36 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -73,7 +75,7 @@
 		A5C373A31E07405D00697FF6 /* LuminoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminoUITests.swift; sourceTree = "<group>"; };
 		A5C373A51E07405D00697FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsUIViewController.swift; sourceTree = "<group>"; };
-		A5EB37F11E746BFB003B30F1 /* ColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheel.swift; sourceTree = "<group>"; };
+		A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
 		D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,10 +201,11 @@
 		A5EB37F01E746BE2003B30F1 /* ColorPicker */ = {
 			isa = PBXGroup;
 			children = (
-				A5EB37F11E746BFB003B30F1 /* ColorWheel.swift */,
-				A524E4F81E7DF34000533BB3 /* GradientSilder.swift */,
+				A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */,
+				A524E4F81E7DF34000533BB3 /* GradientSilderView.swift */,
 				A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */,
-				A524E4FC1E7EDDE900533BB3 /* ColorSpotView.swift */,
+				A50755EE1E9172F400AF1A96 /* ColorLineLayer.swift */,
+				A50755F01E91750300AF1A96 /* HueCircleLayer.swift */,
 			);
 			name = ColorPicker;
 			sourceTree = "<group>";
@@ -492,12 +495,13 @@
 			files = (
 				A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */,
 				A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */,
+				A50755F11E91750300AF1A96 /* HueCircleLayer.swift in Sources */,
 				A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */,
 				A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */,
-				A524E4FD1E7EDDE900533BB3 /* ColorSpotView.swift in Sources */,
 				A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */,
-				A5EB37F21E746BFB003B30F1 /* ColorWheel.swift in Sources */,
-				A524E4F91E7DF34000533BB3 /* GradientSilder.swift in Sources */,
+				A5EB37F21E746BFB003B30F1 /* ColorWheelView.swift in Sources */,
+				A524E4F91E7DF34000533BB3 /* GradientSilderView.swift in Sources */,
+				A50755EF1E9172F400AF1A96 /* ColorLineLayer.swift in Sources */,
 				A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

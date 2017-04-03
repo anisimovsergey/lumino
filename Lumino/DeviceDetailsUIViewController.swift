@@ -14,10 +14,9 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     var socket: WebSocket!
 
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet var colorWheel: ColorWheel!
-    @IBOutlet var colorSpot: ColorSpotView!
-    @IBOutlet var saturatonSlider: GradientSilider!
-    @IBOutlet var luminanceSlider: GradientSilider!
+    @IBOutlet var colorWheel: ColorWheelView!
+    @IBOutlet var saturatonSlider: GradientSiliderView!
+    @IBOutlet var luminanceSlider: GradientSiliderView!
 
     var lastId: String = ""
     
@@ -73,15 +72,15 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     }
     
     func updateColorSpot() {
-        colorSpot.backgroundColor = color
+        colorWheel.spotColor = color.cgColor
         sendColor()
     }
     
-    func HueChanged(_ hue: CGFloat, wheel: ColorWheel) {
+    func HueChanged(_ hue: CGFloat, wheel: ColorWheelView) {
         updateColors()
     }
     
-    func GradientChanged(_ gradient: CGFloat, slider: GradientSilider) {
+    func GradientChanged(_ gradient: CGFloat, slider: GradientSiliderView) {
         if (slider == saturatonSlider) {
             updateLuminance()
         }
@@ -104,7 +103,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         return randomString
     }
     
-    func sendColor() {
+    func sendColor() {        
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0

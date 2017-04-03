@@ -8,31 +8,14 @@
 
 import UIKit
 
-class ColorLine: CAGradientLayer {
-    
-    override func layoutSublayers() {
-        super.layoutSublayers()
-        
-        if (self.mask == nil) {
-            let r: CGFloat = self.bounds.width / 2
-            let path = UIBezierPath(roundedRect: self.bounds, cornerRadius: r)
-            let mask = CAShapeLayer()
-            mask.frame = self.bounds
-            mask.path = path.cgPath
-            mask.fillColor = UIColor.black.cgColor
-            self.mask = mask
-        }
-    }
-}
-
 protocol GradientSiliderDelegate: class {
-    func GradientChanged(_ gradient: CGFloat, slider: GradientSilider)
+    func GradientChanged(_ gradient: CGFloat, slider: GradientSiliderView)
 }
 
-class GradientSilider: UIView {
+class GradientSiliderView: UIView {
     var frac: CGFloat = 0
     var lineLayer: CAGradientLayer!
-    var markerLayer: CALayer!
+    var markerLayer: CAShapeLayer!
     var colors: [UIColor]?
     var markerTapRecognizer: UITapGestureRecognizer!
     var markerPanRecognizer: UIPanGestureRecognizer!
@@ -61,7 +44,7 @@ class GradientSilider: UIView {
         set(newColors) {
             self.colors = newColors
             lineLayer.colors = [colors?[0].cgColor as Any, colors?[1].cgColor as Any]
-           // markerLayer.backgroundColor = getSelectedColor().cgColor
+            markerLayer.fillColor = getSelectedColor().cgColor
         }
     }
     
@@ -76,15 +59,12 @@ class GradientSilider: UIView {
     }
     
     func setup() {
-        lineLayer = ColorLine()
-        lineLayer.colors = [UIColor.white.cgColor, UIColor.red.cgColor]
+        lineLayer = ColorLineLayer()
+        lineLayer.shouldRasterize = true
         lineLayer.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
         self.layer.addSublayer(lineLayer)
 
-        markerLayer = ColorSpot();
-        markerLayer.contentsScale = UIScreen.main.scale
-        markerLayer.setNeedsDisplay()
-        markerLayer.isOpaque = true
+        markerLayer = ColorSpotLayer();
         self.layer.addSublayer(markerLayer)
         
         markerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapHue))
@@ -119,7 +99,7 @@ class GradientSilider: UIView {
     
     func moveMarkerToFrac() {
         markerLayer.position = self.getMarkerPosition()
-       // markerLayer.backgroundColor = getSelectedColor().cgColor
+        markerLayer.fillColor = getSelectedColor().cgColor
     }
     
     func handlePanHue(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -133,7 +113,7 @@ class GradientSilider: UIView {
             CATransaction.setDisableActions(true)
             
             markerLayer.position = self.getMarkerPosition()
-           // markerLayer.backgroundColor = getSelectedColor().cgColor
+            markerLayer.fillColor = getSelectedColor().cgColor
             
             CATransaction.commit()
         }

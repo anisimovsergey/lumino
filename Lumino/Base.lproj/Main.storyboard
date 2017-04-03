@@ -88,42 +88,22 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOh-PM-RTz">
                                         <rect key="frame" x="22.5" y="48.5" width="276" height="408"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwB-Q6-0Ut" customClass="GradientSilider" customModule="Lumino" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwB-Q6-0Ut" customClass="GradientSiliderView" customModule="Lumino" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="364" width="276" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="iwB-Q6-0Ut" secondAttribute="height" multiplier="69:11" id="Lan-YH-PJY"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcD-zO-KAE" customClass="GradientSilider" customModule="Lumino" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcD-zO-KAE" customClass="GradientSiliderView" customModule="Lumino" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="276" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="KcD-zO-KAE" secondAttribute="height" multiplier="69:11" id="7II-ek-Tz5"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbR-Da-mjQ" customClass="ColorWheel" customModule="Lumino" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbR-Da-mjQ" customClass="ColorWheelView" customModule="Lumino" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="66" width="276" height="276"/>
-                                                <subviews>
-                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOY-9w-o88">
-                                                        <rect key="frame" x="0.0" y="0.0" width="276" height="94"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="DOY-9w-o88" secondAttribute="height" multiplier="138:47" id="Evn-57-TbA"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5v-lI-MzH" customClass="ColorSpotView" customModule="Lumino" customModuleProvider="target">
-                                                        <rect key="frame" x="94" y="94" width="87" height="87"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="B5v-lI-MzH" secondAttribute="height" multiplier="1:1" id="hxa-BK-Oda"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="LbR-Da-mjQ" secondAttribute="height" multiplier="1:1" id="Hhz-A3-ql5"/>
-                                                    <constraint firstItem="B5v-lI-MzH" firstAttribute="centerX" secondItem="DOY-9w-o88" secondAttribute="centerX" id="Qer-7D-i06"/>
-                                                    <constraint firstItem="B5v-lI-MzH" firstAttribute="centerY" secondItem="LbR-Da-mjQ" secondAttribute="centerY" id="SXS-dX-Glx"/>
-                                                    <constraint firstItem="DOY-9w-o88" firstAttribute="leading" secondItem="LbR-Da-mjQ" secondAttribute="leading" id="fjV-Ox-NhS"/>
-                                                    <constraint firstAttribute="trailing" secondItem="DOY-9w-o88" secondAttribute="trailing" id="gwY-oN-gmC"/>
-                                                    <constraint firstItem="B5v-lI-MzH" firstAttribute="top" secondItem="DOY-9w-o88" secondAttribute="bottom" id="jOC-ib-bfV"/>
-                                                    <constraint firstItem="DOY-9w-o88" firstAttribute="top" secondItem="LbR-Da-mjQ" secondAttribute="top" id="qv9-ad-Vnl"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -163,7 +143,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="colorSpot" destination="B5v-lI-MzH" id="uqU-tT-5Qy"/>
                         <outlet property="colorWheel" destination="LbR-Da-mjQ" id="80N-z2-QMN"/>
                         <outlet property="luminanceSlider" destination="KcD-zO-KAE" id="rFw-dT-bxF"/>
                         <outlet property="saturatonSlider" destination="iwB-Q6-0Ut" id="ij6-zR-de1"/>
