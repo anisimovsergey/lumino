@@ -14,6 +14,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 75
         self.title = "Lumino"
         self.nsb = NetServiceBrowser()
         self.nsb.delegate = self
@@ -30,20 +31,42 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         return .lightContent
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.services.count
-    }
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
         
-        cell.textLabel?.text = services[indexPath.row].name
+        
+        // add border and color
+        /*cell.backgroundColor = UIColor.white
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        cell.clipsToBounds = true
+        */
+        //cell.frame = CGRectOffset(cell.frame, 10, 10);
+        
+        //cell.textLabel?.text = services[indexPath.section].name
         return cell
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.services.count
+    }
+    
+    // There is just one row in every section
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    // Set the spacing between sections
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    // Make the background color show through
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     func updateInterface() {

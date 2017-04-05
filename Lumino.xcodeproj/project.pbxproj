@@ -13,6 +13,7 @@
 		A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755EC1E89B1B300AF1A96 /* Event.swift */; };
 		A50755EF1E9172F400AF1A96 /* ColorLineLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755EE1E9172F400AF1A96 /* ColorLineLayer.swift */; };
 		A50755F11E91750300AF1A96 /* HueCircleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755F01E91750300AF1A96 /* HueCircleLayer.swift */; };
+		A50755F41E956B7600AF1A96 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755F31E956B7600AF1A96 /* DeviceTableViewCell.swift */; };
 		A524E4F91E7DF34000533BB3 /* GradientSilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4F81E7DF34000533BB3 /* GradientSilderView.swift */; };
 		A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */; };
 		A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */; };
@@ -57,6 +58,7 @@
 		A50755EC1E89B1B300AF1A96 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A50755EE1E9172F400AF1A96 /* ColorLineLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorLineLayer.swift; sourceTree = "<group>"; };
 		A50755F01E91750300AF1A96 /* HueCircleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HueCircleLayer.swift; sourceTree = "<group>"; };
+		A50755F31E956B7600AF1A96 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		A524E4F81E7DF34000533BB3 /* GradientSilderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSilderView.swift; sourceTree = "<group>"; };
 		A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotLayer.swift; sourceTree = "<group>"; };
 		A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		A50755F21E956B3E00AF1A96 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				A50755F31E956B7600AF1A96 /* DeviceTableViewCell.swift */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
 		A5C373771E07405D00697FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +177,7 @@
 		A5C373821E07405D00697FF6 /* Lumino */ = {
 			isa = PBXGroup;
 			children = (
+				A50755F21E956B3E00AF1A96 /* TableView */,
 				A50755E71E89ACCB00AF1A96 /* Models */,
 				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
 				A5C373831E07405D00697FF6 /* AppDelegate.swift */,
@@ -494,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */,
+				A50755F41E956B7600AF1A96 /* DeviceTableViewCell.swift in Sources */,
 				A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */,
 				A50755F11E91750300AF1A96 /* HueCircleLayer.swift in Sources */,
 				A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */,

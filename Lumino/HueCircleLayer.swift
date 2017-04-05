@@ -9,9 +9,7 @@
 import UIKit
 
 class HueCircleLayer: CALayer {
-    let segmentsNum: Int = 256
-    let lineWidth: CGFloat = 6
-    var radius: CGFloat = 0
+    private let segmentsNum: Int = 256
     
     override init() {
         super.init()
@@ -21,6 +19,18 @@ class HueCircleLayer: CALayer {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var radius: CGFloat = 0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    var lineWidth: CGFloat = 0 {
+        didSet {
+            setNeedsDisplay()
+        }
     }
     
     override func draw(in context: CGContext) {

@@ -80,8 +80,9 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
                 (circleCenter.x - position.x) +
                 (circleCenter.y - position.y) *
                 (circleCenter.y - position.y)
-        return (distanceSquared >= (circleRadius - 22) * (circleRadius - 22)) &&
-               (distanceSquared <= (circleRadius + 22) * (circleRadius + 22))
+        let padRadius = hueMarkerLayer.bounds.width / 2
+        return (distanceSquared >= (circleRadius - padRadius) * (circleRadius - padRadius)) &&
+               (distanceSquared <= (circleRadius + padRadius) * (circleRadius + padRadius))
     }
 
     func isTapOnMarker(_ position: CGPoint) -> Bool {
@@ -90,7 +91,8 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
                 (hueMarkerLayer.position.x - position.x) +
                 (hueMarkerLayer.position.y - position.y) *
                 (hueMarkerLayer.position.y - position.y)
-        return (distanceSquared <= 44 * 44)
+        let padWidth = hueMarkerLayer.bounds.width
+        return (distanceSquared <= padWidth * padWidth)
     }
     
     func moveMarkerToHue() {
@@ -175,19 +177,23 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let minSide: CGFloat = CGFloat(min(self.bounds.size.width, self.bounds.size.height))
-        circleRadius = (minSide - 44) / 2.0
+        let markerSize = round(bounds.width / 6)
+        let lineWidth = round(markerSize / 8)
+
+        circleRadius = (bounds.width - markerSize) / 2.0
         circleCenter = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
         
-        hueCircleLayer.radius = circleRadius
         hueCircleLayer.frame = self.bounds
-        hueCircleLayer.setNeedsDisplay()
-
-        hueMarkerLayer.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 44, height: 44))
+        hueCircleLayer.radius = circleRadius
+        hueCircleLayer.lineWidth = lineWidth
+        
+        hueMarkerLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: markerSize, height: markerSize))
+        hueMarkerLayer.lineWidth = round(lineWidth / 2)
         hueMarkerLayer.position = self.getHueMarkerPosition()
         
-        colorSpotLayer.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: circleRadius * 3/4, height: circleRadius * 3/4))
-        colorSpotLayer.position =  CGPoint(x: bounds.width/2 , y: bounds.height/2)
+        colorSpotLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: circleRadius * 3/4, height: circleRadius * 3/4))
+        colorSpotLayer.lineWidth = round(lineWidth / 2)
+        colorSpotLayer.position =  CGPoint(x: bounds.width / 2 , y: bounds.height / 2)
     }
  
 }

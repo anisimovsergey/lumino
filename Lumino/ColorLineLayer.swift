@@ -12,11 +12,8 @@ class ColorLineLayer: CAGradientLayer {
         
     override func layoutSublayers() {
         super.layoutSublayers()
-        
-        let r: CGFloat = self.bounds.width / 2
-        let path = UIBezierPath(roundedRect: self.bounds, cornerRadius: r)
+        let path = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.width / 2)
         let mask = CAShapeLayer()
-        mask.frame = self.bounds
         mask.path = path.cgPath
         mask.fillColor = UIColor.black.cgColor
         self.mask = mask

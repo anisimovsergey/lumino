@@ -12,10 +12,8 @@ class ColorSpotLayer: CAShapeLayer {
     
     override func layoutSublayers() {
         super.layoutSublayers()
-        
         let path = UIBezierPath(ovalIn: self.bounds.insetBy(dx: lineWidth, dy: lineWidth))
         self.path = path.cgPath
-        self.lineWidth = 3
         self.strokeColor = UIColor.init(red: 219/256, green: 219/256, blue: 219/256, alpha: 1).cgColor
     }
 }

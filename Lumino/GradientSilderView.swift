@@ -21,12 +21,6 @@ class GradientSiliderView: UIView {
     var markerPanRecognizer: UIPanGestureRecognizer!
     weak var delegate: GradientSiliderDelegate?
     
-    func getMarkerPosition() -> CGPoint {
-        let x = lineLayer.frame.origin.x + lineLayer.bounds.height * frac
-        let y = self.bounds.height / 2
-        return CGPoint(x: x, y: y)
-    }
-    
     var fraction: CGFloat {
         get {
             return frac
@@ -74,6 +68,12 @@ class GradientSiliderView: UIView {
         self.addGestureRecognizer(markerPanRecognizer)
     }
     
+    private func getMarkerPosition() -> CGPoint {
+        let x = lineLayer.frame.origin.x + lineLayer.bounds.height * frac
+        let y = self.bounds.height / 2
+        return CGPoint(x: x, y: y)
+    }
+
     func getSelectedColor() -> UIColor {
         var r1: CGFloat = 0, g1: CGFloat = 0, b1: CGFloat = 0, a1: CGFloat = 0
         colors?[0].getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
@@ -130,11 +130,15 @@ class GradientSiliderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        let markerSize = round(bounds.width / 6)
+        let lineWidth = round(markerSize / 8)
 
-        lineLayer.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 6, height: self.bounds.width - 44))
+        lineLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: lineWidth, height: self.bounds.width - markerSize))
         lineLayer.position = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
         
-        markerLayer.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 44, height: 44))
+        markerLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: markerSize, height: markerSize))
+        markerLayer.lineWidth = round(lineWidth / 2)
         markerLayer.position = self.getMarkerPosition()
     }
 }
