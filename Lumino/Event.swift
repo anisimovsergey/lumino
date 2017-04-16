@@ -10,19 +10,15 @@ import Foundation
 
 struct Event {
     let eventType: String
-    let resource: String
 }
 
 extension Event {
     init?(json: [String: Any]) {
         guard
-            let eventType = json["eventType"] as? String,
-            let resource = json["resource"] as? String
-            else {
+            let eventType = json["eventType"] as? String
+        else {
                 return nil
         }
-        
         self.eventType = eventType
-        self.resource = resource
     }
 }
