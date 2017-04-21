@@ -10,7 +10,8 @@ import UIKit
 
 class DevicesTableViewController: UITableViewController, NetServiceBrowserDelegate, NetServiceDelegate {
     var nsb : NetServiceBrowser!
-    var services = [NetService]()
+    var discoveredServices = [NetService]()
+    var resolvedServices = [NetService]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +24,14 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     
     func start()  {
         print("listening for services...")
-        self.services.removeAll()
-        self.nsb.searchForServices(ofType:"_http._tcp", inDomain: "")
+        self.discoveredServices.removeAll()
+        self.resolvedServices.removeAll()
+        self.nsb.searchForServices(ofType:"_lumino-ws._tcp", inDomain: "")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
-        cell.textLabel?.text = services[indexPath.row].name
+        cell.textLabel?.text = resolvedServices[indexPath.row].name
         return cell
     }
     
@@ -38,19 +40,20 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.services.count
+        return self.resolvedServices.count
     }
     
     func updateInterface() {
-        for service in self.services {
+        for service in self.discoveredServices {
             if service.port == -1 {
                 print("service \(service.name) of type \(service.type)" +
                     " not yet resolved")
                 service.delegate = self
                 service.resolve(withTimeout:10)
             } else {
-                print("service \(service.name) of type \(service.type)," +
-                    "host \(service.hostName), port \(service.port), addresses \(service.addresses)")
+                print("service \(service.name) of type \(service.type), " +
+                    "host \(service.hostName!), port \(service.port)")
+                resolvedServices.append(service)
             }
         }
         self.tableView.reloadData()
@@ -66,19 +69,22 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind aNetService: NetService, moreComing: Bool) {
         print("Adding a service " + aNetService.name)
-        self.services.append(aNetService)
+        self.discoveredServices.append(aNetService)
         if !moreComing {
             self.updateInterface()
         }
     }
     
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didRemove aNetService: NetService, moreComing: Bool) {
-        if let ix = self.services.index(of:aNetService) {
-            self.services.remove(at:ix)
-            print("Removing a service")
-            if !moreComing {
-               self.updateInterface()
-            }
+        print("Removing a service")
+        if let ix = self.discoveredServices.index(of:aNetService) {
+            self.discoveredServices.remove(at:ix)
+        }
+        if let ix = self.resolvedServices.index(of:aNetService) {
+            self.resolvedServices.remove(at:ix)
+        }
+        if !moreComing {
+            self.updateInterface()
         }
     }
     
@@ -86,7 +92,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         if segue.identifier == "showDetails"{
             if let nextViewController = segue.destination as? DeviceDetailsUIViewController {
                 let row = self.tableView.indexPathForSelectedRow!.row
-                nextViewController.service = services[row]
+                nextViewController.service = resolvedServices[row]
             }
         }
     }

@@ -40,7 +40,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Device"
-        print("service \(service.hostName) ")
+        print("service \(service.hostName!) ")
         socket = WebSocket(url: URL(string: "ws://\(service.hostName!)/ws")!)
         socket.delegate = self
         socket.connect()
@@ -161,6 +161,12 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
                         }
                         if (response.requestType == "read") {
                             print(response.content)
+                            let cont = response.content as! [String: Any]
+                            if (cont["_type"] as! String == "color") {
+                                if let color = Color(json: cont) {
+                                   self.color = UIColor.init(red: CGFloat(color.r) / 255.0, green: CGFloat(color.g) / 255.0, blue: CGFloat(color.b) / 255.0, alpha: 1.0)
+                                }
+                            }
                         }
                     }
                 }
