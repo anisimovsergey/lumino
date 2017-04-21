@@ -8,39 +8,19 @@
 
 import UIKit
 
-class HueCircleLayer: CALayer {
-    let segmentsNum: Int = 256
-    let lineWidth: CGFloat = 6
-    var radius: CGFloat = 0
-    
-    override func draw(in context: CGContext) {
-        let sliceAngle: CGFloat = 2.0 * .pi / CGFloat(segmentsNum)
-        let path: CGMutablePath = CGMutablePath()
-        path.addArc(center: CGPoint(x: 0, y: 0), radius: radius, startAngle: -sliceAngle / 2.0, endAngle: sliceAngle / 2.0 + 1.0e-2, clockwise: false, transform: .identity)
-        context.translateBy(x: bounds.size.width / 2.0, y: bounds.size.height / 2.0)
-        context.setLineWidth(lineWidth)
-        for i in 0..<self.segmentsNum {
-            let hue = CGFloat(Float(i) / Float(self.segmentsNum))
-            let color = UIColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
-            context.addPath(path)
-            context.setStrokeColor(color.cgColor)
-            context.strokePath()
-            context.rotate(by: -sliceAngle)
-        }
-    }
-}
-
 protocol ColorWheelDelegate: class {
-    func HueChanged(_ hue: CGFloat, wheel: ColorWheel)
+    func HueChanged(_ hue: CGFloat, wheel: ColorWheelView)
 }
 
-class ColorWheel: UIView, UIGestureRecognizerDelegate {
+class ColorWheelView: UIView, UIGestureRecognizerDelegate {
     private var colorHue: CGFloat = 0
     private var circleCenter: CGPoint = CGPoint.init()
     private var circleRadius: CGFloat = 0
 
     private var hueCircleLayer: HueCircleLayer!
-    private var hueMarkerLayer: CALayer!
+    private var hueMarkerLayer: ColorSpotLayer!
+    private var colorSpotLayer: ColorSpotLayer!
+    
     private var panStarted: Bool = false;
     
     private var hueTapGestureRecognizer: UITapGestureRecognizer!
@@ -58,6 +38,15 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         }
     }
     
+    var spotColor: CGColor {
+        get {
+            return colorSpotLayer.fillColor!
+        }
+        set {
+            colorSpotLayer.fillColor = newValue
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
         setup()
@@ -67,17 +56,16 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         super.init(frame: frame)
         setup()
     }
-    
+
     func setup() {
         hueCircleLayer = HueCircleLayer()
-        hueCircleLayer.contentsScale = UIScreen.main.scale
-        hueCircleLayer.setNeedsDisplay()
         self.layer.addSublayer(hueCircleLayer)
         
-        hueMarkerLayer = ColorSpot();
-        hueMarkerLayer.contentsScale = UIScreen.main.scale
-        hueMarkerLayer.setNeedsDisplay()
+        hueMarkerLayer = ColorSpotLayer();
         self.layer.addSublayer(hueMarkerLayer)
+        
+        colorSpotLayer = ColorSpotLayer()
+        self.layer.addSublayer(colorSpotLayer)
                 
         hueTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapHue))
         self.addGestureRecognizer(hueTapGestureRecognizer)
@@ -92,8 +80,9 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
                 (circleCenter.x - position.x) +
                 (circleCenter.y - position.y) *
                 (circleCenter.y - position.y)
-        return (distanceSquared >= (circleRadius - 22) * (circleRadius - 22)) &&
-               (distanceSquared <= (circleRadius + 22) * (circleRadius + 22))
+        let padRadius = hueMarkerLayer.bounds.width / 2
+        return (distanceSquared >= (circleRadius - padRadius) * (circleRadius - padRadius)) &&
+               (distanceSquared <= (circleRadius + padRadius) * (circleRadius + padRadius))
     }
 
     func isTapOnMarker(_ position: CGPoint) -> Bool {
@@ -102,7 +91,8 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
                 (hueMarkerLayer.position.x - position.x) +
                 (hueMarkerLayer.position.y - position.y) *
                 (hueMarkerLayer.position.y - position.y)
-        return (distanceSquared <= 44 * 44)
+        let padWidth = hueMarkerLayer.bounds.width
+        return (distanceSquared <= padWidth * padWidth)
     }
     
     func moveMarkerToHue() {
@@ -130,7 +120,7 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         hueMarkerLayer.add(animation, forKey: "position")
         
         let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
-        hueMarkerLayer.backgroundColor = color.cgColor
+        hueMarkerLayer.fillColor = color.cgColor
     }
     
     func getHueFrom(position: CGPoint) -> CGFloat {
@@ -159,7 +149,7 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
             CATransaction.setDisableActions(true)
             
             hueMarkerLayer.position = self.getHueMarkerPosition()
-            hueMarkerLayer.backgroundColor = color.cgColor
+            hueMarkerLayer.fillColor = color.cgColor
             
             CATransaction.commit()
         }
@@ -183,19 +173,27 @@ class ColorWheel: UIView, UIGestureRecognizerDelegate {
         let y = -sin(radians) * circleRadius + circleCenter.y
         return CGPoint(x: x, y: y)
     }
-    
+        
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let minSide: CGFloat = CGFloat(min(self.bounds.size.width, self.bounds.size.height))
-        circleRadius = (minSide - 44) / 2.0
+        let markerSize = round(bounds.width / 6)
+        let lineWidth = round(markerSize / 8)
+
+        circleRadius = (bounds.width - markerSize) / 2.0
         circleCenter = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
         
-        hueCircleLayer.radius = circleRadius
         hueCircleLayer.frame = self.bounds
-
-        hueMarkerLayer.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 44, height: 44))
+        hueCircleLayer.radius = circleRadius
+        hueCircleLayer.lineWidth = lineWidth
+        
+        hueMarkerLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: markerSize, height: markerSize))
+        hueMarkerLayer.lineWidth = round(lineWidth / 2)
         hueMarkerLayer.position = self.getHueMarkerPosition()
+        
+        colorSpotLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: circleRadius * 3/4, height: circleRadius * 3/4))
+        colorSpotLayer.lineWidth = round(lineWidth / 2)
+        colorSpotLayer.position =  CGPoint(x: bounds.width / 2 , y: bounds.height / 2)
     }
  
 }

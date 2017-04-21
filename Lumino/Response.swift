@@ -11,7 +11,7 @@ import Foundation
 struct Response {
     let id: String
     let requestType: String
-    let resource: String
+    let content: Any
 }
 
 extension Response {
@@ -19,13 +19,12 @@ extension Response {
         guard
             let id = json["id"] as? String,
             let requestType = json["requestType"] as? String,
-            let resource = json["resource"] as? String
+            let content = json["content"]
         else {
             return nil
         }
-        
         self.id = id
         self.requestType = requestType
-        self.resource = resource
+        self.content = content
     }
 }

@@ -11,15 +11,13 @@ import Starscream
 
 class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorWheelDelegate, GradientSiliderDelegate {
 
-    var socket: WebSocket!
+    @IBOutlet var colorWheel: ColorWheelView!
+    @IBOutlet var saturatonSlider: GradientSiliderView!
+    @IBOutlet var luminanceSlider: GradientSiliderView!
 
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet var colorWheel: ColorWheel!
-    @IBOutlet var colorSpot: ColorSpotView!
-    @IBOutlet var saturatonSlider: GradientSilider!
-    @IBOutlet var luminanceSlider: GradientSilider!
-
-    var lastId: String = ""
+    private var socket: WebSocket!
+    private var lastId: String = ""
+    var service: NetService!
     
     var color: UIColor {
         get {
@@ -38,15 +36,12 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
             updateColors()
         }
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-        
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Device"
-        socket = WebSocket(url: URL(string: "ws://192.168.1.76/ws")!)
+        print("service \(service.hostName!) ")
+        socket = WebSocket(url: URL(string: "ws://\(service.hostName!)/ws")!)
         socket.delegate = self
         socket.connect()
         color = UIColor.red
@@ -73,15 +68,15 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     }
     
     func updateColorSpot() {
-        colorSpot.backgroundColor = color
+        colorWheel.spotColor = color.cgColor
         sendColor()
     }
     
-    func HueChanged(_ hue: CGFloat, wheel: ColorWheel) {
+    func HueChanged(_ hue: CGFloat, wheel: ColorWheelView) {
         updateColors()
     }
     
-    func GradientChanged(_ gradient: CGFloat, slider: GradientSilider) {
+    func GradientChanged(_ gradient: CGFloat, slider: GradientSiliderView) {
         if (slider == saturatonSlider) {
             updateLuminance()
         }
@@ -104,7 +99,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         return randomString
     }
     
-    func sendColor() {
+    func sendColor() {        
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -116,14 +111,36 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         
         if color.getRed(&r, green: &g, blue: &b, alpha: &a){
             lastId = randomString(length:4)
+            let color = Color(r: UInt8(r * 255), g: UInt8(g * 255), b: UInt8(b * 255))
+            let req = Request(id: lastId, requestType: "update", resource: "color", content: color)
             
-            print("R: \(r) G: \(g) B: \(b) id: \(lastId)")
-            socket.write(string: "{\"_type\": \"request\", \"id\": \"\(lastId)\", \"requestType\": \"update\", \"resource\": \"color\",\"content\": {\"_type\": \"color\", \"r\": \(Int(r * 255)), \"g\": \(Int(g * 255)), \"b\": \(Int(b * 255))}}")
+            var json: String
+            do {
+                let data = try JSONSerialization.data(withJSONObject: req.toJSONObj(), options: [])
+                json = String(data: data, encoding: .utf8)!
+            } catch {
+                return
+            }
+            socket.write(string: json)
         }
     }
 
+    func requestColor() {
+        let lastId = randomString(length:4)
+        let req = Request(id: lastId, requestType: "read", resource: "color", content: nil)
+        var json: String
+        do {
+            let data = try JSONSerialization.data(withJSONObject: req.toJSONObj(), options: [])
+            json = String(data: data, encoding: .utf8)!
+        } catch {
+            return
+        }
+        socket.write(string: json)
+    }
+ 
     func websocketDidConnect(socket: WebSocket) {
         print("websocket is connected")
+        requestColor()
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
@@ -134,15 +151,22 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         let data: NSData = text.data(using: String.Encoding.utf8)! as NSData
         do {
             let json = try JSONSerialization.jsonObject(with: data as Data, options: []) as? [String:AnyObject]
-        
             if let myDictionary = json
             {
                 let type = myDictionary["_type"]!
                 if type as! String == "response" {
                    	if let response = Response(json: json!) {
-                        print(response.id)
                         if (response.id == lastId) {
                             lastId = ""
+                        }
+                        if (response.requestType == "read") {
+                            print(response.content)
+                            let cont = response.content as! [String: Any]
+                            if (cont["_type"] as! String == "color") {
+                                if let color = Color(json: cont) {
+                                   self.color = UIColor.init(red: CGFloat(color.r) / 255.0, green: CGFloat(color.g) / 255.0, blue: CGFloat(color.b) / 255.0, alpha: 1.0)
+                                }
+                            }
                         }
                     }
                 }

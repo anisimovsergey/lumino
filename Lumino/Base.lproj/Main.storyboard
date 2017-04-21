@@ -15,10 +15,9 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7VX-s6-jgw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Rda-WH-mWl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rda-WH-mWl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -38,15 +37,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeviceCell" textLabel="2Q9-xE-BpV" style="IBUITableViewCellStyleDefault" id="rFU-rw-e9s">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeviceCell" textLabel="jjN-es-8sg" rowHeight="75" style="IBUITableViewCellStyleDefault" id="rFU-rw-e9s" customClass="DeviceTableViewCell" customModule="Lumino" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rFU-rw-e9s" id="nyF-Zh-TRB">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Q9-xE-BpV">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jjN-es-8sg">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -68,7 +67,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="On2-gE-GUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945" y="785"/>
+            <point key="canvasLocation" x="945" y="784.85915492957747"/>
         </scene>
         <!--Device DetailsUI View Controller-->
         <scene sceneID="pg8-vW-pRI">
@@ -86,53 +85,27 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOh-PM-RTz">
-                                        <rect key="frame" x="22.5" y="48.5" width="276" height="408"/>
+                                        <rect key="frame" x="22.5" y="48" width="276" height="409"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwB-Q6-0Ut" customClass="GradientSilider" customModule="Lumino" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="364" width="276" height="44"/>
-                                                <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwB-Q6-0Ut" customClass="GradientSiliderView" customModule="Lumino" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="365" width="276" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="iwB-Q6-0Ut" secondAttribute="height" multiplier="69:11" id="Lan-YH-PJY"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcD-zO-KAE" customClass="GradientSilider" customModule="Lumino" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcD-zO-KAE" customClass="GradientSiliderView" customModule="Lumino" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="276" height="44"/>
-                                                <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="KcD-zO-KAE" secondAttribute="height" multiplier="69:11" id="7II-ek-Tz5"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbR-Da-mjQ" customClass="ColorWheel" customModule="Lumino" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66" width="276" height="276"/>
-                                                <subviews>
-                                                    <view autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOY-9w-o88">
-                                                        <rect key="frame" x="0.0" y="0.0" width="276" height="94"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="DOY-9w-o88" secondAttribute="height" multiplier="138:47" id="Evn-57-TbA"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5v-lI-MzH" customClass="ColorSpotView" customModule="Lumino" customModuleProvider="target">
-                                                        <rect key="frame" x="94" y="94" width="87" height="87"/>
-                                                        <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="B5v-lI-MzH" secondAttribute="height" multiplier="1:1" id="hxa-BK-Oda"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbR-Da-mjQ" customClass="ColorWheelView" customModule="Lumino" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="66.5" width="276" height="276"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="LbR-Da-mjQ" secondAttribute="height" multiplier="1:1" id="Hhz-A3-ql5"/>
-                                                    <constraint firstItem="B5v-lI-MzH" firstAttribute="centerX" secondItem="DOY-9w-o88" secondAttribute="centerX" id="Qer-7D-i06"/>
-                                                    <constraint firstItem="B5v-lI-MzH" firstAttribute="centerY" secondItem="LbR-Da-mjQ" secondAttribute="centerY" id="SXS-dX-Glx"/>
-                                                    <constraint firstItem="DOY-9w-o88" firstAttribute="leading" secondItem="LbR-Da-mjQ" secondAttribute="leading" id="fjV-Ox-NhS"/>
-                                                    <constraint firstAttribute="trailing" secondItem="DOY-9w-o88" secondAttribute="trailing" id="gwY-oN-gmC"/>
-                                                    <constraint firstItem="B5v-lI-MzH" firstAttribute="top" secondItem="DOY-9w-o88" secondAttribute="bottom" id="jOC-ib-bfV"/>
-                                                    <constraint firstItem="DOY-9w-o88" firstAttribute="top" secondItem="LbR-Da-mjQ" secondAttribute="top" id="qv9-ad-Vnl"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="leading" secondItem="LbR-Da-mjQ" secondAttribute="leading" id="4dq-xh-96f"/>
                                             <constraint firstAttribute="top" secondItem="KcD-zO-KAE" secondAttribute="top" id="4nm-g2-bZ2"/>
@@ -151,7 +124,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.15294117647058825" green="0.1803921568627451" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="SOh-PM-RTz" firstAttribute="centerX" secondItem="Zf1-fn-PbN" secondAttribute="centerX" id="1pZ-bx-1JW"/>
                                     <constraint firstItem="SOh-PM-RTz" firstAttribute="centerY" secondItem="Zf1-fn-PbN" secondAttribute="centerY" id="A8J-C2-40n"/>
@@ -169,7 +141,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="colorSpot" destination="B5v-lI-MzH" id="uqU-tT-5Qy"/>
                         <outlet property="colorWheel" destination="LbR-Da-mjQ" id="80N-z2-QMN"/>
                         <outlet property="luminanceSlider" destination="KcD-zO-KAE" id="rFw-dT-bxF"/>
                         <outlet property="saturatonSlider" destination="iwB-Q6-0Ut" id="ij6-zR-de1"/>
@@ -180,5 +151,4 @@
             <point key="canvasLocation" x="1663.125" y="780.63380281690138"/>
         </scene>
     </scenes>
-    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
