@@ -8,24 +8,9 @@
 
 import Foundation
 
-struct Request : JSONSerializible {
+struct Request: Serializible {
     let id: String
     let requestType: String
     let resource: String
-    let content: JSONSerializible?
-}
-
-extension Request {
-    func toJSONObj() -> Any {
-        var res: [String: Any] = [
-            "_type": "request",
-            "id": self.id,
-            "requestType": self.requestType,
-            "resource": self.resource
-        ]
-        if self.content != nil {
-            res["content"] =  self.content?.toJSONObj()
-        }
-        return res
-    }
+    let content: Serializible?
 }

@@ -99,7 +99,8 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         return randomString
     }
     
-    func sendColor() {        
+    func sendColor() {
+        /*
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -123,9 +124,11 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
             }
             socket.write(string: json)
         }
+ */
     }
 
     func requestColor() {
+        /*
         let lastId = randomString(length:4)
         let req = Request(id: lastId, requestType: "read", resource: "color", content: nil)
         var json: String
@@ -136,6 +139,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
             return
         }
         socket.write(string: json)
+ */
     }
  
     func websocketDidConnect(socket: WebSocket) {
@@ -148,6 +152,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
     }
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+        /*
         let data: NSData = text.data(using: String.Encoding.utf8)! as NSData
         do {
             let json = try JSONSerialization.jsonObject(with: data as Data, options: []) as? [String:AnyObject]
@@ -160,7 +165,6 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
                             lastId = ""
                         }
                         if (response.requestType == "read") {
-                            print(response.content)
                             let cont = response.content as! [String: Any]
                             if (cont["_type"] as! String == "color") {
                                 if let color = Color(json: cont) {
@@ -174,6 +178,7 @@ class DeviceDetailsUIViewController: UIViewController, WebSocketDelegate, ColorW
         } catch let error as NSError {
             print(error)
         }
+ */
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: Data) {

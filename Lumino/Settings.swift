@@ -8,8 +8,6 @@
 
 import Foundation
 
-struct Color: Serializible {
-    let r: UInt8
-    let g: UInt8
-    let b: UInt8
+struct Settings: Serializible {
+    let deviceName: String
 }

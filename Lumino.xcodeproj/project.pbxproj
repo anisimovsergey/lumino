@@ -15,18 +15,38 @@
 		A50755F11E91750300AF1A96 /* HueCircleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755F01E91750300AF1A96 /* HueCircleLayer.swift */; };
 		A50755F81E96CE5800AF1A96 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755F71E96CE5800AF1A96 /* Request.swift */; };
 		A50755FA1E96CF5700AF1A96 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755F91E96CF5700AF1A96 /* Color.swift */; };
-		A50755FF1E96E3EF00AF1A96 /* JSONSerializible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50755FE1E96E3EF00AF1A96 /* JSONSerializible.swift */; };
 		A524E4F91E7DF34000533BB3 /* GradientSilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4F81E7DF34000533BB3 /* GradientSilderView.swift */; };
 		A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */; };
+		A52BC39D1EB54BB6001BE371 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC39C1EB54BB6001BE371 /* Serializer.swift */; };
+		A52BC39F1EB5B516001BE371 /* ColorSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC39E1EB5B516001BE371 /* ColorSerializer.swift */; };
+		A52BC3A11EB5BFC7001BE371 /* Serializible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3A01EB5BFC7001BE371 /* Serializible.swift */; };
+		A52BC3A31EB5C142001BE371 /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3A21EB5C142001BE371 /* EventSerializer.swift */; };
+		A52BC3A51EB5C374001BE371 /* SettingsSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3A41EB5C374001BE371 /* SettingsSerializer.swift */; };
+		A52BC3A71EB5C5C6001BE371 /* SerializationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3A61EB5C5C6001BE371 /* SerializationService.swift */; };
+		A52BC3A91EB5C5D9001BE371 /* SerializationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3A81EB5C5D9001BE371 /* SerializationContext.swift */; };
+		A52BC3AB1EB5C5ED001BE371 /* DeserializationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3AA1EB5C5ED001BE371 /* DeserializationContext.swift */; };
+		A52BC3AD1EB5C61A001BE371 /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3AC1EB5C61A001BE371 /* SerializationError.swift */; };
+		A52BC3AF1EB5C636001BE371 /* Casting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BC3AE1EB5C636001BE371 /* Casting.swift */; };
 		A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */; };
 		A59CC51F1E1024E900B51B36 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A59CC51E1E1024E900B51B36 /* Podfile */; };
+		A59D1D3A1EB67A1F007D2DE0 /* ResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D391EB67A1F007D2DE0 /* ResponseSerializer.swift */; };
+		A59D1D3C1EB67C22007D2DE0 /* RequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D3B1EB67C22007D2DE0 /* RequestSerializer.swift */; };
+		A59D1D3E1EB6A987007D2DE0 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D3D1EB6A987007D2DE0 /* RequestTests.swift */; };
+		A59D1D401EB6AA56007D2DE0 /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D3F1EB6AA56007D2DE0 /* ResponseTests.swift */; };
+		A59D1D421EB6AC1D007D2DE0 /* ModelsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D411EB6AC1D007D2DE0 /* ModelsExtensions.swift */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
 		A5C373891E07405D00697FF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C373871E07405D00697FF6 /* Main.storyboard */; };
 		A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738A1E07405D00697FF6 /* Assets.xcassets */; };
 		A5C3738E1E07405D00697FF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738C1E07405D00697FF6 /* LaunchScreen.storyboard */; };
-		A5C373991E07405D00697FF6 /* LuminoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373981E07405D00697FF6 /* LuminoTests.swift */; };
 		A5C373A41E07405D00697FF6 /* LuminoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373A31E07405D00697FF6 /* LuminoUITests.swift */; };
 		A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */; };
+		A5D0047E1EAC07C10088ADF5 /* Funtional.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0047D1EAC07C10088ADF5 /* Funtional.swift */; };
+		A5D004841EB29F3D0088ADF5 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D004831EB29F3D0088ADF5 /* TypeAliases.swift */; };
+		A5D004861EB308540088ADF5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D004851EB308540088ADF5 /* Settings.swift */; };
+		A5D004891EB3F3E00088ADF5 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D004881EB3F3E00088ADF5 /* SettingsTests.swift */; };
+		A5D0048C1EB46E360088ADF5 /* SerializationServiceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0048B1EB46E360088ADF5 /* SerializationServiceExtensions.swift */; };
+		A5D004901EB484200088ADF5 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0048F1EB484200088ADF5 /* ColorTests.swift */; };
+		A5D004921EB4898A0088ADF5 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D004911EB4898A0088ADF5 /* EventTests.swift */; };
 		A5EB37F21E746BFB003B30F1 /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */; };
 		EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -62,12 +82,26 @@
 		A50755F01E91750300AF1A96 /* HueCircleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HueCircleLayer.swift; sourceTree = "<group>"; };
 		A50755F71E96CE5800AF1A96 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A50755F91E96CF5700AF1A96 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		A50755FE1E96E3EF00AF1A96 /* JSONSerializible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializible.swift; sourceTree = "<group>"; };
 		A524E4F81E7DF34000533BB3 /* GradientSilderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSilderView.swift; sourceTree = "<group>"; };
 		A524E4FA1E7ED38F00533BB3 /* ColorSpotLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpotLayer.swift; sourceTree = "<group>"; };
+		A52BC39C1EB54BB6001BE371 /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
+		A52BC39E1EB5B516001BE371 /* ColorSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSerializer.swift; sourceTree = "<group>"; };
+		A52BC3A01EB5BFC7001BE371 /* Serializible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializible.swift; sourceTree = "<group>"; };
+		A52BC3A21EB5C142001BE371 /* EventSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
+		A52BC3A41EB5C374001BE371 /* SettingsSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSerializer.swift; sourceTree = "<group>"; };
+		A52BC3A61EB5C5C6001BE371 /* SerializationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationService.swift; sourceTree = "<group>"; };
+		A52BC3A81EB5C5D9001BE371 /* SerializationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationContext.swift; sourceTree = "<group>"; };
+		A52BC3AA1EB5C5ED001BE371 /* DeserializationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeserializationContext.swift; sourceTree = "<group>"; };
+		A52BC3AC1EB5C61A001BE371 /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
+		A52BC3AE1EB5C636001BE371 /* Casting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Casting.swift; sourceTree = "<group>"; };
 		A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
 		A57E32461E10340D0044107D /* Color-Picker-for-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Color-Picker-for-iOS"; path = "Pods/Color-Picker-for-iOS"; sourceTree = "<group>"; };
 		A59CC51E1E1024E900B51B36 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A59D1D391EB67A1F007D2DE0 /* ResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerializer.swift; sourceTree = "<group>"; };
+		A59D1D3B1EB67C22007D2DE0 /* RequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSerializer.swift; sourceTree = "<group>"; };
+		A59D1D3D1EB6A987007D2DE0 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
+		A59D1D3F1EB6AA56007D2DE0 /* ResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
+		A59D1D411EB6AC1D007D2DE0 /* ModelsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsExtensions.swift; sourceTree = "<group>"; };
 		A5C373801E07405D00697FF6 /* Lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C373831E07405D00697FF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C373881E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,12 +109,18 @@
 		A5C3738D1E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5C3738F1E07405D00697FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C373941E07405D00697FF6 /* LuminoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuminoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5C373981E07405D00697FF6 /* LuminoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminoTests.swift; sourceTree = "<group>"; };
 		A5C3739A1E07405D00697FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C3739F1E07405D00697FF6 /* LuminoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuminoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C373A31E07405D00697FF6 /* LuminoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminoUITests.swift; sourceTree = "<group>"; };
 		A5C373A51E07405D00697FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsUIViewController.swift; sourceTree = "<group>"; };
+		A5D0047D1EAC07C10088ADF5 /* Funtional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Funtional.swift; sourceTree = "<group>"; };
+		A5D004831EB29F3D0088ADF5 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		A5D004851EB308540088ADF5 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		A5D004881EB3F3E00088ADF5 /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		A5D0048B1EB46E360088ADF5 /* SerializationServiceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationServiceExtensions.swift; sourceTree = "<group>"; };
+		A5D0048F1EB484200088ADF5 /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
+		A5D004911EB4898A0088ADF5 /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
 		D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,11 +181,16 @@
 		A50755E71E89ACCB00AF1A96 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A50755E81E89AF4D00AF1A96 /* Response.swift */,
-				A50755EC1E89B1B300AF1A96 /* Event.swift */,
-				A50755F71E96CE5800AF1A96 /* Request.swift */,
 				A50755F91E96CF5700AF1A96 /* Color.swift */,
-				A50755FE1E96E3EF00AF1A96 /* JSONSerializible.swift */,
+				A52BC39E1EB5B516001BE371 /* ColorSerializer.swift */,
+				A50755EC1E89B1B300AF1A96 /* Event.swift */,
+				A52BC3A21EB5C142001BE371 /* EventSerializer.swift */,
+				A50755E81E89AF4D00AF1A96 /* Response.swift */,
+				A59D1D391EB67A1F007D2DE0 /* ResponseSerializer.swift */,
+				A50755F71E96CE5800AF1A96 /* Request.swift */,
+				A59D1D3B1EB67C22007D2DE0 /* RequestSerializer.swift */,
+				A5D004851EB308540088ADF5 /* Settings.swift */,
+				A52BC3A41EB5C374001BE371 /* SettingsSerializer.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -176,6 +221,8 @@
 		A5C373821E07405D00697FF6 /* Lumino */ = {
 			isa = PBXGroup;
 			children = (
+				A5D004801EACA7990088ADF5 /* Serialization */,
+				A5D0047C1EAC07A40088ADF5 /* Functional */,
 				A50755E71E89ACCB00AF1A96 /* Models */,
 				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
 				A5C373831E07405D00697FF6 /* AppDelegate.swift */,
@@ -192,7 +239,8 @@
 		A5C373971E07405D00697FF6 /* LuminoTests */ = {
 			isa = PBXGroup;
 			children = (
-				A5C373981E07405D00697FF6 /* LuminoTests.swift */,
+				A5D0048A1EB46E200088ADF5 /* Utils */,
+				A5D004871EB3F3A90088ADF5 /* Modles */,
 				A5C3739A1E07405D00697FF6 /* Info.plist */,
 			);
 			path = LuminoTests;
@@ -205,6 +253,50 @@
 				A5C373A51E07405D00697FF6 /* Info.plist */,
 			);
 			path = LuminoUITests;
+			sourceTree = "<group>";
+		};
+		A5D0047C1EAC07A40088ADF5 /* Functional */ = {
+			isa = PBXGroup;
+			children = (
+				A5D0047D1EAC07C10088ADF5 /* Funtional.swift */,
+			);
+			name = Functional;
+			sourceTree = "<group>";
+		};
+		A5D004801EACA7990088ADF5 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				A5D004831EB29F3D0088ADF5 /* TypeAliases.swift */,
+				A52BC39C1EB54BB6001BE371 /* Serializer.swift */,
+				A52BC3A01EB5BFC7001BE371 /* Serializible.swift */,
+				A52BC3A61EB5C5C6001BE371 /* SerializationService.swift */,
+				A52BC3A81EB5C5D9001BE371 /* SerializationContext.swift */,
+				A52BC3AA1EB5C5ED001BE371 /* DeserializationContext.swift */,
+				A52BC3AC1EB5C61A001BE371 /* SerializationError.swift */,
+				A52BC3AE1EB5C636001BE371 /* Casting.swift */,
+			);
+			name = Serialization;
+			sourceTree = "<group>";
+		};
+		A5D004871EB3F3A90088ADF5 /* Modles */ = {
+			isa = PBXGroup;
+			children = (
+				A5D004881EB3F3E00088ADF5 /* SettingsTests.swift */,
+				A5D0048F1EB484200088ADF5 /* ColorTests.swift */,
+				A5D004911EB4898A0088ADF5 /* EventTests.swift */,
+				A59D1D3D1EB6A987007D2DE0 /* RequestTests.swift */,
+				A59D1D3F1EB6AA56007D2DE0 /* ResponseTests.swift */,
+			);
+			name = Modles;
+			sourceTree = "<group>";
+		};
+		A5D0048A1EB46E200088ADF5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A5D0048B1EB46E360088ADF5 /* SerializationServiceExtensions.swift */,
+				A59D1D411EB6AC1D007D2DE0 /* ModelsExtensions.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		A5EB37F01E746BE2003B30F1 /* ColorPicker */ = {
@@ -503,17 +595,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */,
+				A52BC3A11EB5BFC7001BE371 /* Serializible.swift in Sources */,
+				A52BC3A71EB5C5C6001BE371 /* SerializationService.swift in Sources */,
+				A52BC3AD1EB5C61A001BE371 /* SerializationError.swift in Sources */,
 				A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */,
-				A50755FF1E96E3EF00AF1A96 /* JSONSerializible.swift in Sources */,
 				A50755F11E91750300AF1A96 /* HueCircleLayer.swift in Sources */,
+				A5D0047E1EAC07C10088ADF5 /* Funtional.swift in Sources */,
 				A52C179B1E0847E300F1AC7D /* DevicesTableViewController.swift in Sources */,
+				A52BC39D1EB54BB6001BE371 /* Serializer.swift in Sources */,
 				A50755F81E96CE5800AF1A96 /* Request.swift in Sources */,
 				A50755FA1E96CF5700AF1A96 /* Color.swift in Sources */,
 				A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */,
+				A59D1D3C1EB67C22007D2DE0 /* RequestSerializer.swift in Sources */,
+				A52BC3A51EB5C374001BE371 /* SettingsSerializer.swift in Sources */,
 				A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */,
 				A5EB37F21E746BFB003B30F1 /* ColorWheelView.swift in Sources */,
+				A52BC3AB1EB5C5ED001BE371 /* DeserializationContext.swift in Sources */,
+				A5D004861EB308540088ADF5 /* Settings.swift in Sources */,
 				A524E4F91E7DF34000533BB3 /* GradientSilderView.swift in Sources */,
+				A52BC3A91EB5C5D9001BE371 /* SerializationContext.swift in Sources */,
 				A50755EF1E9172F400AF1A96 /* ColorLineLayer.swift in Sources */,
+				A5D004841EB29F3D0088ADF5 /* TypeAliases.swift in Sources */,
+				A52BC39F1EB5B516001BE371 /* ColorSerializer.swift in Sources */,
+				A59D1D3A1EB67A1F007D2DE0 /* ResponseSerializer.swift in Sources */,
+				A52BC3AF1EB5C636001BE371 /* Casting.swift in Sources */,
+				A52BC3A31EB5C142001BE371 /* EventSerializer.swift in Sources */,
 				A524E4FB1E7ED38F00533BB3 /* ColorSpotLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,7 +628,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5C373991E07405D00697FF6 /* LuminoTests.swift in Sources */,
+				A5D004891EB3F3E00088ADF5 /* SettingsTests.swift in Sources */,
+				A5D004901EB484200088ADF5 /* ColorTests.swift in Sources */,
+				A5D004921EB4898A0088ADF5 /* EventTests.swift in Sources */,
+				A59D1D401EB6AA56007D2DE0 /* ResponseTests.swift in Sources */,
+				A59D1D3E1EB6A987007D2DE0 /* RequestTests.swift in Sources */,
+				A59D1D421EB6AC1D007D2DE0 /* ModelsExtensions.swift in Sources */,
+				A5D0048C1EB46E360088ADF5 /* SerializationServiceExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

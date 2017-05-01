@@ -8,23 +8,10 @@
 
 import Foundation
 
-struct Response {
+struct Response: Serializible {
     let id: String
     let requestType: String
-    let content: Any
+    let resource: String
+    let content: Serializible?
 }
 
-extension Response {
-    init?(json: [String: Any]) {
-        guard
-            let id = json["id"] as? String,
-            let requestType = json["requestType"] as? String,
-            let content = json["content"]
-        else {
-            return nil
-        }
-        self.id = id
-        self.requestType = requestType
-        self.content = content
-    }
-}
