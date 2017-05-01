@@ -41,7 +41,20 @@ class SerializationService {
     func getSerializer(_ type: String) -> Serializer? {
         return serializersByJSONType[type]
     }
-
+    
+    func serializeToString(_ value: Serializible) -> Result<String> {
+        switch self.serialize(value) {
+            case let .Value(root):
+            do {
+                let data = try JSONSerialization.data(withJSONObject: root, options: [])
+                return .Value(String(data: data, encoding: .utf8)!)
+            } catch {
+                return .Error(error)
+            }
+            case let .Error(error): return .Error(error)
+        }
+    }
+    
     func serialize(_ value: Serializible) -> Result<JSONDictionary> {
         if let serializer = getSerializer(type(of: value)) {
             let context = SerializationContext(self)
@@ -57,6 +70,19 @@ class SerializationService {
         }
     }
     
+    func deserializeFromString(_ str: String) -> Result<Serializible> {
+        let data: NSData = str.data(using: String.Encoding.utf8)! as NSData
+        do {
+            if let json = try JSONSerialization.jsonObject(with: data as Data, options: []) as? JSONDictionary {
+                return self.deserialize(json)
+            } else {
+                return .Error(SerializationError.expectingType(type: JSONDictionary.self))
+            }
+        } catch {
+            return .Error(error)
+        }
+    }
+    
     func deserialize(_ json: JSONDictionary) -> Result<Serializible> {
         if let type = json[SerializationService.typeField] as? String {
             if let serializer = getSerializer(type) {
@@ -66,7 +92,7 @@ class SerializationService {
                 return .Error(SerializationError.serializerNotFound(type: type(of: type)))
             }
         } else {
-            return .Error(SerializationError.expectingType(key: SerializationService.typeField, type: String.self))
+            return .Error(SerializationError.expectingValueOfType(key: SerializationService.typeField, type: String.self))
         }
     }
 }

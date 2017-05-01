@@ -14,7 +14,7 @@ func cast<T>(a: Result<(key: String, value: JSON)>) -> Result<T> {
         if let v = value as? T {
             return .Value(v)
         } else {
-            return .Error(SerializationError.expectingType(key: key, type: T.self))
+            return .Error(SerializationError.expectingValueOfType(key: key, type: T.self))
         }
     case let .Error(error): return .Error(error)
     }

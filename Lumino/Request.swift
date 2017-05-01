@@ -13,4 +13,15 @@ struct Request: Serializible {
     let requestType: String
     let resource: String
     let content: Serializible?
+
+    init(id: String, requestType: String, resource: String) {
+        self.init(id: id, requestType: requestType, resource: resource, content: nil)
+    }
+
+    init(id: String, requestType: String, resource: String, content: Serializible?) {
+        self.id = id
+        self.requestType = requestType
+        self.resource = resource
+        self.content = content
+    }
 }

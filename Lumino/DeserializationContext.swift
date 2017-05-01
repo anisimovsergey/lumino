@@ -29,7 +29,7 @@ class DeserializationContext {
                 return .Error(SerializationError.serializerNotFound(type: type(of: type)))
             }
         } else {
-            return .Error(SerializationError.expectingType(key: SerializationService.typeField, type: String.self))
+            return .Error(SerializationError.expectingValueOfType(key: SerializationService.typeField, type: String.self))
         }
     }
 
@@ -38,7 +38,7 @@ class DeserializationContext {
             if let dic = value as? JSONDictionary {
                 return deserializeOptionalObject(key, dic)
             } else {
-                return .Error(SerializationError.expectingType(key: key, type: JSONDictionary.self))
+                return .Error(SerializationError.expectingValueOfType(key: key, type: JSONDictionary.self))
             }
         } else {
             return .Value(key: key, value: nil)

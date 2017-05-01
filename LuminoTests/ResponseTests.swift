@@ -28,7 +28,7 @@ class ResponseTests: XCTestCase {
     }
     
     func testSerializationRoundTripWithoutContent() {
-        let response = Response.init(id: "id", requestType: "requestType", resource: "color", content: nil)
+        let response = Response.init(id: "id", requestType: "requestType", resource: "color")
         let deserializedResponse: Response = service.roundTrip(response)
         
         XCTAssertEqual(response, deserializedResponse)

@@ -10,7 +10,8 @@ import Foundation
 
 enum SerializationError: Error {
     case serializerNotFound(type: Any.Type)
-    case expectingType(key: String, type: Any.Type)
+    case expectingType(type: Any.Type)
+    case expectingValueOfType(key: String, type: Any.Type)
     case expectingKey(key: String)
 }
 

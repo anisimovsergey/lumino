@@ -28,7 +28,7 @@ class EventTests: XCTestCase {
     }
     
     func testSerializationRoundTripWithoutContent() {
-        let event = Event.init(eventType: "eventType", resource: "color", content: nil)
+        let event = Event.init(eventType: "eventType", resource: "color")
         let deserializedEvent: Event = service.roundTrip(event)
         
         XCTAssertEqual(event, deserializedEvent)

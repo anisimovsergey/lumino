@@ -34,6 +34,7 @@
 		A59D1D3E1EB6A987007D2DE0 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D3D1EB6A987007D2DE0 /* RequestTests.swift */; };
 		A59D1D401EB6AA56007D2DE0 /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D3F1EB6AA56007D2DE0 /* ResponseTests.swift */; };
 		A59D1D421EB6AC1D007D2DE0 /* ModelsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D411EB6AC1D007D2DE0 /* ModelsExtensions.swift */; };
+		A59D1D451EB73252007D2DE0 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D441EB73252007D2DE0 /* WebSocketClient.swift */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
 		A5C373891E07405D00697FF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C373871E07405D00697FF6 /* Main.storyboard */; };
 		A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738A1E07405D00697FF6 /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		A59D1D3D1EB6A987007D2DE0 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		A59D1D3F1EB6AA56007D2DE0 /* ResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
 		A59D1D411EB6AC1D007D2DE0 /* ModelsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsExtensions.swift; sourceTree = "<group>"; };
+		A59D1D441EB73252007D2DE0 /* WebSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
 		A5C373801E07405D00697FF6 /* Lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C373831E07405D00697FF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C373881E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -195,6 +197,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		A59D1D431EB731DB007D2DE0 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				A59D1D441EB73252007D2DE0 /* WebSocketClient.swift */,
+			);
+			name = Communication;
+			sourceTree = "<group>";
+		};
 		A5C373771E07405D00697FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -221,9 +231,10 @@
 		A5C373821E07405D00697FF6 /* Lumino */ = {
 			isa = PBXGroup;
 			children = (
-				A5D004801EACA7990088ADF5 /* Serialization */,
+				A59D1D431EB731DB007D2DE0 /* Communication */,
 				A5D0047C1EAC07A40088ADF5 /* Functional */,
 				A50755E71E89ACCB00AF1A96 /* Models */,
+				A5D004801EACA7990088ADF5 /* Serialization */,
 				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
 				A5C373831E07405D00697FF6 /* AppDelegate.swift */,
 				A5C373871E07405D00697FF6 /* Main.storyboard */,
@@ -595,6 +606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */,
+				A59D1D451EB73252007D2DE0 /* WebSocketClient.swift in Sources */,
 				A52BC3A11EB5BFC7001BE371 /* Serializible.swift in Sources */,
 				A52BC3A71EB5C5C6001BE371 /* SerializationService.swift in Sources */,
 				A52BC3AD1EB5C61A001BE371 /* SerializationError.swift in Sources */,
