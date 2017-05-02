@@ -9,15 +9,47 @@
 import Foundation
 import Starscream
 
+struct RequestKey : Hashable {
+    private let requestType: String
+    private let resource: String
+    
+    init(_ requestType: String,_ resource: String) {
+        self.requestType = requestType
+        self.resource = resource
+    }
+    
+    static func ==(lhs: RequestKey, rhs: RequestKey) -> Bool {
+        return lhs.requestType == rhs.requestType && lhs.resource == rhs.resource
+    }
+    
+    var hashValue: Int {
+        return requestType.hashValue ^ resource.hashValue
+    }
+}
+
+protocol WebSocketClientDelegate: class {
+    func websocketDidConnect()
+    func websocketDidDisconnect()
+    func websocketOnColorRead(color: Color)
+    func websocketOnColorUpdated(color: Color)
+    func websocketOnSettingsRead(settings: Settings)
+    func websocketOnSettingsUpdated(settings: Settings)
+}
+
 class WebSocketClient: WebSocketDelegate {
     private let readRequestType = "read"
     private let updateRequestType = "update"
     private let colorResource = "color"
     private let settingsResource = "settings"
+    private let updatedEventType = "updated"
     
     private let serializer: SerializationService
     private let socket: WebSocket!
+    private var pendingRequests: Dictionary<RequestKey, Request> = [:]
+    private var lastID: String? = nil
 
+    public weak var delegate: WebSocketClientDelegate?
+    
     init(_ serializer: SerializationService,_ service: NetService) {
         self.serializer = serializer
         self.socket = WebSocket(url: URL(string: "ws://\(service.hostName!)/ws")!)
@@ -49,9 +81,11 @@ class WebSocketClient: WebSocketDelegate {
     }
     
     func websocketDidConnect(socket: WebSocket) {
+        self.delegate?.websocketDidConnect()
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+        self.delegate?.websocketDidDisconnect()
     }
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
@@ -62,11 +96,9 @@ class WebSocketClient: WebSocketDelegate {
                 processResponse(response)
             case let event as Event:
                 processEvent(event)
-            default:
-                break
+            default: break
             }
-        default:
-            break;
+        default: break;
         }
     }
     
@@ -74,11 +106,34 @@ class WebSocketClient: WebSocketDelegate {
     }
     
     private func processResponse(_ response: Response) {
-        
+        if self.lastID == response.id {
+            if let request = pendingRequests.popFirst() {
+                _ = sendRequest(request: request.value)
+            } else {
+                self.lastID = nil
+            }
+        }
+        if response.requestType == readRequestType {
+            switch response.content {
+            case let color as Color:
+                delegate?.websocketOnColorRead(color: color)
+            case let settings as Settings:
+                delegate?.websocketOnSettingsRead(settings: settings)
+            default: break
+            }
+        }
     }
 
     private func processEvent(_ event: Event) {
-        
+        if event.eventType == updatedEventType {
+            switch event.content {
+            case let color as Color:
+                delegate?.websocketOnColorUpdated(color: color)
+            case let settings as Settings:
+                delegate?.websocketOnSettingsUpdated(settings: settings)
+            default: break
+            }
+        }
     }
 
     private func getRandomID() -> String {
@@ -96,8 +151,18 @@ class WebSocketClient: WebSocketDelegate {
     }
     
     private func sendRequest(requestType: String, resource: String, content: Serializible?) -> Optional<Error> {
-        let lastId = getRandomID()
-        let request = Request(id: lastId, requestType: readRequestType, resource: colorResource)
+        let lastID = getRandomID()
+        let request = Request(id: lastID, requestType: requestType, resource: colorResource, content: content)
+        if self.lastID != nil {
+            pendingRequests[RequestKey(requestType, resource)] = request
+            return .none
+        } else {
+            return sendRequest(request: request)
+        }
+    }
+    
+    private func sendRequest(request: Request) -> Optional<Error> {
+        self.lastID = request.id
         switch self.serializer.serializeToString(request) {
         case let .Value(json):
             socket.write(string: json)
@@ -105,4 +170,5 @@ class WebSocketClient: WebSocketDelegate {
         case let .Error(error): return error
         }
     }
+    
 }

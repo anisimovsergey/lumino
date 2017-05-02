@@ -16,7 +16,7 @@ class ColorSerializer : SerializerBase<Color> {
     func create(r: UInt8) -> (_ g: UInt8) -> (_ b: UInt8) -> Color {
         return { g in
             return { b in
-                return Color(r: r, g: g, b: b) as Color
+                return Color(r: r, g: g, b: b)
             }
         }
     }

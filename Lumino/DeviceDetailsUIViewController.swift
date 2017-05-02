@@ -9,13 +9,13 @@
 import UIKit
 import Starscream
 
-class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, GradientSiliderDelegate {
+class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, GradientSiliderDelegate, WebSocketClientDelegate {
 
     @IBOutlet var colorWheel: ColorWheelView!
     @IBOutlet var saturatonSlider: GradientSiliderView!
     @IBOutlet var luminanceSlider: GradientSiliderView!
 
-   // private var socket: WebSocket!
+    private var socket: WebSocketClient!
     private var lastId: String = ""
     var service: NetService!
     
@@ -41,11 +41,21 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         super.viewDidLoad()
         self.title = "Device"
         print("service \(service.hostName!) ")
-        color = UIColor.red
         colorWheel.delegate = self
         saturatonSlider.delegate = self
         luminanceSlider.delegate = self
         lastId = ""
+        let serializer = SerializationService()
+        serializer.addSerializer(Color.self, ColorSerializer())
+        serializer.addSerializer(Settings.self, SettingsSerializer())
+        serializer.addSerializer(Request.self, RequestSerializer())
+        serializer.addSerializer(Response.self, ResponseSerializer())
+        serializer.addSerializer(Event.self, EventSerializer())
+        serializer.addSerializer(Status.self, StatusSerializer())
+
+        socket = WebSocketClient(serializer, service)
+        socket.delegate = self
+        socket.connect()
     }
     
     func updateColors() {
@@ -81,33 +91,37 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func sendColor() {
-        /*
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
-        
-        if !lastId.isEmpty {
-            return
-        }
-        
-        if color.getRed(&r, green: &g, blue: &b, alpha: &a){
-            lastId = randomString(length:4)
+        if color.getRed(&r, green: &g, blue: &b, alpha: &a) {
             let color = Color(r: UInt8(r * 255), g: UInt8(g * 255), b: UInt8(b * 255))
-            let req = Request(id: lastId, requestType: "update", resource: "color", content: color)
-            
-            var json: String
-            do {
-                let data = try JSONSerialization.data(withJSONObject: req.toJSONObj(), options: [])
-                json = String(data: data, encoding: .utf8)!
-            } catch {
-                return
-            }
-            socket.write(string: json)
+            _ = socket.updateColor(color)
         }
- */
+    }
+    
+    func websocketDidConnect() {
+        _ = socket.requestColor()
+    }
+    
+    func websocketDidDisconnect() {
+        
+    }
+    
+    func websocketOnColorRead(color: Color) {
+        self.color = UIColor.init(red: CGFloat(color.r) / 255.0, green: CGFloat(color.g) / 255.0, blue: CGFloat(color.b) / 255.0, alpha: 1.0)
     }
 
-    func requestColor() {
+    func websocketOnColorUpdated(color: Color) {
+        
+    }
+    
+    func websocketOnSettingsRead(settings: Settings) {
+        
+    }
+    
+    func websocketOnSettingsUpdated(settings: Settings) {
+        
     }
 }

@@ -9,11 +9,10 @@
 import Foundation
 
 class SettingsSerializer: SerializerBase<Settings> {
-    static let type: String = "settings"
     static let deviceNameField: String = "deviceName"
     
     func create(deviceName: String) -> Settings {
-        return Settings(deviceName: deviceName) as Settings
+        return Settings(deviceName: deviceName)
     }
     
     override var type: String {

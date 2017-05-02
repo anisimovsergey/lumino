@@ -18,7 +18,7 @@ class ResponseSerializer: SerializerBase<Response> {
         return { requestType in
             return { resource in
                 return { content in
-                    return Response(id: id, requestType: requestType, resource: resource, content: content) as Response
+                    return Response(id: id, requestType: requestType, resource: resource, content: content)
                 }
             }
         }
