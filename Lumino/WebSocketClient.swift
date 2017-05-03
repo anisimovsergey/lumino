@@ -152,7 +152,7 @@ class WebSocketClient: WebSocketDelegate {
     
     private func sendRequest(requestType: String, resource: String, content: Serializible?) -> Optional<Error> {
         let lastID = getRandomID()
-        let request = Request(id: lastID, requestType: requestType, resource: colorResource, content: content)
+        let request = Request(id: lastID, requestType: requestType, resource: resource, content: content)
         if self.lastID != nil {
             pendingRequests[RequestKey(requestType, resource)] = request
             return .none

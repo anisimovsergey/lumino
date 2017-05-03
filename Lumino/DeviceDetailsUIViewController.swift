@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Starscream
 
 class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, GradientSiliderDelegate, WebSocketClientDelegate {
 
@@ -16,7 +15,6 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     @IBOutlet var luminanceSlider: GradientSiliderView!
 
     private var socket: WebSocketClient!
-    private var lastId: String = ""
     var service: NetService!
     
     var color: UIColor {
@@ -37,11 +35,10 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Device"
-        print("service \(service.hostName!) ")
         colorWheel.delegate = self
         saturatonSlider.delegate = self
         luminanceSlider.delegate = self
-        lastId = ""
+        
         let serializer = SerializationService()
         serializer.addSerializer(Color.self, ColorSerializer())
         serializer.addSerializer(Settings.self, SettingsSerializer())
@@ -93,6 +90,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     
     func websocketDidConnect() {
         _ = socket.requestColor()
+        _ = socket.requestSettings()
     }
     
     func websocketDidDisconnect() {
@@ -108,7 +106,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func websocketOnSettingsRead(settings: Settings) {
-        
+        self.title = settings.deviceName
     }
     
     func websocketOnSettingsUpdated(settings: Settings) {
