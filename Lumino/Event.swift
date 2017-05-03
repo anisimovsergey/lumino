@@ -8,17 +8,18 @@
 
 import Foundation
 
-struct Event {
+struct Event: Serializible {
     let eventType: String
-}
-
-extension Event {
-    init?(json: [String: Any]) {
-        guard
-            let eventType = json["eventType"] as? String
-        else {
-                return nil
-        }
+    let resource: String
+    let content: Serializible?
+    
+    init(eventType: String, resource: String) {
+        self.init(eventType: eventType, resource: resource, content: nil)
+    }
+    
+    init(eventType: String, resource: String, content: Serializible?) {
         self.eventType = eventType
+        self.resource = resource
+        self.content = content
     }
 }

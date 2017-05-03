@@ -64,11 +64,11 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     func netServiceBrowserDidStopSearch(_ aNetServiceBrowser: NetServiceBrowser) {
-         print("Search stopped")
+         print("services search stopped")
     }
     
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind aNetService: NetService, moreComing: Bool) {
-        print("Adding a service " + aNetService.name)
+        print("found service " + aNetService.name)
         self.discoveredServices.append(aNetService)
         if !moreComing {
             self.updateInterface()
@@ -76,7 +76,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didRemove aNetService: NetService, moreComing: Bool) {
-        print("Removing a service")
+        print("removing service")
         if let ix = self.discoveredServices.index(of:aNetService) {
             self.discoveredServices.remove(at:ix)
         }
