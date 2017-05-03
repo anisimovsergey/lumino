@@ -20,7 +20,7 @@ func cast<T>(a: Result<(key: String, value: JSON)>) -> Result<T> {
     }
 }
 
-func cast(a: Result<(key: String, value: Serializible?)>) -> Result<Serializible?> {
+func cast<T>(a: Result<(key: String, value: T?)>) -> Result<T?> {
     switch a {
     case let .Value(_, value):
         if let v = value {

@@ -238,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				A59D1D431EB731DB007D2DE0 /* Communication */,
-				A5D0047C1EAC07A40088ADF5 /* Functional */,
 				A50755E71E89ACCB00AF1A96 /* Models */,
 				A5D004801EACA7990088ADF5 /* Serialization */,
 				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
@@ -272,17 +271,10 @@
 			path = LuminoUITests;
 			sourceTree = "<group>";
 		};
-		A5D0047C1EAC07A40088ADF5 /* Functional */ = {
-			isa = PBXGroup;
-			children = (
-				A5D0047D1EAC07C10088ADF5 /* Funtional.swift */,
-			);
-			name = Functional;
-			sourceTree = "<group>";
-		};
 		A5D004801EACA7990088ADF5 /* Serialization */ = {
 			isa = PBXGroup;
 			children = (
+				A5D0047D1EAC07C10088ADF5 /* Funtional.swift */,
 				A5D004831EB29F3D0088ADF5 /* TypeAliases.swift */,
 				A52BC39C1EB54BB6001BE371 /* Serializer.swift */,
 				A52BC3A01EB5BFC7001BE371 /* Serializible.swift */,
