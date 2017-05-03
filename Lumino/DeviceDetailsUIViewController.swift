@@ -90,6 +90,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     
     func websocketDidConnect() {
         _ = socket.requestColor()
+        _ = socket.requestSettings()
     }
     
     func websocketDidDisconnect() {
@@ -105,7 +106,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func websocketOnSettingsRead(settings: Settings) {
-        
+        self.title = settings.deviceName
     }
     
     func websocketOnSettingsUpdated(settings: Settings) {
