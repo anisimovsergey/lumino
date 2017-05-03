@@ -37,6 +37,7 @@
 		A59D1D451EB73252007D2DE0 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D441EB73252007D2DE0 /* WebSocketClient.swift */; };
 		A59D1D471EB90625007D2DE0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D461EB90625007D2DE0 /* Status.swift */; };
 		A59D1D491EB9073D007D2DE0 /* StatusSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D481EB9073D007D2DE0 /* StatusSerializer.swift */; };
+		A59D1D4C1EB99CA5007D2DE0 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
 		A5C373891E07405D00697FF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C373871E07405D00697FF6 /* Main.storyboard */; };
 		A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738A1E07405D00697FF6 /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		A59D1D441EB73252007D2DE0 /* WebSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
 		A59D1D461EB90625007D2DE0 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		A59D1D481EB9073D007D2DE0 /* StatusSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusSerializer.swift; sourceTree = "<group>"; };
+		A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		A5C373801E07405D00697FF6 /* Lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C373831E07405D00697FF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C373881E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -211,6 +213,16 @@
 			name = Communication;
 			sourceTree = "<group>";
 		};
+		A59D1D4A1EB99C5B007D2DE0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */,
+				A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */,
+				A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		A5C373771E07405D00697FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -237,17 +249,16 @@
 		A5C373821E07405D00697FF6 /* Lumino */ = {
 			isa = PBXGroup;
 			children = (
+				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
+				A59D1D4A1EB99C5B007D2DE0 /* Controllers */,
 				A59D1D431EB731DB007D2DE0 /* Communication */,
 				A50755E71E89ACCB00AF1A96 /* Models */,
 				A5D004801EACA7990088ADF5 /* Serialization */,
-				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
 				A5C373831E07405D00697FF6 /* AppDelegate.swift */,
 				A5C373871E07405D00697FF6 /* Main.storyboard */,
 				A5C3738A1E07405D00697FF6 /* Assets.xcassets */,
 				A5C3738C1E07405D00697FF6 /* LaunchScreen.storyboard */,
 				A5C3738F1E07405D00697FF6 /* Info.plist */,
-				A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */,
-				A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */,
 			);
 			path = Lumino;
 			sourceTree = "<group>";
@@ -606,6 +617,7 @@
 				A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */,
 				A59D1D451EB73252007D2DE0 /* WebSocketClient.swift in Sources */,
 				A52BC3A11EB5BFC7001BE371 /* Serializible.swift in Sources */,
+				A59D1D4C1EB99CA5007D2DE0 /* ColorExtensions.swift in Sources */,
 				A52BC3A71EB5C5C6001BE371 /* SerializationService.swift in Sources */,
 				A52BC3AD1EB5C61A001BE371 /* SerializationError.swift in Sources */,
 				A50755ED1E89B1B300AF1A96 /* Event.swift in Sources */,

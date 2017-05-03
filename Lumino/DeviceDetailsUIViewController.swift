@@ -24,16 +24,13 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
             return UIColor(hue: colorWheel.hue, saturation: saturatonSlider.fraction, brightness: luminanceSlider.fraction, alpha: CGFloat(1))
         }
         set {
-            var h: CGFloat = 0
-            var s: CGFloat = 0
-            var l: CGFloat = 0
-            var a: CGFloat = 0
-            
-            newValue.getHue(&h, saturation: &s, brightness: &l, alpha: &a)
-            colorWheel.hue = h
-            saturatonSlider.fraction = s
-            luminanceSlider.fraction = l
-            updateColors()
+            newValue.getHue({
+                h, s, l in
+                colorWheel.hue = h
+                saturatonSlider.fraction = s
+                luminanceSlider.fraction = l
+                updateColors()
+            })
         }
     }
             
@@ -91,14 +88,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func sendColor() {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        if color.getRed(&r, green: &g, blue: &b, alpha: &a) {
-            let color = Color(r: UInt8(r * 255), g: UInt8(g * 255), b: UInt8(b * 255))
-            _ = socket.updateColor(color)
-        }
+        _ = socket.updateColor(color.toColor())
     }
     
     func websocketDidConnect() {
@@ -110,7 +100,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func websocketOnColorRead(color: Color) {
-        self.color = UIColor.init(red: CGFloat(color.r) / 255.0, green: CGFloat(color.g) / 255.0, blue: CGFloat(color.b) / 255.0, alpha: 1.0)
+        self.color = color.toUIColor()
     }
 
     func websocketOnColorUpdated(color: Color) {
