@@ -7,6 +7,7 @@ target 'Lumino' do
 
   # Pods for Lumino
   pod "Starscream", "~> 2.0"
+  pod "MulticastDelegateSwift", "~> 2.0"
 
   target 'LuminoTests' do
     inherit! :search_paths

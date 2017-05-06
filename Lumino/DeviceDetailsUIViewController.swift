@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import MulticastDelegateSwift
 
-class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, GradientSiliderDelegate, WebSocketClientDelegate {
+class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, GradientSiliderDelegate, WebSocketConnectionDelegate, WebSocketCommunicationDelegate {
 
     @IBOutlet var colorWheel: ColorWheelView!
     @IBOutlet var saturatonSlider: GradientSiliderView!
     @IBOutlet var luminanceSlider: GradientSiliderView!
 
-    private var socket: WebSocketClient!
-    var service: NetService!
+    var device: DeviceListItem!
+    private var timer: Timer!
     
     var color: UIColor {
         get {
@@ -34,22 +35,16 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
             
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Device"
-        colorWheel.delegate = self
-        saturatonSlider.delegate = self
-        luminanceSlider.delegate = self
         
-        let serializer = SerializationService()
-        serializer.addSerializer(Color.self, ColorSerializer())
-        serializer.addSerializer(Settings.self, SettingsSerializer())
-        serializer.addSerializer(Request.self, RequestSerializer())
-        serializer.addSerializer(Response.self, ResponseSerializer())
-        serializer.addSerializer(Event.self, EventSerializer())
-        serializer.addSerializer(Status.self, StatusSerializer())
-
-        socket = WebSocketClient(serializer, service)
-        socket.delegate = self
-        socket.connect()
+        self.colorWheel.delegate = self
+        self.saturatonSlider.delegate = self
+        self.luminanceSlider.delegate = self
+        
+        self.device.client.connectionDelegate += self
+        self.device.client.communicationDelegate += self
+        
+        self.color = self.device.color!.toUIColor()
+        self.title = self.device.name!
     }
     
     func updateColors() {
@@ -70,11 +65,11 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     
     func updateColorSpot() {
         colorWheel.spotColor = color.cgColor
-        sendColor()
     }
     
     func HueChanged(_ hue: CGFloat, wheel: ColorWheelView) {
         updateColors()
+        sendColor()
     }
     
     func GradientChanged(_ gradient: CGFloat, slider: GradientSiliderView) {
@@ -82,34 +77,40 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
             updateLuminance()
         }
         updateColorSpot()
+        sendColor()
     }
     
     func sendColor() {
-        _ = socket.updateColor(color.toColor())
+        _ = device.client.updateColor(color.toColor())
     }
     
-    func websocketDidConnect() {
-        _ = socket.requestColor()
-        _ = socket.requestSettings()
+    func websocketDidConnect(client: WebSocketClient) {
     }
     
-    func websocketDidDisconnect() {
-        
+    func websocketDidDisconnect(client: WebSocketClient) {
+        // Show the message and close the dialog
     }
     
-    func websocketOnColorRead(color: Color) {
-        self.color = color.toUIColor()
+    func websocketOnColorRead(client: WebSocketClient,  color: Color) {
     }
 
-    func websocketOnColorUpdated(color: Color) {
-        
+    func websocketOnColorUpdated(client: WebSocketClient, color: Color) {
+        if self.timer != nil {
+            self.timer.invalidate()
+        }
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateColor), userInfo: color, repeats: false);
     }
     
-    func websocketOnSettingsRead(settings: Settings) {
-        self.title = settings.deviceName
+    func updateColor() {
+        let newColor: Color = timer.userInfo as! Color
+        if (newColor != color.toColor()) {
+            color = newColor.toUIColor()
+        }
     }
     
-    func websocketOnSettingsUpdated(settings: Settings) {
-        
+    func websocketOnSettingsRead(client: WebSocketClient, settings: Settings) {
+    }
+    
+    func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings) {
     }
 }

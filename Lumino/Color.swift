@@ -8,8 +8,14 @@
 
 import Foundation
 
-struct Color: Serializible {
+struct Color: Serializible, Equatable {
     let r: UInt8
     let g: UInt8
     let b: UInt8
+    
+    public static func == (lhs: Color, rhs: Color) -> Bool {
+        return  (lhs.r == rhs.r) &&
+                (lhs.g == rhs.g) &&
+                (lhs.b == rhs.b)
+    }
 }

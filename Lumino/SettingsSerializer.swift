@@ -9,7 +9,7 @@
 import Foundation
 
 class SettingsSerializer: SerializerBase<Settings> {
-    static let deviceNameField: String = "device_name"
+    static let deviceNameField: String = "deviceName"
     
     func create(deviceName: String) -> Settings {
         return Settings(deviceName: deviceName)

@@ -1,12 +1,15 @@
 PODS:
+  - MulticastDelegateSwift (2.0.0)
   - Starscream (2.0.3)
 
 DEPENDENCIES:
+  - MulticastDelegateSwift (~> 2.0)
   - Starscream (~> 2.0)
 
 SPEC CHECKSUMS:
+  MulticastDelegateSwift: 4a035aaecd77e00d826970e552885271a165c5ee
   Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
 
-PODFILE CHECKSUM: 848cabca76637823dd14aed664fb7662d723ced6
+PODFILE CHECKSUM: 8a9f0861cf58d3a1b4cbf0e996152fd6619c42d7
 
 COCOAPODS: 1.2.0

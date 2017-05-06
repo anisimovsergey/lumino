@@ -24,7 +24,7 @@ class StatusSerializer: SerializerBase<Status> {
     
     func create(statusCode: Int) -> (_ message: String) -> Status {
         return { message in
-            return Status(statusCode: statusCode, message: message)
+            return Status(code: statusCode, message: message)
         }
     }
     
@@ -42,7 +42,7 @@ class StatusSerializer: SerializerBase<Status> {
     
     override func serializeImpl(_ con: SerializationContext, _ obj: Status) -> Optional<Error> {
         return
-            con.setValue(StatusSerializer.codeField, obj.statusCode) <*>
+            con.setValue(StatusSerializer.codeField, obj.code) <*>
             con.setValue(StatusSerializer.messageField, obj.message)
     }
 }

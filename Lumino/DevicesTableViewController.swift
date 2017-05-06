@@ -7,16 +7,27 @@
 //
 
 import UIKit
+import MulticastDelegateSwift
 
-class DevicesTableViewController: UITableViewController, NetServiceBrowserDelegate, NetServiceDelegate {
-    var nsb : NetServiceBrowser!
-    var discoveredServices = [NetService]()
-    var resolvedServices = [NetService]()
+class DevicesTableViewController: UITableViewController, NetServiceBrowserDelegate, WebSocketConnectionDelegate, WebSocketCommunicationDelegate {
+    private var nsb: NetServiceBrowser!
+    private var serializer: SerializationService!
+    private var clients: Dictionary<WebSocketClient, DeviceListItem> = [:]
+    private var devices = [DeviceListItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 75
         self.title = "Lumino"
+        
+        serializer = SerializationService()
+        serializer.addSerializer(Color.self, ColorSerializer())
+        serializer.addSerializer(Settings.self, SettingsSerializer())
+        serializer.addSerializer(Request.self, RequestSerializer())
+        serializer.addSerializer(Response.self, ResponseSerializer())
+        serializer.addSerializer(Event.self, EventSerializer())
+        serializer.addSerializer(Status.self, StatusSerializer())
+        
         self.nsb = NetServiceBrowser()
         self.nsb.delegate = self
         self.start()
@@ -24,14 +35,13 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     
     func start()  {
         print("listening for services...")
-        self.discoveredServices.removeAll()
-        self.resolvedServices.removeAll()
+        self.devices.removeAll()
         self.nsb.searchForServices(ofType:"_lumino-ws._tcp", inDomain: "")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
-        cell.textLabel?.text = resolvedServices[indexPath.row].name
+        cell.textLabel?.text = devices[indexPath.row].name
         return cell
     }
     
@@ -40,59 +50,71 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.resolvedServices.count
-    }
-    
-    func updateInterface() {
-        for service in self.discoveredServices {
-            if service.port == -1 {
-                print("service \(service.name) of type \(service.type)" +
-                    " not yet resolved")
-                service.delegate = self
-                service.resolve(withTimeout:10)
-            } else {
-                print("service \(service.name) of type \(service.type), " +
-                    "host \(service.hostName!), port \(service.port)")
-                resolvedServices.append(service)
-            }
-        }
-        self.tableView.reloadData()
-    }
-    
-    func netServiceDidResolveAddress(_ sender: NetService) {
-        self.updateInterface()
-    }
-    
-    func netServiceBrowserDidStopSearch(_ aNetServiceBrowser: NetServiceBrowser) {
-         print("services search stopped")
+        return self.clients.count
     }
     
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind aNetService: NetService, moreComing: Bool) {
-        print("found service " + aNetService.name)
-        self.discoveredServices.append(aNetService)
-        if !moreComing {
+        let client = WebSocketClient(serializer, aNetService)
+        self.clients[client] = DeviceListItem(client)
+        client.connectionDelegate += self
+        client.communicationDelegate += self
+        client.connect()
+    }
+    
+    func updateInterface() {
+        self.tableView.reloadData()
+    }
+    
+    func websocketDidConnect(client: WebSocketClient) {
+        _ = client.requestColor()
+        _ = client.requestSettings()
+    }
+    
+    func websocketDidDisconnect(client: WebSocketClient) {
+        if let device = self.clients[client] {
+            if let i = (self.devices.index{$0 === device}) {
+                self.devices.remove(at: i)
+                self.clients.removeValue(forKey: client)
+            }
+        }
+    }
+    
+    func tryToAppend(_ device: DeviceListItem) {
+        if (device.name != nil && device.color != nil) {
+            self.devices.append(device)
             self.updateInterface()
         }
     }
     
-    func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didRemove aNetService: NetService, moreComing: Bool) {
-        print("removing service")
-        if let ix = self.discoveredServices.index(of:aNetService) {
-            self.discoveredServices.remove(at:ix)
-        }
-        if let ix = self.resolvedServices.index(of:aNetService) {
-            self.resolvedServices.remove(at:ix)
-        }
-        if !moreComing {
-            self.updateInterface()
-        }
+    func websocketOnColorRead(client: WebSocketClient, color: Color) {
+        let device = self.clients[client]!
+        device.color = color
+        tryToAppend(device)
+    }
+    
+    func websocketOnColorUpdated(client: WebSocketClient, color: Color) {
+        let device = self.clients[client]!
+        device.color = color
+        self.updateInterface()
+    }
+    
+    func websocketOnSettingsRead(client: WebSocketClient, settings: Settings) {
+        let device = self.clients[client]!
+        device.name = settings.deviceName
+        tryToAppend(device)
+    }
+    
+    func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings) {
+        let device = self.clients[client]!
+        device.name = settings.deviceName
+        self.updateInterface()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails"{
             if let nextViewController = segue.destination as? DeviceDetailsUIViewController {
                 let row = self.tableView.indexPathForSelectedRow!.row
-                nextViewController.service = resolvedServices[row]
+                nextViewController.device = self.devices[row]
             }
         }
     }
