@@ -43,6 +43,7 @@ protocol WebSocketCommunicationDelegate: class {
 class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetServiceDelegate {
     private static let pingInterval = 3.0 // 3 sec
     private static let pongTimeout = 3.0 // 3 sec
+    private static let disconnectTimeout = 3.0 // 3 sec
     
     private let readRequestType = "read"
     private let updateRequestType = "update"
@@ -81,12 +82,13 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     }
     
     func netServiceDidResolveAddress(_ sender: NetService) {
+        service.delegate = nil
         connect()
     }
     
     func disconnect() {
-        print("disconnecting from service \(service.name)")
-        socket.disconnect()
+        print("disconnecting from service \(service.name) ...")
+        socket.disconnect(forceTimeout: WebSocketClient.disconnectTimeout)
     }
     
     func requestColor() -> Optional<Error> {
@@ -116,11 +118,13 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     }
     
     func sendPing() {
+        print("send ping to service \(service.name)")
         self.socket.write(ping: Data())
         self.pongTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pongTimeout, target: self, selector: #selector(self.disconnect), userInfo: nil, repeats: false);
     }
 
     public func websocketDidReceivePong(socket: WebSocket, data: Data?) {
+        print("received pong from service \(service.name)")
         self.pongTimer.invalidate()
         self.pingTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pingInterval, target: self, selector: #selector(self.sendPing), userInfo: nil, repeats: false);
     }
