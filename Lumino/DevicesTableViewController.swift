@@ -114,7 +114,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         if segue.identifier == "showDetails"{
             if let nextViewController = segue.destination as? DeviceDetailsUIViewController {
                 let row = self.tableView.indexPathForSelectedRow!.row
-                nextViewController.client = self.devices[row].client
+                nextViewController.device = self.devices[row]
             }
         }
     }

@@ -9,6 +9,6 @@
 import Foundation
 
 struct Status: Serializible {
-    let statusCode: Int
+    let code: Int
     let message: String
 }

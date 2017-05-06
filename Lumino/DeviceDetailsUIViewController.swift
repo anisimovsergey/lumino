@@ -15,7 +15,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     @IBOutlet var saturatonSlider: GradientSiliderView!
     @IBOutlet var luminanceSlider: GradientSiliderView!
 
-    var client: WebSocketClient!
+    var device: DeviceListItem!
     private var timer: Timer!
     
     var color: UIColor {
@@ -35,15 +35,16 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
             
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Device"
-        colorWheel.delegate = self
-        saturatonSlider.delegate = self
-        luminanceSlider.delegate = self
         
-        client.connectionDelegate += self
-        client.communicationDelegate += self
-        _ = client.requestColor()
-        _ = client.requestSettings()
+        self.colorWheel.delegate = self
+        self.saturatonSlider.delegate = self
+        self.luminanceSlider.delegate = self
+        
+        self.device.client.connectionDelegate += self
+        self.device.client.communicationDelegate += self
+        
+        self.color = self.device.color!.toUIColor()
+        self.title = self.device.name!
     }
     
     func updateColors() {
@@ -80,7 +81,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func sendColor() {
-        _ = client.updateColor(color.toColor())
+        _ = device.client.updateColor(color.toColor())
     }
     
     func websocketDidConnect(client: WebSocketClient) {
@@ -91,7 +92,6 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func websocketOnColorRead(client: WebSocketClient,  color: Color) {
-        self.color = color.toUIColor()
     }
 
     func websocketOnColorUpdated(client: WebSocketClient, color: Color) {
@@ -109,7 +109,6 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func websocketOnSettingsRead(client: WebSocketClient, settings: Settings) {
-        self.title = settings.deviceName
     }
     
     func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings) {

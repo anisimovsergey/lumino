@@ -63,11 +63,11 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
     
     func connect() {
         if service.port == -1 {
-            print("resolving service \(service.name)")
+            print("resolving service \(service.name) ...")
             service.delegate = self
             service.resolve(withTimeout: 10)
         } else {
-            print("connecting to service \(service.name)")
+            print("connecting to service \(service.name) ...")
             self.socket = WebSocket(url: URL(string: "ws://\(service.hostName!)/ws")!)
             self.socket.delegate = self
             socket.connect()
@@ -79,10 +79,12 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
     }
     
     func disconnect() {
+        print("disconnecting from service \(service.name)")
         socket.disconnect()
     }
     
     func requestColor() -> Optional<Error> {
+        print("requesting color from \(service.name) ...")
         return self.sendRequest(requestType: readRequestType, resource: colorResource, content: nil)
     }
     
@@ -91,6 +93,7 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
     }
     
     func requestSettings() -> Optional<Error> {
+        print("requesting settings from \(service.name) ...")
         return self.sendRequest(requestType: readRequestType, resource: settingsResource, content: nil)
     }
     
@@ -99,12 +102,14 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
     }
     
     func websocketDidConnect(socket: WebSocket) {
+        print("connected to service \(service.name)")
         connectionDelegate |> { delegate in
             delegate.websocketDidConnect(client: self)
         }
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+        print("disconnected from service \(service.name)")
         connectionDelegate |> { delegate in
             delegate.websocketDidDisconnect(client: self)
         }
@@ -138,10 +143,12 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
         if response.requestType == readRequestType {
             switch response.content {
             case let color as Color:
+                print("received color from \(service.name)")
                 communicationDelegate |> { delegate in
                     delegate.websocketOnColorRead(client: self, color: color)
                 }
             case let settings as Settings:
+                print("received settings from \(service.name)")
                 communicationDelegate |> { delegate in
                     delegate.websocketOnSettingsRead(client: self, settings: settings)
                 }
