@@ -9,6 +9,8 @@
 import Foundation
 
 struct Event: Serializible {
+    static let resourceId = "event"
+    
     let eventType: String
     let resource: String
     let content: Serializible?

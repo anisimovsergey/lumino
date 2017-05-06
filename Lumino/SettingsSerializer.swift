@@ -14,13 +14,7 @@ class SettingsSerializer: SerializerBase<Settings> {
     func create(deviceName: String) -> Settings {
         return Settings(deviceName: deviceName)
     }
-    
-    override var type: String {
-        get {
-            return "settings"
-        }
-    }
-    
+        
     override func deserializeImpl(_ con: DeserializationContext) -> Result<Settings> {
         return create <^>
             con.getValue(SettingsSerializer.deviceNameField) >>> cast

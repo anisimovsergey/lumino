@@ -27,13 +27,7 @@ class StatusSerializer: SerializerBase<Status> {
             return Status(code: statusCode, message: message)
         }
     }
-    
-    override var type: String {
-        get {
-            return "status"
-        }
-    }
-    
+        
     override func deserializeImpl(_ con: DeserializationContext) -> Result<Status> {
         return create <^>
             con.getValue(StatusSerializer.codeField) >>> cast <*>

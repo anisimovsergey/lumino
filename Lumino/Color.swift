@@ -9,6 +9,8 @@
 import Foundation
 
 struct Color: Serializible, Equatable {
+    static let resourceId = "color"
+    
     let r: UInt8
     let g: UInt8
     let b: UInt8

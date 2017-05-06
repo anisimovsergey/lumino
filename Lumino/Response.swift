@@ -9,6 +9,8 @@
 import Foundation
 
 struct Response: Serializible {
+    static let resourceId = "response"
+
     let id: String
     let requestType: String
     let resource: String
