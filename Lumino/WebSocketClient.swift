@@ -40,7 +40,10 @@ protocol WebSocketCommunicationDelegate: class {
     func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings)
 }
 
-class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
+class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetServiceDelegate {
+    private static let pingInterval = 3.0 // 3 sec
+    private static let pongTimeout = 3.0 // 3 sec
+    
     private let readRequestType = "read"
     private let updateRequestType = "update"
     private let colorResource = "color"
@@ -50,6 +53,8 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
     private let serializer: SerializationService
     private let service: NetService!
     private var socket: WebSocket!
+    private var pingTimer: Timer!
+    private var pongTimer: Timer!
     private var pendingRequests: Dictionary<RequestKey, Request> = [:]
     private var lastID: String? = nil
 
@@ -70,6 +75,7 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
             print("connecting to service \(service.name) ...")
             self.socket = WebSocket(url: URL(string: "ws://\(service.hostName!)/ws")!)
             self.socket.delegate = self
+            self.socket.pongDelegate = self
             socket.connect()
         }
     }
@@ -103,12 +109,29 @@ class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
     
     func websocketDidConnect(socket: WebSocket) {
         print("connected to service \(service.name)")
+        sendPing()
         connectionDelegate |> { delegate in
             delegate.websocketDidConnect(client: self)
         }
     }
     
+    func sendPing() {
+        self.socket.write(ping: Data())
+        self.pongTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pongTimeout, target: self, selector: #selector(self.disconnect), userInfo: nil, repeats: false);
+    }
+
+    public func websocketDidReceivePong(socket: WebSocket, data: Data?) {
+        self.pongTimer.invalidate()
+        self.pingTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pingInterval, target: self, selector: #selector(self.sendPing), userInfo: nil, repeats: false);
+    }
+
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+        if self.pingTimer != nil {
+            self.pingTimer.invalidate()
+        }
+        if self.pongTimer != nil {
+            self.pongTimer.invalidate()
+        }
         print("disconnected from service \(service.name)")
         connectionDelegate |> { delegate in
             delegate.websocketDidDisconnect(client: self)
