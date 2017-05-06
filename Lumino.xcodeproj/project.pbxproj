@@ -38,6 +38,7 @@
 		A59D1D471EB90625007D2DE0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D461EB90625007D2DE0 /* Status.swift */; };
 		A59D1D491EB9073D007D2DE0 /* StatusSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D481EB9073D007D2DE0 /* StatusSerializer.swift */; };
 		A59D1D4C1EB99CA5007D2DE0 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */; };
+		A5BB15991EBC4A5600C4B27F /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB15981EBC4A5600C4B27F /* DeviceListItem.swift */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
 		A5C373891E07405D00697FF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C373871E07405D00697FF6 /* Main.storyboard */; };
 		A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738A1E07405D00697FF6 /* Assets.xcassets */; };
@@ -110,6 +111,7 @@
 		A59D1D461EB90625007D2DE0 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		A59D1D481EB9073D007D2DE0 /* StatusSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusSerializer.swift; sourceTree = "<group>"; };
 		A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		A5BB15981EBC4A5600C4B27F /* DeviceListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListItem.swift; sourceTree = "<group>"; };
 		A5C373801E07405D00697FF6 /* Lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C373831E07405D00697FF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C373881E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		A59D1D4A1EB99C5B007D2DE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A5BB15981EBC4A5600C4B27F /* DeviceListItem.swift */,
 				A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */,
 				A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */,
 				A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */,
@@ -637,6 +640,7 @@
 				A59D1D471EB90625007D2DE0 /* Status.swift in Sources */,
 				A5D004861EB308540088ADF5 /* Settings.swift in Sources */,
 				A524E4F91E7DF34000533BB3 /* GradientSilderView.swift in Sources */,
+				A5BB15991EBC4A5600C4B27F /* DeviceListItem.swift in Sources */,
 				A52BC3A91EB5C5D9001BE371 /* SerializationContext.swift in Sources */,
 				A50755EF1E9172F400AF1A96 /* ColorLineLayer.swift in Sources */,
 				A5D004841EB29F3D0088ADF5 /* TypeAliases.swift in Sources */,

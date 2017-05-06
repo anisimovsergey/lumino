@@ -8,6 +8,7 @@
 
 import Foundation
 import Starscream
+import MulticastDelegateSwift
 
 struct RequestKey : Hashable {
     private let requestType: String
@@ -27,16 +28,19 @@ struct RequestKey : Hashable {
     }
 }
 
-protocol WebSocketClientDelegate: class {
-    func websocketDidConnect()
-    func websocketDidDisconnect()
-    func websocketOnColorRead(color: Color)
-    func websocketOnColorUpdated(color: Color)
-    func websocketOnSettingsRead(settings: Settings)
-    func websocketOnSettingsUpdated(settings: Settings)
+protocol WebSocketConnectionDelegate: class {
+    func websocketDidConnect(client: WebSocketClient)
+    func websocketDidDisconnect(client: WebSocketClient)
 }
 
-class WebSocketClient: WebSocketDelegate {
+protocol WebSocketCommunicationDelegate: class {
+    func websocketOnColorRead(client: WebSocketClient, color: Color)
+    func websocketOnColorUpdated(client: WebSocketClient, color: Color)
+    func websocketOnSettingsRead(client: WebSocketClient, settings: Settings)
+    func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings)
+}
+
+class WebSocketClient: NSObject, WebSocketDelegate, NetServiceDelegate {
     private let readRequestType = "read"
     private let updateRequestType = "update"
     private let colorResource = "color"
@@ -44,20 +48,34 @@ class WebSocketClient: WebSocketDelegate {
     private let updatedEventType = "updated"
     
     private let serializer: SerializationService
-    private let socket: WebSocket!
+    private let service: NetService!
+    private var socket: WebSocket!
     private var pendingRequests: Dictionary<RequestKey, Request> = [:]
     private var lastID: String? = nil
 
-    public weak var delegate: WebSocketClientDelegate?
+    var connectionDelegate = MulticastDelegate<WebSocketConnectionDelegate>()
+    var communicationDelegate = MulticastDelegate<WebSocketCommunicationDelegate>()
     
     init(_ serializer: SerializationService,_ service: NetService) {
         self.serializer = serializer
-        self.socket = WebSocket(url: URL(string: "ws://\(service.hostName!)/ws")!)
-        self.socket.delegate = self
+        self.service = service
     }
     
     func connect() {
-        socket.connect()
+        if service.port == -1 {
+            print("resolving service \(service.name)")
+            service.delegate = self
+            service.resolve(withTimeout: 10)
+        } else {
+            print("connecting to service \(service.name)")
+            self.socket = WebSocket(url: URL(string: "ws://\(service.hostName!)/ws")!)
+            self.socket.delegate = self
+            socket.connect()
+        }
+    }
+    
+    func netServiceDidResolveAddress(_ sender: NetService) {
+        connect()
     }
     
     func disconnect() {
@@ -81,11 +99,15 @@ class WebSocketClient: WebSocketDelegate {
     }
     
     func websocketDidConnect(socket: WebSocket) {
-        self.delegate?.websocketDidConnect()
+        connectionDelegate |> { delegate in
+            delegate.websocketDidConnect(client: self)
+        }
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        self.delegate?.websocketDidDisconnect()
+        connectionDelegate |> { delegate in
+            delegate.websocketDidDisconnect(client: self)
+        }
     }
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
@@ -116,9 +138,13 @@ class WebSocketClient: WebSocketDelegate {
         if response.requestType == readRequestType {
             switch response.content {
             case let color as Color:
-                delegate?.websocketOnColorRead(color: color)
+                communicationDelegate |> { delegate in
+                    delegate.websocketOnColorRead(client: self, color: color)
+                }
             case let settings as Settings:
-                delegate?.websocketOnSettingsRead(settings: settings)
+                communicationDelegate |> { delegate in
+                    delegate.websocketOnSettingsRead(client: self, settings: settings)
+                }
             default: break
             }
         }
@@ -128,9 +154,13 @@ class WebSocketClient: WebSocketDelegate {
         if event.eventType == updatedEventType {
             switch event.content {
             case let color as Color:
-                delegate?.websocketOnColorUpdated(color: color)
+                communicationDelegate |> { delegate in
+                    delegate.websocketOnColorUpdated(client: self, color: color)
+                }
             case let settings as Settings:
-                delegate?.websocketOnSettingsUpdated(settings: settings)
+                communicationDelegate |> { delegate in
+                    delegate.websocketOnSettingsUpdated(client: self, settings: settings)
+                }
             default: break
             }
         }
