@@ -20,13 +20,7 @@ class EventSerializer : SerializerBase<Event> {
             }
         }
     }
-    
-    override var type: String {
-        get {
-            return "event"
-        }
-    }
-
+  
     override func deserializeImpl(_ con: DeserializationContext) -> Result<Event> {
         return create <^>
             con.getValue(EventSerializer.eventTypeField) >>> cast <*>

@@ -9,5 +9,7 @@
 import Foundation
 
 struct Settings: Serializible {
+    static let resourceId = "settings"
+    
     let deviceName: String
 }

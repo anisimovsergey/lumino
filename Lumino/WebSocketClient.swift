@@ -47,8 +47,6 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     
     private let readRequestType = "read"
     private let updateRequestType = "update"
-    private let colorResource = "color"
-    private let settingsResource = "settings"
     private let updatedEventType = "updated"
     
     private let serializer: SerializationService
@@ -93,20 +91,20 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     
     func requestColor() -> Optional<Error> {
         print("requesting color from \(service.name) ...")
-        return self.sendRequest(requestType: readRequestType, resource: colorResource, content: nil)
+        return self.sendRequest(requestType: readRequestType, resource: Color.resourceId, content: nil)
     }
     
     func updateColor(_ color: Color) -> Optional<Error> {
-        return self.sendRequest(requestType: updateRequestType, resource: colorResource, content: color)
+        return self.sendRequest(requestType: updateRequestType, resource: Color.resourceId, content: color)
     }
     
     func requestSettings() -> Optional<Error> {
         print("requesting settings from \(service.name) ...")
-        return self.sendRequest(requestType: readRequestType, resource: settingsResource, content: nil)
+        return self.sendRequest(requestType: readRequestType, resource: Settings.resourceId, content: nil)
     }
     
     func updateSettings(_ settings: Settings) -> Optional<Error> {
-        return self.sendRequest(requestType: updateRequestType, resource: settingsResource, content: settings)
+        return self.sendRequest(requestType: updateRequestType, resource: Settings.resourceId, content: settings)
     }
     
     func websocketDidConnect(socket: WebSocket) {

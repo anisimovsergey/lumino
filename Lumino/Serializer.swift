@@ -16,9 +16,10 @@ protocol Serializer {
 }
 
 class SerializerBase<T>: Serializer where T:Serializible {
+    
     var type: String {
         get {
-            preconditionFailure("This method must be overridden")
+            return T.resourceId
         }
     }
 

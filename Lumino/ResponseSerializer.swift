@@ -23,13 +23,7 @@ class ResponseSerializer: SerializerBase<Response> {
             }
         }
     }
-    
-    override var type: String {
-        get {
-            return "response"
-        }
-    }
-    
+        
     override func deserializeImpl(_ con: DeserializationContext) -> Result<Response> {
         return create <^>
             con.getValue(ResponseSerializer.idField) >>> cast <*>

@@ -21,12 +21,6 @@ class ColorSerializer : SerializerBase<Color> {
         }
     }
 
-    override var type: String {
-        get {
-            return "color"
-        }
-    }
-
     override func deserializeImpl(_ con: DeserializationContext) -> Result<Color> {
         return create <^>
             con.getValue(ColorSerializer.rField) >>> cast <*>
