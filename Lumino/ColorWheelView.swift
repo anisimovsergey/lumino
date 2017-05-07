@@ -34,8 +34,13 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
         }
         set {
             colorHue = newValue
-            moveMarkerToHue()
+            setMarkerToHue()
         }
+    }
+    
+    func setHueAnimated(_ hue: CGFloat) {
+        colorHue = hue
+        moveMarkerToHue()
     }
     
     var spotColor: CGColor {
@@ -95,6 +100,17 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
         return (distanceSquared <= padWidth * padWidth)
     }
     
+    func setMarkerToHue() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        
+        hueMarkerLayer.position = self.getHueMarkerPosition()
+        let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
+        hueMarkerLayer.fillColor = color.cgColor
+        
+        CATransaction.commit()
+    }
+    
     func moveMarkerToHue() {
         // Getting the previous position
         var position: CGPoint = hueMarkerLayer.position
@@ -139,32 +155,17 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
         }
         if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed) &&
             panStarted {
-
-            colorHue = getHueFrom(position: position)
-            delegate?.HueChanged(colorHue, wheel: self)
-
-            let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
-            
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            
-            hueMarkerLayer.position = self.getHueMarkerPosition()
-            hueMarkerLayer.fillColor = color.cgColor
-            
-            CATransaction.commit()
+            self.hue = getHueFrom(position: position)
+            delegate?.HueChanged(hue, wheel: self)
         }
     }
 
     func handleTapHue(_ gestureRecognizer: UITapGestureRecognizer) {
         let position: CGPoint = gestureRecognizer.location(in: self)
-        if !isTapOnCircle(position) {
-            return
+        if isTapOnCircle(position) {
+            setHueAnimated(getHueFrom(position: position))
+            delegate?.HueChanged(hue, wheel: self)
         }
-
-        colorHue = getHueFrom(position: position)
-        delegate?.HueChanged(colorHue, wheel: self)
-
-        moveMarkerToHue()
     }
 
     func getHueMarkerPosition() -> CGPoint {
@@ -195,6 +196,5 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
         colorSpotLayer.lineWidth = round(lineWidth / 2)
         colorSpotLayer.position =  CGPoint(x: bounds.width / 2 , y: bounds.height / 2)
     }
- 
 }
 

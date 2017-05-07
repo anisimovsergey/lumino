@@ -27,8 +27,13 @@ class GradientSiliderView: UIView {
         }
         set {
             frac = newValue
-            moveMarkerToFrac()
+            setMarkerToFrac()
         }
+    }
+    
+    func setFracAnimated(_ frac: CGFloat) {
+        self.frac = frac
+        moveMarkerToFrac()
     }
     
     var uicolors: [UIColor]? {
@@ -97,6 +102,16 @@ class GradientSiliderView: UIView {
         return fraction
     }
     
+    func setMarkerToFrac() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        
+        markerLayer.position = self.getMarkerPosition()
+        markerLayer.fillColor = getSelectedColor().cgColor
+        
+        CATransaction.commit()
+    }
+    
     func moveMarkerToFrac() {
         markerLayer.position = self.getMarkerPosition()
         markerLayer.fillColor = getSelectedColor().cgColor
@@ -105,27 +120,15 @@ class GradientSiliderView: UIView {
     func handlePanHue(_ gestureRecognizer: UIPanGestureRecognizer) {
         let position: CGPoint = gestureRecognizer.location(in: self)
         if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed) {
-
-            frac = getFractionFrom(position: position)
+            self.fraction = getFractionFrom(position: position)
             delegate?.GradientChanged(frac, slider: self)
-
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            
-            markerLayer.position = self.getMarkerPosition()
-            markerLayer.fillColor = getSelectedColor().cgColor
-            
-            CATransaction.commit()
         }
     }
     
     func handleTapHue(_ gestureRecognizer: UITapGestureRecognizer) {
         let position: CGPoint = gestureRecognizer.location(in: self)
-
-        frac = getFractionFrom(position: position)
+        setFracAnimated(getFractionFrom(position: position))
         delegate?.GradientChanged(frac, slider: self)
-
-        moveMarkerToFrac()
     }
     
     override func layoutSubviews() {

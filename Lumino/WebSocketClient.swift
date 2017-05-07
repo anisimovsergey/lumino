@@ -60,6 +60,8 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     var connectionDelegate = MulticastDelegate<WebSocketConnectionDelegate>()
     var communicationDelegate = MulticastDelegate<WebSocketCommunicationDelegate>()
     
+    var name: String { get { return service.name } }
+    
     init(_ serializer: SerializationService,_ service: NetService) {
         self.serializer = serializer
         self.service = service

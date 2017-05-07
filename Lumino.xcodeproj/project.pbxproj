@@ -218,10 +218,10 @@
 		A59D1D4A1EB99C5B007D2DE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */,
 				A5BB15981EBC4A5600C4B27F /* DeviceListItem.swift */,
 				A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */,
 				A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */,
-				A59D1D4B1EB99CA5007D2DE0 /* ColorExtensions.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

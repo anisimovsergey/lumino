@@ -14,8 +14,6 @@ class DeviceListItem {
     let client: WebSocketClient!
     
     init(_ client: WebSocketClient) {
-        self.color = Color(r: 0,g: 0,b: 0)
-        self.name = ""
         self.client = client
     }
 }

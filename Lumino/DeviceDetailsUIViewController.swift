@@ -14,6 +14,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     @IBOutlet var colorWheel: ColorWheelView!
     @IBOutlet var saturatonSlider: GradientSiliderView!
     @IBOutlet var luminanceSlider: GradientSiliderView!
+    @IBOutlet var cont: UIViewController!
 
     var device: DeviceListItem!
     private var timer: Timer!
@@ -75,6 +76,10 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     func GradientChanged(_ gradient: CGFloat, slider: GradientSiliderView) {
         if (slider == saturatonSlider) {
             updateLuminance()
+        } else {
+            if luminanceSlider.frac < 0.5 {
+                self.performSegue(withIdentifier: "disconnected", sender:self)
+            }
         }
         updateColorSpot()
         sendColor()
@@ -88,7 +93,14 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
-        // Show the message and close the dialog
+        /*
+        let storyboard = UIStoryboard.init(name: "BrokenConnection", bundle: nil)
+        if let controller = storyboard.instantiateInitialViewController() {
+            self.present(controller, animated: true, completion: nil)
+        }
+ */
+        self.performSegue(withIdentifier: "disconnected", sender:self)
+
     }
     
     func websocketOnColorRead(client: WebSocketClient,  color: Color) {

@@ -10,9 +10,12 @@ import UIKit
 import MulticastDelegateSwift
 
 class DevicesTableViewController: UITableViewController, NetServiceBrowserDelegate, WebSocketConnectionDelegate, WebSocketCommunicationDelegate {
+
     private var nsb: NetServiceBrowser!
+    private var nsbSearchTimer: Timer!
+
     private var serializer: SerializationService!
-    private var clients: Dictionary<WebSocketClient, DeviceListItem> = [:]
+    private var clients: Dictionary<String, DeviceListItem> = [:]
     private var devices = [DeviceListItem]()
     
     override func viewDidLoad() {
@@ -31,11 +34,18 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         self.nsb = NetServiceBrowser()
         self.nsb.delegate = self
         self.start()
+        self.nsbSearchTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.restartSerach), userInfo: nil, repeats: true);
     }
     
     func start()  {
         print("listening for services...")
+        self.clients.removeAll()
         self.devices.removeAll()
+        restartSerach()
+    }
+    
+    func restartSerach() {
+        self.nsb.stop()
         self.nsb.searchForServices(ofType:"_lumino-ws._tcp", inDomain: "")
     }
     
@@ -50,15 +60,18 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.clients.count
+        return self.devices.count
     }
     
-    func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind aNetService: NetService, moreComing: Bool) {
-        let client = WebSocketClient(serializer, aNetService)
-        self.clients[client] = DeviceListItem(client)
-        client.connectionDelegate += self
-        client.communicationDelegate += self
-        client.connect()
+    func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
+        print("discovered service \(service.name)")
+        if self.clients[service.name] == nil {
+            let client = WebSocketClient(serializer, service)
+            self.clients[client.name] = DeviceListItem(client)
+            client.connectionDelegate += self
+            client.communicationDelegate += self
+            client.connect()
+        }
     }
     
     func updateInterface() {
@@ -71,15 +84,16 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
-        if let device = self.clients[client] {
+        if let device = self.clients[client.name] {
             if let i = (self.devices.index{$0 === device}) {
                 self.devices.remove(at: i)
-                self.clients.removeValue(forKey: client)
             }
+            self.clients.removeValue(forKey: client.name)
         }
+        self.updateInterface()
     }
     
-    func tryToAppend(_ device: DeviceListItem) {
+    func tryToAdd(_ device: DeviceListItem) {
         if (device.name != nil && device.color != nil) {
             self.devices.append(device)
             self.updateInterface()
@@ -87,25 +101,25 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     func websocketOnColorRead(client: WebSocketClient, color: Color) {
-        let device = self.clients[client]!
+        let device = self.clients[client.name]!
         device.color = color
-        tryToAppend(device)
+        tryToAdd(device)
     }
     
     func websocketOnColorUpdated(client: WebSocketClient, color: Color) {
-        let device = self.clients[client]!
+        let device = self.clients[client.name]!
         device.color = color
         self.updateInterface()
     }
     
     func websocketOnSettingsRead(client: WebSocketClient, settings: Settings) {
-        let device = self.clients[client]!
+        let device = self.clients[client.name]!
         device.name = settings.deviceName
-        tryToAppend(device)
+        tryToAdd(device)
     }
     
     func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings) {
-        let device = self.clients[client]!
+        let device = self.clients[client.name]!
         device.name = settings.deviceName
         self.updateInterface()
     }
