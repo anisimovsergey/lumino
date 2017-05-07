@@ -53,6 +53,7 @@
 		A5D004901EB484200088ADF5 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0048F1EB484200088ADF5 /* ColorTests.swift */; };
 		A5D004921EB4898A0088ADF5 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D004911EB4898A0088ADF5 /* EventTests.swift */; };
 		A5EB37F21E746BFB003B30F1 /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */; };
+		A5FD7AEC1EBFD786003303E2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD7AEB1EBFD786003303E2 /* SettingsViewController.swift */; };
 		EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		A5D0048F1EB484200088ADF5 /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		A5D004911EB4898A0088ADF5 /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
+		A5FD7AEB1EBFD786003303E2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,6 +224,7 @@
 				A5BB15981EBC4A5600C4B27F /* DeviceListItem.swift */,
 				A52C179A1E0847E300F1AC7D /* DevicesTableViewController.swift */,
 				A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */,
+				A5FD7AEB1EBFD786003303E2 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 			files = (
 				A50755E91E89AF4D00AF1A96 /* Response.swift in Sources */,
 				A59D1D451EB73252007D2DE0 /* WebSocketClient.swift in Sources */,
+				A5FD7AEC1EBFD786003303E2 /* SettingsViewController.swift in Sources */,
 				A52BC3A11EB5BFC7001BE371 /* Serializible.swift in Sources */,
 				A59D1D4C1EB99CA5007D2DE0 /* ColorExtensions.swift in Sources */,
 				A52BC3A71EB5C5C6001BE371 /* SerializationService.swift in Sources */,
