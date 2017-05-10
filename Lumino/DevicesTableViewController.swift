@@ -65,12 +65,17 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
         print("discovered service \(service.name)")
-        if self.clients[service.name] == nil {
+        
+        var deviceListItem = self.clients[service.name]
+        if deviceListItem == nil {
             let client = WebSocketClient(serializer, service)
-            self.clients[client.name] = DeviceListItem(client)
             client.connectionDelegate += self
             client.communicationDelegate += self
-            client.connect()
+            deviceListItem = DeviceListItem(client)
+            self.clients[client.name] = deviceListItem
+        }
+        if (!((deviceListItem?.client.isConnected)!)) {
+            deviceListItem?.client.connect()
         }
     }
     
@@ -84,6 +89,9 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
+        if self.navigationController?.presentedViewController != self {
+            return
+        }
         if let device = self.clients[client.name] {
             if let i = (self.devices.index{$0 === device}) {
                 self.devices.remove(at: i)
@@ -95,7 +103,9 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     
     func tryToAdd(_ device: DeviceListItem) {
         if (device.name != nil && device.color != nil) {
-            self.devices.append(device)
+            if (self.devices.index{$0 === device}) == nil {
+                self.devices.append(device)
+            }
             self.updateInterface()
         }
     }

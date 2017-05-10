@@ -61,6 +61,11 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     var communicationDelegate = MulticastDelegate<WebSocketCommunicationDelegate>()
     
     var name: String { get { return service.name } }
+    var isConnected: Bool {
+        get {
+            return socket != nil && socket.isConnected
+        }
+    }
     
     init(_ serializer: SerializationService,_ service: NetService) {
         self.serializer = serializer
@@ -234,5 +239,4 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
         case let .Error(error): return error
         }
     }
-    
 }

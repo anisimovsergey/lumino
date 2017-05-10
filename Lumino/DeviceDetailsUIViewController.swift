@@ -14,7 +14,6 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     @IBOutlet var colorWheel: ColorWheelView!
     @IBOutlet var saturatonSlider: GradientSiliderView!
     @IBOutlet var luminanceSlider: GradientSiliderView!
-    @IBOutlet var cont: UIViewController!
 
     var device: DeviceListItem!
     private var timer: Timer!
@@ -47,7 +46,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         self.color = self.device.color!.toUIColor()
         self.title = self.device.name!
     }
-    
+        
     func updateColors() {
         updateSaturation()
         updateLuminance()
@@ -86,7 +85,8 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
             
     func websocketDidConnect(client: WebSocketClient) {
-        self.performSegue(withIdentifier: "connected", sender:self)
+        self.presentedViewController?.performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
+        //self.navigationController?.performSegue(withIdentifier: "connected", sender:self)
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
@@ -106,7 +106,14 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     func updateColor() {
         let newColor: Color = timer.userInfo as! Color
         if (newColor != color.toColor()) {
-            color = newColor.toUIColor()
+            let color = newColor.toUIColor()
+            color.getHue({
+                h, s, l in
+                self.colorWheel.setHueAnimated(h)
+                self.saturatonSlider.setFracAnimated(s)
+                self.luminanceSlider.setFracAnimated(l)
+                updateColors()
+            })
         }
     }
     
@@ -114,5 +121,8 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings) {
+        self.title = self.device.name!
     }
+    
+    @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
 }
