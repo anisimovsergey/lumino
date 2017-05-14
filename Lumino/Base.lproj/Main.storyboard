@@ -227,7 +227,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <connections>
-                        <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="unwindSegueToVC1" unwindAction="unwindToVC1WithSegue:" id="fIH-fy-gOI"/>
+                        <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="connected" unwindAction="connectedWithSegue:" id="V93-sH-MrA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nYs-ZB-aQH" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -40,13 +40,23 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         self.saturatonSlider.delegate = self
         self.luminanceSlider.delegate = self
         
-        self.device.client.connectionDelegate += self
-        self.device.client.communicationDelegate += self
-        
         self.color = self.device.color!.toUIColor()
         self.title = self.device.name!
     }
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.device.client.connectionDelegate += self
+        self.device.client.communicationDelegate += self
+        if (!self.device.client.isConnected) {
+            showDisconnected()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.device.client.connectionDelegate -= self
+        self.device.client.communicationDelegate -= self
+    }
+    
     func updateColors() {
         updateSaturation()
         updateLuminance()
@@ -85,10 +95,16 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
             
     func websocketDidConnect(client: WebSocketClient) {
-        self.presentedViewController?.performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
+        if self.navigationController?.presentedViewController != self {
+            self.presentedViewController?.performSegue(withIdentifier: "connected", sender: self)
+        }
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
+        showDisconnected()
+    }
+    
+    func showDisconnected() {
         self.performSegue(withIdentifier: "disconnected", sender:self)
     }
     
@@ -129,7 +145,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         self.title = settings.deviceName
     }
     
-    @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
+    @IBAction func connected(segue:UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSettings"{
