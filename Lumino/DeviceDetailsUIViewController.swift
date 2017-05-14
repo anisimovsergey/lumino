@@ -86,14 +86,25 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
             
     func websocketDidConnect(client: WebSocketClient) {
         self.presentedViewController?.performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
-        //self.navigationController?.performSegue(withIdentifier: "connected", sender:self)
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
         self.performSegue(withIdentifier: "disconnected", sender:self)
     }
     
+    func setColorAnimated(color: Color) {
+        let uiColor = color.toUIColor()
+        uiColor.getHue({
+            h, s, l in
+            self.colorWheel.setHueAnimated(h)
+            self.saturatonSlider.setFracAnimated(s)
+            self.luminanceSlider.setFracAnimated(l)
+            updateColors()
+        })
+    }
+    
     func websocketOnColorRead(client: WebSocketClient,  color: Color) {
+        setColorAnimated(color: color)
     }
 
     func websocketOnColorUpdated(client: WebSocketClient, color: Color) {
@@ -106,23 +117,28 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     func updateColor() {
         let newColor: Color = timer.userInfo as! Color
         if (newColor != color.toColor()) {
-            let color = newColor.toUIColor()
-            color.getHue({
-                h, s, l in
-                self.colorWheel.setHueAnimated(h)
-                self.saturatonSlider.setFracAnimated(s)
-                self.luminanceSlider.setFracAnimated(l)
-                updateColors()
-            })
+            setColorAnimated(color: newColor)
         }
     }
     
     func websocketOnSettingsRead(client: WebSocketClient, settings: Settings) {
+        self.title = settings.deviceName
     }
     
     func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings) {
-        self.title = self.device.name!
+        self.title = settings.deviceName
     }
     
     @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSettings"{
+            if let nextNavController = segue.destination as? UINavigationController {
+                if let nextViewController = nextNavController.visibleViewController as? SettingsViewController {
+                    nextViewController.device = device
+                }
+            }
+        }
+    }
+
 }

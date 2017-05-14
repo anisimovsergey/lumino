@@ -135,13 +135,14 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     }
 
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+        print("disconnected from service \(service.name)")
         if self.pingTimer != nil {
             self.pingTimer.invalidate()
         }
         if self.pongTimer != nil {
             self.pongTimer.invalidate()
         }
-        print("disconnected from service \(service.name)")
+        self.pendingRequests.removeAll()
         connectionDelegate |> { delegate in
             delegate.websocketDidDisconnect(client: self)
         }

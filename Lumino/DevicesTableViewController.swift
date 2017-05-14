@@ -134,6 +134,19 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         self.updateInterface()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // Removing the diconnected clients
+        for (name, client) in self.clients {
+            if !client.client.isConnected {
+                if let i = (self.devices.index{$0 === client}) {
+                    self.devices.remove(at: i)
+                }
+                self.clients.removeValue(forKey: name)
+            }
+        }
+        self.updateInterface()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails"{
             if let nextViewController = segue.destination as? DeviceDetailsUIViewController {

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -42,11 +43,11 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rFU-rw-e9s" id="nyF-Zh-TRB">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jjN-es-8sg">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="74.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -87,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOh-PM-RTz">
-                                        <rect key="frame" x="22.5" y="48.5" width="276" height="408"/>
+                                        <rect key="frame" x="22" y="48" width="276" height="408"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwB-Q6-0Ut" customClass="GradientSiliderView" customModule="Lumino">
                                                 <rect key="frame" x="0.0" y="364" width="276" height="44"/>
@@ -147,7 +148,7 @@
                     <navigationItem key="navigationItem" title="Title" id="AXe-MM-Onq">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="rup-rg-4vw">
                             <connections>
-                                <segue destination="PX2-7K-iYO" kind="presentation" id="H7O-em-VUx"/>
+                                <segue destination="PX2-7K-iYO" kind="presentation" identifier="showSettings" id="H7O-em-VUx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -178,13 +179,13 @@
                                 <rect key="frame" x="0.0" y="220" width="320" height="128"/>
                                 <subviews>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7b-lz-2Rf">
-                                        <rect key="frame" x="96" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="96" y="0.0" width="129" height="128"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2u5-2Y-A2q">
-                                                <rect key="frame" x="45.5" y="45.5" width="37" height="37"/>
+                                                <rect key="frame" x="46" y="46" width="37" height="37"/>
                                             </activityIndicatorView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="2H3-Z0-8ky">
-                                                <rect key="frame" x="8" y="94" width="113" height="21"/>
+                                                <rect key="frame" x="8" y="94" width="114" height="21"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -245,7 +246,29 @@
                     <view key="view" contentMode="scaleToFill" id="PQT-ro-hZK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4Z-Ce-sCn">
+                                <rect key="frame" x="0.0" y="64" width="320" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="h4Z-Ce-sCn" secondAttribute="height" multiplier="16:7" constant="169.14285714285714" id="9KD-VL-6Yw"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQU-Wi-Clx">
+                                <rect key="frame" x="26" y="138" width="268" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h4Z-Ce-sCn" firstAttribute="top" secondItem="snx-H5-DEf" secondAttribute="bottom" id="0IZ-bE-wXr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="QQU-Wi-Clx" secondAttribute="leading" constant="-10" id="2Uw-vI-xIe"/>
+                            <constraint firstItem="QQU-Wi-Clx" firstAttribute="top" secondItem="h4Z-Ce-sCn" secondAttribute="bottom" constant="8" id="OPX-mM-ObB"/>
+                            <constraint firstItem="h4Z-Ce-sCn" firstAttribute="leading" secondItem="PQT-ro-hZK" secondAttribute="leading" id="Ra3-QJ-x7a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QQU-Wi-Clx" secondAttribute="trailing" constant="10" id="cBF-P1-7DM"/>
+                            <constraint firstAttribute="trailing" secondItem="h4Z-Ce-sCn" secondAttribute="trailing" id="kBp-P1-45C"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="LeT-d5-6tb">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9Bg-w1-Rhb">
@@ -253,8 +276,15 @@
                                 <action selector="cancelEditWithSender:" destination="L3a-aA-nZR" id="9ex-RJ-U5V"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="8c5-Me-7QB"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="8c5-Me-7QB">
+                            <connections>
+                                <action selector="saveWithSender:" destination="L3a-aA-nZR" id="PCg-q7-GgX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="name" destination="QQU-Wi-Clx" id="mMH-Cm-5PJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0E-lr-YZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
