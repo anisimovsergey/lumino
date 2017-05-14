@@ -116,10 +116,16 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     
     func websocketDidConnect(socket: WebSocket) {
         print("connected to service \(service.name)")
+        clearPendingRequests()
         sendPing()
         connectionDelegate |> { delegate in
             delegate.websocketDidConnect(client: self)
         }
+    }
+    
+    func clearPendingRequests() {
+        self.lastID = nil
+        self.pendingRequests.removeAll()
     }
     
     func sendPing() {
@@ -142,7 +148,6 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
         if self.pongTimer != nil {
             self.pongTimer.invalidate()
         }
-        self.pendingRequests.removeAll()
         connectionDelegate |> { delegate in
             delegate.websocketDidDisconnect(client: self)
         }
