@@ -14,9 +14,11 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     @IBOutlet var colorWheel: ColorWheelView!
     @IBOutlet var saturatonSlider: GradientSiliderView!
     @IBOutlet var luminanceSlider: GradientSiliderView!
+    @IBOutlet var edit: UIBarButtonItem!
 
     var device: DeviceListItem!
     private var timer: Timer!
+    private var unwind = false
     
     var color: UIColor {
         get {
@@ -45,14 +47,21 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.device.client.connectionDelegate += self
-        self.device.client.communicationDelegate += self
-        if (!self.device.client.isConnected) {
-            showDisconnected()
+        super.viewWillAppear(animated)
+        
+        if unwind {
+            self.performSegue(withIdentifier: "unwindToDevices", sender: self)
+        } else {
+            self.device.client.connectionDelegate += self
+            self.device.client.communicationDelegate += self
+            if (!self.device.client.isConnected) {
+                showDisconnected()
+            }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.device.client.connectionDelegate -= self
         self.device.client.communicationDelegate -= self
     }
@@ -95,9 +104,8 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
             
     func websocketDidConnect(client: WebSocketClient) {
-        if self.navigationController?.presentedViewController != self {
-            self.presentedViewController?.performSegue(withIdentifier: "connected", sender: self)
-        }
+        self.presentedViewController?.performSegue(withIdentifier: "unwindToDetails", sender: self)
+        self.edit.isEnabled = true
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
@@ -106,6 +114,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     
     func showDisconnected() {
         self.performSegue(withIdentifier: "disconnected", sender:self)
+        self.edit.isEnabled = false
     }
     
     func setColorAnimated(color: Color) {
@@ -145,9 +154,12 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         self.title = settings.deviceName
     }
     
-    @IBAction func connected(segue:UIStoryboardSegue) { }
+    @IBAction func unwindToDetails(_ segue:UIStoryboardSegue) {
+        print("unwind to details")
+        unwind = true
+    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
         if segue.identifier == "showSettings"{
             if let nextNavController = segue.destination as? UINavigationController {
                 if let nextViewController = nextNavController.visibleViewController as? SettingsViewController {
@@ -156,5 +168,4 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
             }
         }
     }
-
 }

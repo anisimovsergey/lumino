@@ -135,6 +135,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         // Removing the diconnected clients
         for (name, client) in self.clients {
             if !client.client.isConnected {
@@ -154,5 +155,9 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
                 nextViewController.device = self.devices[row]
             }
         }
+    }
+    
+    @IBAction func unwindToDevices(_ segue:UIStoryboardSegue) {
+        print("unwind to devices")
     }
 }

@@ -154,12 +154,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="colorWheel" destination="LbR-Da-mjQ" id="80N-z2-QMN"/>
+                        <outlet property="edit" destination="rup-rg-4vw" id="Jo5-Pd-BcN"/>
                         <outlet property="luminanceSlider" destination="KcD-zO-KAE" id="rFw-dT-bxF"/>
                         <outlet property="saturatonSlider" destination="iwB-Q6-0Ut" id="ij6-zR-de1"/>
                         <segue destination="RYN-BN-WPe" kind="presentation" identifier="disconnected" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="nct-D0-Qn8"/>
+                        <segue destination="zQP-jm-G6Z" kind="unwind" identifier="unwindToDevices" unwindAction="unwindToDevices:" id="3FF-uZ-xHj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKV-BQ-iqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zQP-jm-G6Z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1663.125" y="780.63380281690138"/>
         </scene>
@@ -227,7 +230,8 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <connections>
-                        <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="connected" unwindAction="connectedWithSegue:" id="V93-sH-MrA"/>
+                        <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="unwindToDetails" unwindAction="unwindToDetails:" id="ouD-iQ-qWY"/>
+                        <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="unwindToSettings" unwindAction="unwindToSettings:" id="usg-Ey-p5c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nYs-ZB-aQH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -235,10 +239,10 @@
             </objects>
             <point key="canvasLocation" x="2994.375" y="349.64788732394368"/>
         </scene>
-        <!--Title-->
+        <!--Settings-->
         <scene sceneID="nnh-0l-Lnl">
             <objects>
-                <viewController id="L3a-aA-nZR" customClass="SettingsViewController" customModule="Lumino" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" id="L3a-aA-nZR" customClass="SettingsViewController" customModule="Lumino" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="snx-H5-DEf"/>
                         <viewControllerLayoutGuide type="bottom" id="JAg-Vp-D9Q"/>
@@ -270,7 +274,7 @@
                             <constraint firstAttribute="trailing" secondItem="h4Z-Ce-sCn" secondAttribute="trailing" id="kBp-P1-45C"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="LeT-d5-6tb">
+                    <navigationItem key="navigationItem" title="Settings" id="LeT-d5-6tb">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9Bg-w1-Rhb">
                             <connections>
                                 <action selector="cancelEditWithSender:" destination="L3a-aA-nZR" id="9ex-RJ-U5V"/>
@@ -284,6 +288,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="name" destination="QQU-Wi-Clx" id="mMH-Cm-5PJ"/>
+                        <outlet property="save" destination="8c5-Me-7QB" id="FtJ-Ft-6JX"/>
+                        <segue destination="RYN-BN-WPe" kind="presentation" identifier="disconnected" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="f7J-zR-d9d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0E-lr-YZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -294,6 +300,7 @@
         <scene sceneID="hFO-D0-G5z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PX2-7K-iYO" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ahf-7Z-Y2j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -309,4 +316,7 @@
             <point key="canvasLocation" x="2992.5" y="1069.0140845070423"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="f7J-zR-d9d"/>
+    </inferredMetricsTieBreakers>
 </document>
