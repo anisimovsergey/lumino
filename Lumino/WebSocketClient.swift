@@ -41,9 +41,9 @@ protocol WebSocketCommunicationDelegate: class {
 }
 
 class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetServiceDelegate {
-    private static let pingInterval = 3.0 // 3 sec
-    private static let pongTimeout = 2.0 // 3 sec
-    private static let disconnectTimeout = 1.0 // 3 sec
+    private static let pingInterval = 3.0
+    private static let pongTimeout = 2.0
+    private static let disconnectTimeout = 1.0
     
     private let readRequestType = "read"
     private let updateRequestType = "update"
