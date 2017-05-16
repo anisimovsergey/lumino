@@ -11,13 +11,13 @@ import Foundation
 struct Color: Serializible, Equatable {
     static let resourceId = "color"
     
-    let r: UInt8
-    let g: UInt8
-    let b: UInt8
+    let h: Float
+    let s: Float
+    let l: Float
     
     public static func == (lhs: Color, rhs: Color) -> Bool {
-        return  (lhs.r == rhs.r) &&
-                (lhs.g == rhs.g) &&
-                (lhs.b == rhs.b)
+        return  (lhs.h == rhs.h) &&
+                (lhs.s == rhs.s) &&
+                (lhs.l == rhs.l)
     }
 }

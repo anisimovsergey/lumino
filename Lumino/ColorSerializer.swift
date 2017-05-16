@@ -9,29 +9,29 @@
 import Foundation
 
 class ColorSerializer : SerializerBase<Color> {
-    static let rField: String = "r"
-    static let gField: String = "g"
-    static let bField: String = "b"
+    static let hField: String = "h"
+    static let sField: String = "s"
+    static let lField: String = "l"
     
-    func create(r: UInt8) -> (_ g: UInt8) -> (_ b: UInt8) -> Color {
-        return { g in
-            return { b in
-                return Color(r: r, g: g, b: b)
+    func create(h: Float) -> (_ g: Float) -> (_ b: Float) -> Color {
+        return { s in
+            return { l in
+                return Color(h: h, s: s, l: l)
             }
         }
     }
 
     override func deserializeImpl(_ con: DeserializationContext) -> Result<Color> {
         return create <^>
-            con.getValue(ColorSerializer.rField) >>> cast <*>
-            con.getValue(ColorSerializer.gField) >>> cast <*>
-            con.getValue(ColorSerializer.bField) >>> cast
+            con.getValue(ColorSerializer.hField) >>> cast <*>
+            con.getValue(ColorSerializer.sField) >>> cast <*>
+            con.getValue(ColorSerializer.lField) >>> cast
     }
     
     override func serializeImpl(_ con: SerializationContext,_ obj: Color) -> Optional<Error> {
         return
-            con.setValue(ColorSerializer.rField, obj.r) <*>
-            con.setValue(ColorSerializer.gField, obj.g) <*>
-            con.setValue(ColorSerializer.bField, obj.b)
+            con.setValue(ColorSerializer.hField, obj.h) <*>
+            con.setValue(ColorSerializer.sField, obj.s) <*>
+            con.setValue(ColorSerializer.lField, obj.l)
     }
 }

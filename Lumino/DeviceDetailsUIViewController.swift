@@ -20,18 +20,15 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     private var timer: Timer!
     private var unwind = false
     
-    var color: UIColor {
+    var color: Color {
         get {
-            return UIColor(hue: colorWheel.hue, saturation: saturatonSlider.fraction, brightness: luminanceSlider.fraction, alpha: CGFloat(1))
+            return Color(h: Float(colorWheel.hue), s: Float(saturatonSlider.fraction), l: Float(luminanceSlider.fraction))
         }
         set {
-            newValue.getHue({
-                h, s, l in
-                colorWheel.hue = h
-                saturatonSlider.fraction = s
-                luminanceSlider.fraction = l
-                updateColors()
-            })
+            colorWheel.hue = CGFloat(newValue.h)
+            saturatonSlider.fraction = CGFloat(newValue.s)
+            luminanceSlider.fraction = CGFloat(newValue.l)
+            updateColors()
         }
     }
             
@@ -42,7 +39,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         self.saturatonSlider.delegate = self
         self.luminanceSlider.delegate = self
         
-        self.color = self.device.color!.toUIColor()
+        self.color = self.device.color!
         self.title = self.device.name!
     }
     
@@ -83,7 +80,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func updateColorSpot() {
-        colorWheel.spotColor = color.cgColor
+        colorWheel.spotColor = color.toCGColor()
     }
     
     func HueChanged(_ hue: CGFloat, wheel: ColorWheelView) {
@@ -100,7 +97,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func sendColor() {
-        _ = device.client.updateColor(color.toColor())
+        _ = device.client.updateColor(color)
     }
             
     func websocketDidConnect(client: WebSocketClient) {
@@ -118,14 +115,10 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func setColorAnimated(color: Color) {
-        let uiColor = color.toUIColor()
-        uiColor.getHue({
-            h, s, l in
-            self.colorWheel.setHueAnimated(h)
-            self.saturatonSlider.setFracAnimated(s)
-            self.luminanceSlider.setFracAnimated(l)
-            updateColors()
-        })
+        self.colorWheel.setHueAnimated(CGFloat(color.h))
+        self.saturatonSlider.setFracAnimated(CGFloat(color.s))
+        self.luminanceSlider.setFracAnimated(CGFloat(color.l))
+        updateColors()
     }
     
     func websocketOnColorRead(client: WebSocketClient,  color: Color) {
@@ -141,7 +134,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     
     func updateColor() {
         let newColor: Color = timer.userInfo as! Color
-        if (newColor != color.toColor()) {
+        if (newColor != color) {
             setColorAnimated(color: newColor)
         }
     }
