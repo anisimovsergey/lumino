@@ -48,7 +48,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         self.nsb.stop()
         self.nsb.searchForServices(ofType:"_lumino-ws._tcp", inDomain: "")
     }
-    
+        
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
         cell.textLabel?.text = devices[indexPath.row].name

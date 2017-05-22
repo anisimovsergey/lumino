@@ -10,7 +10,7 @@ import UIKit
 
 extension Color {
     func toCGColor() -> CGColor {
-        let color = UIColor(hue: CGFloat(self.h), saturation: CGFloat(self.s), brightness: CGFloat(self.l), alpha: CGFloat(1))
+        let color = UIColor(hue: CGFloat(self.h), saturation: CGFloat(self.s), brightness: CGFloat(self.v), alpha: CGFloat(1))
         return color.cgColor
     }
 }

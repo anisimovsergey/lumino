@@ -22,16 +22,16 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     
     var color: Color {
         get {
-            return Color(h: Float(colorWheel.hue), s: Float(saturatonSlider.fraction), l: Float(luminanceSlider.fraction))
+            return Color(h: Float(colorWheel.hue), s: Float(saturatonSlider.fraction), v: Float(luminanceSlider.fraction))
         }
         set {
             colorWheel.hue = CGFloat(newValue.h)
             saturatonSlider.fraction = CGFloat(newValue.s)
-            luminanceSlider.fraction = CGFloat(newValue.l)
+            luminanceSlider.fraction = CGFloat(newValue.v)
             updateColors()
         }
     }
-            
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,7 +117,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     func setColorAnimated(color: Color) {
         self.colorWheel.setHueAnimated(CGFloat(color.h))
         self.saturatonSlider.setFracAnimated(CGFloat(color.s))
-        self.luminanceSlider.setFracAnimated(CGFloat(color.l))
+        self.luminanceSlider.setFracAnimated(CGFloat(color.v))
         updateColors()
     }
     

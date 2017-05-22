@@ -134,7 +134,7 @@ class GradientSiliderView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let markerSize = round(bounds.width / 6)
+        let markerSize = round(bounds.width / 7)
         let lineWidth = round(markerSize / 8)
 
         lineLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: lineWidth, height: self.bounds.width - markerSize))

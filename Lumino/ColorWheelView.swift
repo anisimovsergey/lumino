@@ -178,7 +178,7 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let markerSize = round(bounds.width / 6)
+        let markerSize = round(bounds.width / 7)
         let lineWidth = round(markerSize / 8)
 
         circleRadius = (bounds.width - markerSize) / 2.0
