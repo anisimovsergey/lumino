@@ -89,16 +89,15 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     func websocketDidDisconnect(client: WebSocketClient) {
-        if self.navigationController?.presentedViewController != self {
-            return
-        }
-        if let device = self.clients[client.name] {
-            if let i = (self.devices.index{$0 === device}) {
-                self.devices.remove(at: i)
+        if (self.isViewLoaded && (self.view.window != nil)) {
+            if let device = self.clients[client.name] {
+                if let i = (self.devices.index{$0 === device}) {
+                    self.devices.remove(at: i)
+                }
+                self.clients.removeValue(forKey: client.name)
             }
-            self.clients.removeValue(forKey: client.name)
+            self.updateInterface()
         }
-        self.updateInterface()
     }
     
     func tryToAdd(_ device: DeviceListItem) {
