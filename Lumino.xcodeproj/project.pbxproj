@@ -53,6 +53,7 @@
 		A5D004901EB484200088ADF5 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0048F1EB484200088ADF5 /* ColorTests.swift */; };
 		A5D004921EB4898A0088ADF5 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D004911EB4898A0088ADF5 /* EventTests.swift */; };
 		A5EB37F21E746BFB003B30F1 /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */; };
+		A5F5A1891ED54E4600DDED10 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5A1881ED54E4500DDED10 /* DeviceCell.swift */; };
 		A5FD7AEC1EBFD786003303E2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD7AEB1EBFD786003303E2 /* SettingsViewController.swift */; };
 		EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -133,6 +134,7 @@
 		A5D0048F1EB484200088ADF5 /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		A5D004911EB4898A0088ADF5 /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
+		A5F5A1881ED54E4500DDED10 /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		A5FD7AEB1EBFD786003303E2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		A5C373821E07405D00697FF6 /* Lumino */ = {
 			isa = PBXGroup;
 			children = (
+				A5F5A1871ED54E2F00DDED10 /* DeviceCell */,
 				A5EB37F01E746BE2003B30F1 /* ColorPicker */,
 				A59D1D4A1EB99C5B007D2DE0 /* Controllers */,
 				A59D1D431EB731DB007D2DE0 /* Communication */,
@@ -335,6 +338,14 @@
 				A50755F01E91750300AF1A96 /* HueCircleLayer.swift */,
 			);
 			name = ColorPicker;
+			sourceTree = "<group>";
+		};
+		A5F5A1871ED54E2F00DDED10 /* DeviceCell */ = {
+			isa = PBXGroup;
+			children = (
+				A5F5A1881ED54E4500DDED10 /* DeviceCell.swift */,
+			);
+			name = DeviceCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -635,6 +646,7 @@
 				A50755F81E96CE5800AF1A96 /* Request.swift in Sources */,
 				A50755FA1E96CF5700AF1A96 /* Color.swift in Sources */,
 				A59D1D491EB9073D007D2DE0 /* StatusSerializer.swift in Sources */,
+				A5F5A1891ED54E4600DDED10 /* DeviceCell.swift in Sources */,
 				A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */,
 				A59D1D3C1EB67C22007D2DE0 /* RequestSerializer.swift in Sources */,
 				A52BC3A51EB5C374001BE371 /* SettingsSerializer.swift in Sources */,

@@ -50,8 +50,10 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
-        cell.textLabel?.text = devices[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath) as! DeviceCell
+        let device = devices[indexPath.row]
+        cell.label?.text = device.name
+        cell.colorView.backgroundColor = device.color?.toUIColor()
         return cell
     }
     
