@@ -11,8 +11,9 @@ import UIKit
 class DeviceCell: UITableViewCell {
     @IBOutlet var colorView: UIView!
     @IBOutlet var label: UILabel!
+    @IBOutlet var isOn: UISwitch!
     private var tintView: UIView!
-        
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         if self.tintView == nil {
             tintView = UIView()

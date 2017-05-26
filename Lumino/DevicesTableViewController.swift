@@ -53,9 +53,22 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath) as! DeviceCell
         let device = devices[indexPath.row]
         cell.label?.text = device.name
+        cell.isOn.isOn = device.isOn!
         cell.colorView.backgroundColor = device.color?.toUIColor()
+        
+        cell.isOn.tag = indexPath.row
+        cell.isOn.addTarget(self, action: #selector(self.switchIsChanged(_:)), for: UIControlEvents.valueChanged)
+        
         return cell
     }
+    
+    func switchIsChanged(_ isOn: UISwitch) {
+        let device = devices[isOn.tag]
+
+        let settings = Settings(isOn: isOn.isOn, deviceName: device.name!)
+        _ = device.client.updateSettings(settings)
+    }
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -126,12 +139,14 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     func websocketOnSettingsRead(client: WebSocketClient, settings: Settings) {
         let device = self.clients[client.name]!
         device.name = settings.deviceName
+        device.isOn = settings.isOn
         tryToAdd(device)
     }
     
     func websocketOnSettingsUpdated(client: WebSocketClient, settings: Settings) {
         let device = self.clients[client.name]!
         device.name = settings.deviceName
+        device.isOn = settings.isOn
         self.updateInterface()
     }
     

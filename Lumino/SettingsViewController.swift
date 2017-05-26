@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController, WebSocketConnectionDelegate {
     }
     
     @IBAction func save(sender: AnyObject) {
-        let settings = Settings(deviceName: name.text!)
+        let settings = Settings(isOn: self.device.isOn!, deviceName: name.text!)
         _ = device.client.updateSettings(settings)
         dismiss(animated: true, completion: nil)
     }

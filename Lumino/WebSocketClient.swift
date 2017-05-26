@@ -56,6 +56,7 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     private var pongTimer: Timer!
     private var pendingRequests: Dictionary<RequestKey, Request> = [:]
     private var lastID: String? = nil
+    private var lastIDTime: DispatchTime? = nil
 
     var connectionDelegate = MulticastDelegate<WebSocketConnectionDelegate>()
     var communicationDelegate = MulticastDelegate<WebSocketCommunicationDelegate>()
@@ -229,7 +230,15 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
         let lastID = getRandomID()
         let request = Request(id: lastID, requestType: requestType, resource: resource, content: content)
         if self.lastID != nil {
-            pendingRequests[RequestKey(requestType, resource)] = request
+            let now = DispatchTime.now()
+            let elapsed = now.uptimeNanoseconds - (lastIDTime?.uptimeNanoseconds)!
+            if elapsed > 200000000 {
+                print("no response in 200ms")
+                pendingRequests.removeValue(forKey: RequestKey(requestType, resource))
+                return sendRequest(request: request)
+            } else {
+                pendingRequests[RequestKey(requestType, resource)] = request
+            }
             return .none
         } else {
             return sendRequest(request: request)
@@ -238,6 +247,7 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     
     private func sendRequest(request: Request) -> Optional<Error> {
         self.lastID = request.id
+        self.lastIDTime = DispatchTime.now()
         switch self.serializer.serializeToString(request) {
         case let .Value(json):
             socket.write(string: json)

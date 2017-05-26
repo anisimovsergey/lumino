@@ -13,10 +13,10 @@ class ColorSerializer : SerializerBase<Color> {
     static let sField: String = "s"
     static let vField: String = "v"
     
-    func create(h: Float) -> (_ g: Float) -> (_ b: Float) -> Color {
+    func create(h: Float) -> (_ s: Float) -> (_ v: Float) -> Color {
         return { s in
-            return { l in
-                return Color(h: h, s: s, v: l)
+            return { v in
+                return Color(h: h, s: s, v: v)
             }
         }
     }

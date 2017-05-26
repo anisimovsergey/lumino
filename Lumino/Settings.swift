@@ -11,5 +11,6 @@ import Foundation
 struct Settings: Serializible {
     static let resourceId = "settings"
     
+    let isOn: Bool
     let deviceName: String
 }
