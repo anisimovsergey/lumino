@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Lumino.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A5C3739E1E07405D00697FF6"
+               BuildableName = "LuminoUITests.xctest"
+               BlueprintName = "LuminoUITests"
+               ReferencedContainer = "container:Lumino.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -36,16 +50,6 @@
                BlueprintIdentifier = "A5C373931E07405D00697FF6"
                BuildableName = "LuminoTests.xctest"
                BlueprintName = "LuminoTests"
-               ReferencedContainer = "container:Lumino.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A5C3739E1E07405D00697FF6"
-               BuildableName = "LuminoUITests.xctest"
-               BlueprintName = "LuminoUITests"
                ReferencedContainer = "container:Lumino.xcodeproj">
             </BuildableReference>
          </TestableReference>
