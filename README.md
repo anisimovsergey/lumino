@@ -1,7 +1,9 @@
 # Lumino iOS
 This is an iOS application for controlling Lumino night lamp - free, open source night lamp project bases on ESP8266.
 
-![devices table](https://raw.githubusercontent.com/anisimovsergey/gluino-ios/master/docs/pics/table-form.png)
+Devices            |  Color | Settings
+:-------------------------:|:-------------------------:|:-------------------------:
+![devices table](https://raw.githubusercontent.com/anisimovsergey/lumino-ios/master/Docs/Pics/table-form.png) | ![color](https://raw.githubusercontent.com/anisimovsergey/lumino-ios/master/Docs/Pics/color-form.png) | ![settings](https://raw.githubusercontent.com/anisimovsergey/lumino-ios/master/Docs/Pics/settings-form.png)
 
 ## Functionality
 * The application can automatically discover all Lumino devices connected to your home network and maintain their list
