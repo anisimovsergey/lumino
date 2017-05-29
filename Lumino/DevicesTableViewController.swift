@@ -54,7 +54,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         let device = devices[indexPath.row]
         cell.label?.text = device.name
         cell.isOn.isOn = device.isOn!
-        cell.colorView.backgroundColor = device.color?.toUIColor()
+        cell.colorView.backgroundColor = device.color?.toUIColor(min: 0.5, range: 0.5)
         
         cell.isOn.tag = indexPath.row
         cell.isOn.addTarget(self, action: #selector(self.switchIsChanged(_:)), for: UIControlEvents.valueChanged)

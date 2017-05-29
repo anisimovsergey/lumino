@@ -75,12 +75,13 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
     
     func updateLuminance() {
-        let saturatedColor = UIColor(hue: colorWheel.hue, saturation: saturatonSlider.fraction, brightness: CGFloat(1), alpha: CGFloat(1))
-        luminanceSlider.uicolors = [saturatedColor, UIColor.black]
+        let colorMax = UIColor(hue: colorWheel.hue, saturation: saturatonSlider.fraction, brightness: CGFloat(1), alpha: CGFloat(1))
+        let colorMin = UIColor(hue: colorWheel.hue, saturation: saturatonSlider.fraction, brightness: CGFloat(0.5), alpha: CGFloat(1))
+        luminanceSlider.uicolors = [colorMax, colorMin]
     }
     
     func updateColorSpot() {
-        colorWheel.spotColor = color.toCGColor()
+        colorWheel.spotColor = color.toCGColor(min: 0.5, range: 0.5)
     }
     
     func HueChanged(_ hue: CGFloat, wheel: ColorWheelView) {

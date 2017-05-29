@@ -10,25 +10,22 @@ import Foundation
 
 class SettingsSerializer: SerializerBase<Settings> {
     static let isOnField: String = "isOn"
+    static let uniqueNameField: String = "uniqueName"
     static let deviceNameField: String = "deviceName"
     
-    func create(isOn: Bool) -> (_ deviceName: String) -> Settings {
-        return { deviceName in
-            return Settings(isOn: isOn, deviceName: deviceName)
-        }
-    }
-    
-    func create(h: Float) -> (_ s: Float) -> (_ l: Float) -> Color {
-        return { s in
-            return { l in
-                return Color(h: h, s: s, v: l)
+    func create(isOn: Bool) -> (_ uniqueName: String) -> (_ deviceName: String) -> Settings {
+        return {
+            uniqueName in {
+                deviceName in
+                return Settings(isOn: isOn, uniqueName: uniqueName, deviceName: deviceName)
             }
         }
     }
-    
+        
     override func deserializeImpl(_ con: DeserializationContext) -> Result<Settings> {
         return create <^>
             con.getValue(SettingsSerializer.isOnField) >>> cast <*>
+            con.getValue(SettingsSerializer.uniqueNameField) >>> cast <*>
             con.getValue(SettingsSerializer.deviceNameField) >>> cast
     }
     

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 import MulticastDelegateSwift
 
 class SettingsViewController: UIViewController, WebSocketConnectionDelegate {
@@ -32,6 +33,7 @@ class SettingsViewController: UIViewController, WebSocketConnectionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         name.text = self.device.name
+        
         self.device.client.connectionDelegate += self
         if (!self.device.client.isConnected) {
             showDisconnected()

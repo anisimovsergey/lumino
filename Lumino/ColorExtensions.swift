@@ -9,12 +9,12 @@
 import UIKit
 
 extension Color {
-    func toCGColor() -> CGColor {
-        return self.toUIColor().cgColor
+    func toCGColor(min: Float, range: Float) -> CGColor {
+        return self.toUIColor(min: min, range: range).cgColor
     }
     
-    func toUIColor() -> UIColor {
-        return UIColor(hue: CGFloat(self.h), saturation: CGFloat(self.s), brightness: CGFloat(self.v), alpha: CGFloat(1))
+    func toUIColor(min: Float, range: Float) -> UIColor {
+        return UIColor(hue: CGFloat(self.h), saturation: CGFloat(self.s), brightness: CGFloat(self.v * range + min), alpha: CGFloat(1))
     }
 
 }
