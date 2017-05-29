@@ -50,14 +50,17 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath) as! DeviceCell
-        let device = devices[indexPath.row]
-        cell.label?.text = device.name
-        cell.isOn.isOn = device.isOn!
-        cell.colorView.backgroundColor = device.color?.toUIColor(min: 0.5, range: 0.5)
-        cell.isOn.tag = indexPath.row
-        cell.isOn.addTarget(self, action: #selector(self.switchIsChanged(_:)), for: UIControlEvents.valueChanged)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath) as? DeviceCell {
+            let device = devices[indexPath.row]
+            cell.label?.text = device.name
+            cell.isOn.isOn = device.isOn!
+            cell.colorView.backgroundColor = device.color?.toUIColor(min: 0.5, range: 0.5)
+            cell.isOn.tag = indexPath.row
+            cell.isOn.addTarget(self, action: #selector(self.switchIsChanged(_:)), for: UIControlEvents.valueChanged)
+            return cell
+        } else {
+            fatalError("Expecting DeviceCell")
+        }
     }
 
     func switchIsChanged(_ isOn: UISwitch) {
@@ -66,7 +69,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         let settings = Settings(isOn: isOn.isOn, deviceName: device.name!)
         _ = device.client.updateSettings(settings)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

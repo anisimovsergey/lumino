@@ -134,9 +134,10 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     }
 
     func updateColor() {
-        let newColor: Color = timer.userInfo as! Color
-        if newColor != color {
-            setColorAnimated(color: newColor)
+        if let newColor = timer.userInfo as? Color {
+            if  newColor != color {
+                setColorAnimated(color: newColor)
+            }
         }
     }
 
