@@ -32,6 +32,7 @@ class SettingsSerializer: SerializerBase<Settings> {
     override func serializeImpl(_ con: SerializationContext, _ obj: Settings) -> Optional<Error> {
         return
             con.setValue(SettingsSerializer.isOnField, obj.isOn) <*>
+            con.setValue(SettingsSerializer.uniqueNameField, obj.uniqueName) <*>
             con.setValue(SettingsSerializer.deviceNameField, obj.deviceName)
     }
 }

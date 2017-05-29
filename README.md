@@ -1,6 +1,8 @@
 # Lumino iOS
 This is an iOS application for controlling Lumino night lamp - free, open source night lamp project bases on ESP8266.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c58ab29d373b49e68408d3a3e59f55ae)](https://www.codacy.com/app/anisimovsergey/lumino-ios?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=anisimovsergey/lumino-ios&amp;utm_campaign=Badge_Grade)
+
 Devices            |  Color | Settings
 :-------------------------:|:-------------------------:|:-------------------------:
 ![devices table](https://raw.githubusercontent.com/anisimovsergey/lumino-ios/master/Docs/Pics/table-form.png) | ![color](https://raw.githubusercontent.com/anisimovsergey/lumino-ios/master/Docs/Pics/color-form.png) | ![settings](https://raw.githubusercontent.com/anisimovsergey/lumino-ios/master/Docs/Pics/settings-form.png)

@@ -9,13 +9,15 @@
 import Foundation
 
 class DeviceListItem {
+
     var color: Color?
     var isOn: Bool?
     var name: String?
     let client: WebSocketClient!
-    
+
     init(_ client: WebSocketClient) {
         self.client = client
     }
+
 }
 

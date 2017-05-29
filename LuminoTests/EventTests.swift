@@ -10,7 +10,7 @@ import XCTest
 @testable import Lumino
 
 class EventTests: XCTestCase {
-    let color = Color.init(r: 1, g: 2, b: 3)
+    let color = Color.init(h: 1, s: 2, v: 3)
     let service = SerializationService()
     
     override func setUp() {
