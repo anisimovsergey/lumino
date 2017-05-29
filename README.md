@@ -1,7 +1,13 @@
-# Lumino iOS
+Lumino iOS ![License MIT](https://go-shields.herokuapp.com/license-MIT-blue.png)
+===============
+
 This is an iOS application for controlling Lumino night lamp - free, open source night lamp project bases on ESP8266.
 
+[![Badge w/ Platform](https://cocoapod-badges.herokuapp.com/p/NSStringMask/badge.svg)](https://cocoadocs.org/docsets/NSStringMask)
+[![Badge w/ Version](https://cocoapod-badges.herokuapp.com/v/NSStringMask/badge.png)](https://cocoadocs.org/docsets/NSStringMask)
+[![Build Status](https://travis-ci.org/anisimovsergey/lumino-ios.svg?branch=master)](https://travis-ci.org/anisimovsergey/lumino-ios)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c58ab29d373b49e68408d3a3e59f55ae)](https://www.codacy.com/app/anisimovsergey/lumino-ios?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=anisimovsergey/lumino-ios&amp;utm_campaign=Badge_Grade)
+[![codecov](https://codecov.io/gh/anisimovsergey/lumino-ios/branch/master/graph/badge.svg)](https://codecov.io/gh/anisimovsergey/lumino-ios)
 
 Devices            |  Color | Settings
 :-------------------------:|:-------------------------:|:-------------------------:
