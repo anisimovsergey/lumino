@@ -66,7 +66,6 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         let settings = Settings(isOn: isOn.isOn, deviceName: device.name!)
         _ = device.client.updateSettings(settings)
     }
-
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

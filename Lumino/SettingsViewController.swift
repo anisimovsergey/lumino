@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController, WebSocketConnectionDelegate {
         name.text = self.device.name
 
         self.device.client.connectionDelegate += self
-        if (!self.device.client.isConnected) {
+        if !self.device.client.isConnected {
             showDisconnected()
         }
     }

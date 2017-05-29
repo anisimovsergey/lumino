@@ -35,7 +35,10 @@ class SerializerBase<T>: Serializer where T:Serializible {
     }
 
     func serialize(con: SerializationContext, obj: Serializible) -> Optional<Error> {
-        return serializeImpl(con, obj as! T)
+        if let objT = obj as? T {
+            return serializeImpl(con, objT)
+        }
+        return SerializationError.expectingType(type: T.self)
     }
 
     func serializeImpl(_ con: SerializationContext, _ obj: T) -> Optional<Error> {
