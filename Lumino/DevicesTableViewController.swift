@@ -77,7 +77,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.devices.count
     }
-    
+
     func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
         print("discovered service \(service.name)")
 
