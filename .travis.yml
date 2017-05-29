@@ -2,6 +2,7 @@ language: objective-c
 osx_image: xcode8.2
 before_install:
   - gem install cocoapods # Since Travis is not always on latest version
+  - pod setup
 script:
   - xcodebuild -version
   - xcodebuild -project Lumino.xcodeproj -scheme iOSTests -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" -configuration Release ONLY_ACTIVE_ARCH=YES -enableCodeCoverage YES test
