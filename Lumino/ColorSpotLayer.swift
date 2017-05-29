@@ -9,7 +9,7 @@
 import UIKit
 
 class ColorSpotLayer: CAShapeLayer {
-    
+
     override func layoutSublayers() {
         super.layoutSublayers()
         let path = UIBezierPath(ovalIn: self.bounds.insetBy(dx: lineWidth, dy: lineWidth))
@@ -23,4 +23,5 @@ class ColorSpotLayer: CAShapeLayer {
         self.shadowOpacity = 0.8
         self.shadowPath = path.cgPath
     }
+
 }

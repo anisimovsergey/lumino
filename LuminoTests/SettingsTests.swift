@@ -11,16 +11,17 @@ import XCTest
 
 class SettingsTests: XCTestCase {
     let service = SerializationService()
-    
+
     override func setUp() {
         super.setUp()
         service.addSerializer(Settings.self, SettingsSerializer())
     }
-    
+
     func testSerializationRoundTrip() {
         let settings = Settings.init(isOn: true, uniqueName: "uniqueName", deviceName: "deviceName")
         let deserializedSettings = service.roundTrip(settings)
         
         XCTAssertEqual(settings, deserializedSettings)
     }
+
 }

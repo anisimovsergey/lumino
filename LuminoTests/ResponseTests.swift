@@ -12,21 +12,21 @@ import XCTest
 class ResponseTests: XCTestCase {
     let color = Color.init(h: 1, s: 2, v: 3)
     let service = SerializationService()
-    
+
     override func setUp() {
         super.setUp()
         service.addSerializer(Color.self, ColorSerializer())
         service.addSerializer(Response.self, ResponseSerializer())
     }
-    
+
     func testSerializationRoundTripWithContent() {
         let response = Response.init(id: "id", requestType: "requestType", resource: "color", content: color)
         let deserializedResponse: Response = service.roundTrip(response)
         
         XCTAssertEqual(response, deserializedResponse)
-        XCTAssertEqual(color, deserializedResponse.content as! Color)
+        XCTAssertEqual(color, deserializedResponse.content as? Color)
     }
-    
+
     func testSerializationRoundTripWithoutContent() {
         let response = Response.init(id: "id", requestType: "requestType", resource: "color")
         let deserializedResponse: Response = service.roundTrip(response)
@@ -34,4 +34,5 @@ class ResponseTests: XCTestCase {
         XCTAssertEqual(response, deserializedResponse)
         XCTAssertNil(deserializedResponse.content)
     }
+
 }

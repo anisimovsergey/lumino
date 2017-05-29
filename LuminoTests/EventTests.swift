@@ -12,21 +12,21 @@ import XCTest
 class EventTests: XCTestCase {
     let color = Color.init(h: 1, s: 2, v: 3)
     let service = SerializationService()
-    
+
     override func setUp() {
         super.setUp()
         service.addSerializer(Color.self, ColorSerializer())
         service.addSerializer(Event.self, EventSerializer())
     }
-    
+
     func testSerializationRoundTripWithContent() {
         let event = Event.init(eventType: "eventType", resource: "color", content: color)
         let deserializedEvent: Event = service.roundTrip(event)
         
         XCTAssertEqual(event, deserializedEvent)
-        XCTAssertEqual(color, deserializedEvent.content as! Color)
+        XCTAssertEqual(color, deserializedEvent.content as? Color)
     }
-    
+
     func testSerializationRoundTripWithoutContent() {
         let event = Event.init(eventType: "eventType", resource: "color")
         let deserializedEvent: Event = service.roundTrip(event)
@@ -34,4 +34,5 @@ class EventTests: XCTestCase {
         XCTAssertEqual(event, deserializedEvent)
         XCTAssertNil(deserializedEvent.content)
     }
+
 }

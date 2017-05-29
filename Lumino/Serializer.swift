@@ -10,13 +10,13 @@ import Foundation
 
 protocol Serializer {
     var type: String { get }
-    
+
     func serialize(con: SerializationContext, obj: Serializible) -> Optional<Error>
     func deserialize(con: DeserializationContext) -> Result<Serializible>
 }
 
 class SerializerBase<T>: Serializer where T:Serializible {
-    
+
     var type: String {
         get {
             return T.resourceId
@@ -29,11 +29,11 @@ class SerializerBase<T>: Serializer where T:Serializible {
             case let .Error(error): return .Error(error)
         }
     }
-    
+
     func deserializeImpl(_ con: DeserializationContext) -> Result<T> {
         preconditionFailure("This method must be overridden")
     }
-    
+
     func serialize(con: SerializationContext, obj: Serializible) -> Optional<Error> {
         return serializeImpl(con, obj as! T)
     }
@@ -41,4 +41,5 @@ class SerializerBase<T>: Serializer where T:Serializible {
     func serializeImpl(_ con: SerializationContext, _ obj: T) -> Optional<Error> {
         preconditionFailure("This method must be overridden")
     }
+
 }

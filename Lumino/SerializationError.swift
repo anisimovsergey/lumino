@@ -14,4 +14,3 @@ enum SerializationError: Error {
     case expectingValueOfType(key: String, type: Any.Type)
     case expectingKey(key: String)
 }
-
