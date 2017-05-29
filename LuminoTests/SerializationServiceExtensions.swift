@@ -11,7 +11,7 @@ import XCTest
 
 func GetValue<A, B>(_ result: Result<A>) -> B! {
     switch result {
-    case let .Value(value): return value as! B
+    case let .Value(value): return value as? B
     case let .Error(err):
         XCTFail("Error: \(err)")
         return .none
@@ -19,10 +19,12 @@ func GetValue<A, B>(_ result: Result<A>) -> B! {
 }
 
 extension SerializationService {
+
     func roundTrip<T>(_ value: T) -> T! where T: Serializible {
         let serializationResult = self.serialize(value)
         let json: JSONDictionary = GetValue(serializationResult)
         let deserializationResult = self.deserialize(json)
         return GetValue(deserializationResult)
     }
+
 }
