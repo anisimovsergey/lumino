@@ -34,7 +34,7 @@
         <!--Devices Table View Controller-->
         <scene sceneID="k49-Ek-nlh">
             <objects>
-                <tableViewController id="im5-r9-wW0" customClass="DevicesTableViewController" customModule="Lumino" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController definesPresentationContext="YES" id="im5-r9-wW0" customClass="DevicesTableViewController" customModule="Lumino" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Ow-kX-d83">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,6 +84,9 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Aj7-ww-ssj"/>
+                    <connections>
+                        <segue destination="RYN-BN-WPe" kind="presentation" identifier="disconnected" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="HDJ-kI-Ksd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="On2-gE-GUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,7 +185,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKV-BQ-iqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zQP-jm-G6Z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1663.125" y="780.63380281690138"/>
+            <point key="canvasLocation" x="1997" y="923"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Cic-Nz-h7F">
@@ -250,12 +253,13 @@
                     <connections>
                         <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="unwindToDetails" unwindAction="unwindToDetails:" id="ouD-iQ-qWY"/>
                         <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="unwindToSettings" unwindAction="unwindToSettings:" id="usg-Ey-p5c"/>
+                        <segue destination="ZFR-Ij-yHP" kind="unwind" identifier="unwindToDevices" unwindAction="unwindToDevices:" id="lXt-iq-lzz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nYs-ZB-aQH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZFR-Ij-yHP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2994.375" y="349.64788732394368"/>
+            <point key="canvasLocation" x="2993" y="168"/>
         </scene>
         <!--Settings-->
         <scene sceneID="nnh-0l-Lnl">
@@ -368,6 +372,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f7J-zR-d9d"/>
+        <segue reference="HDJ-kI-Ksd"/>
     </inferredMetricsTieBreakers>
 </document>

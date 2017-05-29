@@ -99,6 +99,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
     
     func websocketDidConnect(client: WebSocketClient) {
+        self.presentedViewController?.performSegue(withIdentifier: "unwindToDevices", sender: self)
         _ = client.requestColor()
         _ = client.requestSettings()
     }
@@ -160,6 +161,9 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
                 }
                 self.clients.removeValue(forKey: name)
             }
+        }
+        if self.clients.count == 0 {
+            self.performSegue(withIdentifier: "disconnected", sender:self)
         }
         self.updateInterface()
     }
