@@ -10,17 +10,17 @@ import Foundation
 
 struct Settings: Serializible {
     static let resourceId = "settings"
-    
+
     let isOn: Bool
     let uniqueName: String
     let deviceName: String
-    
+
     init(isOn:Bool, uniqueName:String, deviceName:String) {
         self.isOn = isOn
         self.uniqueName = uniqueName
         self.deviceName = deviceName
     }
-    
+
     init(isOn:Bool, deviceName:String) {
         self.isOn = isOn
         self.uniqueName = ""

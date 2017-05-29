@@ -11,11 +11,11 @@ import Foundation
 class SerializationContext {
     var json: JSONDictionary = [:]
     var service: SerializationService
-    
+
     init(_ service: SerializationService) {
         self.service = service
     }
-    
+
     private func serializeOptionalObject(_ key:String, _ val: Serializible) -> Optional<Error> {
         if let serializer = service.getSerializer(type(of: val)) {
             let context = SerializationContext(service)
@@ -31,7 +31,7 @@ class SerializationContext {
             return SerializationError.serializerNotFound(type: type(of: val))
         }
     }
-    
+
     func setOptionalObject(_ key: String,_ value: Serializible?) -> Optional<Error> {
         if let val = value {
             return serializeOptionalObject(key, val)
@@ -39,9 +39,10 @@ class SerializationContext {
             return .none
         }
     }
-    
+
     func setValue(_ key: String,_ value: Any) -> Optional<Error> {
         json[key] = value as JSON?
         return .none
     }
+    
 }

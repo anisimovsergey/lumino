@@ -10,7 +10,7 @@ import Foundation
 
 struct Request: Serializible {
     static let resourceId = "request"
-    
+
     let id: String
     let requestType: String
     let resource: String
@@ -26,4 +26,5 @@ struct Request: Serializible {
         self.resource = resource
         self.content = content
     }
+
 }

@@ -20,7 +20,6 @@ class ColorTests: XCTestCase {
     func testSerializationRoundTrip() {
         let color = Color.init(h: 1, s: 2, v: 3)
         let deserializedColor = service.roundTrip(color)
-        
         XCTAssertEqual(color, deserializedColor)
     }
 

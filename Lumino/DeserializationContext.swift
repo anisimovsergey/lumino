@@ -11,7 +11,7 @@ import Foundation
 class DeserializationContext {
     var json: JSONDictionary
     var service: SerializationService
-    
+
     init(_ service: SerializationService,_ json: JSONDictionary) {
         self.service = service
         self.json = json
@@ -52,4 +52,5 @@ class DeserializationContext {
             return .Error(SerializationError.expectingKey(key: key))
         }
     }
+
 }

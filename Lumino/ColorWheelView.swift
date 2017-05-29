@@ -20,14 +20,14 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
     private var hueCircleLayer: HueCircleLayer!
     private var hueMarkerLayer: ColorSpotLayer!
     private var colorSpotLayer: ColorSpotLayer!
-    
+
     private var panStarted: Bool = false;
-    
+
     private var hueTapGestureRecognizer: UITapGestureRecognizer!
     private var huePanGestureRecognizer: UIPanGestureRecognizer!
-    
+
     weak var delegate: ColorWheelDelegate?
-    
+
     var hue: CGFloat {
         get {
             return colorHue
@@ -37,12 +37,12 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
             setMarkerToHue()
         }
     }
-    
+
     func setHueAnimated(_ hue: CGFloat) {
         colorHue = hue
         moveMarkerToHue()
     }
-    
+
     var spotColor: CGColor {
         get {
             return colorSpotLayer.fillColor!
@@ -51,12 +51,12 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
             colorSpotLayer.fillColor = newValue
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -65,20 +65,20 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
     func setup() {
         hueCircleLayer = HueCircleLayer()
         self.layer.addSublayer(hueCircleLayer)
-        
-        hueMarkerLayer = ColorSpotLayer();
+
+        hueMarkerLayer = ColorSpotLayer()
         self.layer.addSublayer(hueMarkerLayer)
-        
+
         colorSpotLayer = ColorSpotLayer()
         self.layer.addSublayer(colorSpotLayer)
-                
+
         hueTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapHue))
         self.addGestureRecognizer(hueTapGestureRecognizer)
-        
+
         huePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanHue))
         self.addGestureRecognizer(huePanGestureRecognizer)
     }
-    
+
     func isTapOnCircle(_ position: CGPoint) -> Bool {
         let distanceSquared: CGFloat =
                 (circleCenter.x - position.x) *
@@ -99,46 +99,46 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
         let padWidth = hueMarkerLayer.bounds.width
         return (distanceSquared <= padWidth * padWidth)
     }
-    
+
     func setMarkerToHue() {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        
+
         hueMarkerLayer.position = self.getHueMarkerPosition()
         let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
         hueMarkerLayer.fillColor = color.cgColor
-        
+
         CATransaction.commit()
     }
-    
+
     func moveMarkerToHue() {
         // Getting the previous position
         var position: CGPoint = hueMarkerLayer.position
-        if (hueMarkerLayer.presentation() != nil) {
+        if hueMarkerLayer.presentation() != nil {
             position = (hueMarkerLayer.presentation()?.position)!
         }
-        
+
         // Setting the new position
         hueMarkerLayer.position = self.getHueMarkerPosition()
 
         // Creating the animation path
         let path: CGMutablePath = CGMutablePath()
         let oldHue = getHueFrom(position: position)
-        if (abs(colorHue - oldHue) < 0.5) {
+        if abs(colorHue - oldHue) < 0.5 {
             path.addArc(center: circleCenter, radius: CGFloat(circleRadius), startAngle: -oldHue * 2.0 * .pi, endAngle: -colorHue * 2.0 * .pi, clockwise: colorHue > oldHue, transform: .identity)
         } else {
             path.addArc(center: circleCenter, radius: CGFloat(circleRadius), startAngle: -oldHue * 2.0 * .pi, endAngle: -colorHue * 2.0 * .pi, clockwise: colorHue < oldHue, transform: .identity)
         }
-        
+
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.path = path
         hueMarkerLayer.removeAllAnimations()
         hueMarkerLayer.add(animation, forKey: "position")
-        
+
         let color = UIColor(hue: colorHue, saturation: CGFloat(1), brightness: CGFloat(1), alpha: CGFloat(1))
         hueMarkerLayer.fillColor = color.cgColor
     }
-    
+
     func getHueFrom(position: CGPoint) -> CGFloat {
         let radians: CGFloat = atan2(circleCenter.y - position.y, position.x - circleCenter.x)
         var hue = radians / (2.0 * .pi)
@@ -147,7 +147,7 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
         }
         return hue
     }
-    
+
     func handlePanHue(_ gestureRecognizer: UIPanGestureRecognizer) {
         let position: CGPoint = gestureRecognizer.location(in: self)
         if gestureRecognizer.state == .began {
@@ -174,27 +174,28 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
         let y = -sin(radians) * circleRadius + circleCenter.y
         return CGPoint(x: x, y: y)
     }
-        
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         let markerSize = round(bounds.width / 7)
         let lineWidth = round(markerSize / 8)
 
         circleRadius = (bounds.width - markerSize) / 2.0
         circleCenter = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
-        
+
         hueCircleLayer.frame = self.bounds
         hueCircleLayer.radius = circleRadius
         hueCircleLayer.lineWidth = lineWidth
-        
+
         hueMarkerLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: markerSize, height: markerSize))
         hueMarkerLayer.lineWidth = round(lineWidth / 2)
         hueMarkerLayer.position = self.getHueMarkerPosition()
-        
+
         colorSpotLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: circleRadius * 3/4, height: circleRadius * 3/4))
         colorSpotLayer.lineWidth = round(lineWidth / 2)
         colorSpotLayer.position =  CGPoint(x: bounds.width / 2 , y: bounds.height / 2)
     }
+
 }
 

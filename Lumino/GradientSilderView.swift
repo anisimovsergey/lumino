@@ -20,7 +20,7 @@ class GradientSiliderView: UIView {
     var markerTapRecognizer: UITapGestureRecognizer!
     var markerPanRecognizer: UIPanGestureRecognizer!
     weak var delegate: GradientSiliderDelegate?
-    
+
     var fraction: CGFloat {
         get {
             return frac
@@ -30,12 +30,12 @@ class GradientSiliderView: UIView {
             setMarkerToFrac()
         }
     }
-    
+
     func setFracAnimated(_ frac: CGFloat) {
         self.frac = frac
         moveMarkerToFrac()
     }
-    
+
     var uicolors: [UIColor]? {
         get {
             return self.colors
@@ -46,33 +46,33 @@ class GradientSiliderView: UIView {
             markerLayer.fillColor = getSelectedColor().cgColor
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
+        super.init(coder: aDecoder)
         setup()
     }
-    
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     func setup() {
         lineLayer = ColorLineLayer()
         lineLayer.shouldRasterize = true
         lineLayer.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
         self.layer.addSublayer(lineLayer)
 
-        markerLayer = ColorSpotLayer();
+        markerLayer = ColorSpotLayer()
         self.layer.addSublayer(markerLayer)
-        
+
         markerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapHue))
         self.addGestureRecognizer(markerTapRecognizer)
-        
+
         markerPanRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanHue))
         self.addGestureRecognizer(markerPanRecognizer)
     }
-    
+
     private func getMarkerPosition() -> CGPoint {
         let x = lineLayer.frame.origin.x + lineLayer.bounds.height * frac
         let y = self.bounds.height / 2
@@ -85,63 +85,64 @@ class GradientSiliderView: UIView {
 
         var r2: CGFloat = 0, g2: CGFloat = 0, b2: CGFloat = 0, a2: CGFloat = 0
         colors?[1].getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
-        
+
         let red = (r1 * frac) + r2 * (1 - frac)
         let green = (g1 * frac) + g2 * (1 - frac)
         let blue = (b1 * frac) + b2 * (1 - frac)
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
-    
+
     func getFractionFrom(position: CGPoint) -> CGFloat {
         var fraction = (position.x - lineLayer.frame.origin.x) / lineLayer.bounds.height
-        if (fraction > 1) {
+        if fraction > 1 {
             fraction = 1
-        } else if (fraction < 0) {
+        } else if fraction < 0 {
             fraction = 0
         }
         return fraction
     }
-    
+
     func setMarkerToFrac() {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        
+
         markerLayer.position = self.getMarkerPosition()
         markerLayer.fillColor = getSelectedColor().cgColor
-        
+
         CATransaction.commit()
     }
-    
+
     func moveMarkerToFrac() {
         markerLayer.position = self.getMarkerPosition()
         markerLayer.fillColor = getSelectedColor().cgColor
     }
-    
+
     func handlePanHue(_ gestureRecognizer: UIPanGestureRecognizer) {
         let position: CGPoint = gestureRecognizer.location(in: self)
-        if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed) {
+        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
             self.fraction = getFractionFrom(position: position)
             delegate?.GradientChanged(frac, slider: self)
         }
     }
-    
+
     func handleTapHue(_ gestureRecognizer: UITapGestureRecognizer) {
         let position: CGPoint = gestureRecognizer.location(in: self)
         setFracAnimated(getFractionFrom(position: position))
         delegate?.GradientChanged(frac, slider: self)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         let markerSize = round(bounds.width / 7)
         let lineWidth = round(markerSize / 8)
 
         lineLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: lineWidth, height: self.bounds.width - markerSize))
         lineLayer.position = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
-        
+
         markerLayer.bounds = CGRect(origin: CGPoint.zero, size: CGSize(width: markerSize, height: markerSize))
         markerLayer.lineWidth = round(lineWidth / 2)
         markerLayer.position = self.getMarkerPosition()
     }
+
 }

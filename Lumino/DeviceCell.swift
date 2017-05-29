@@ -13,7 +13,7 @@ class DeviceCell: UITableViewCell {
     @IBOutlet var label: UILabel!
     @IBOutlet var isOn: UISwitch!
     private var tintView: UIView!
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         if self.tintView == nil {
             tintView = UIView()
@@ -31,6 +31,5 @@ class DeviceCell: UITableViewCell {
             })
         }
     }
-    
-}
 
+}
