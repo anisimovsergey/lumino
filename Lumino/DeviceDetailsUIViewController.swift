@@ -135,7 +135,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
     
     func updateColor() {
         let newColor: Color = timer.userInfo as! Color
-        if (newColor != color) {
+        if newColor != color {
             setColorAnimated(color: newColor)
         }
     }
@@ -153,8 +153,8 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         unwind = true
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
-        if segue.identifier == "showSettings"{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSettings" {
             if let nextNavController = segue.destination as? UINavigationController {
                 if let nextViewController = nextNavController.visibleViewController as? SettingsViewController {
                     nextViewController.device = device

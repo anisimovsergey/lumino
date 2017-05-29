@@ -10,7 +10,7 @@ import Foundation
 
 struct Color: Serializible, Equatable {
     static let resourceId = "color"
-    
+
     let h: Float
     let s: Float
     let v: Float

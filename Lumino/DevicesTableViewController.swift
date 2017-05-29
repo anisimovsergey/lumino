@@ -107,7 +107,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     func websocketDidDisconnect(client: WebSocketClient) {
         if (self.isViewLoaded && (self.view.window != nil)) {
             if let device = self.clients[client.name] {
-                if let i = (self.devices.index{$0 === device}) {
+                if let i = (self.devices.index {$0 === device}) {
                     self.devices.remove(at: i)
                 }
                 self.clients.removeValue(forKey: client.name)

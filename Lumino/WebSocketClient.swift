@@ -61,7 +61,12 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     var connectionDelegate = MulticastDelegate<WebSocketConnectionDelegate>()
     var communicationDelegate = MulticastDelegate<WebSocketCommunicationDelegate>()
     
-    var name: String { get { return service.name } }
+    var name: String {
+        get {
+            return service.name
+        }
+    }
+    
     var isConnected: Bool {
         get {
             return socket != nil && socket.isConnected

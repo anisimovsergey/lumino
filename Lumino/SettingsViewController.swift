@@ -62,4 +62,5 @@ class SettingsViewController: UIViewController, WebSocketConnectionDelegate {
         self.performSegue(withIdentifier: "disconnected", sender:self)
         self.save.isEnabled = false
     }
+    
 }

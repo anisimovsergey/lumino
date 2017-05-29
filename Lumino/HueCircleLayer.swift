@@ -10,13 +10,13 @@ import UIKit
 
 class HueCircleLayer: CALayer {
     private let segmentsNum: Int = 256
-    
+
     override init() {
         super.init()
         isOpaque = true
         contentsScale = UIScreen.main.scale
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
