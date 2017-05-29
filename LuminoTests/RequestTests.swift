@@ -22,7 +22,7 @@ class RequestTests: XCTestCase {
     func testSerializationRoundTripWithContent() {
         let request = Request.init(id: "id", requestType: "requestType", resource: "color", content: color)
         let deserializedRequest: Request = service.roundTrip(request)
-        
+
         XCTAssertEqual(request, deserializedRequest)
         XCTAssertEqual(color, deserializedRequest.content as? Color)
     }
@@ -30,7 +30,7 @@ class RequestTests: XCTestCase {
     func testSerializationRoundTripWithoutContent() {
         let request = Request.init(id: "id", requestType: "requestType", resource: "color")
         let deserializedRequest: Request = service.roundTrip(request)
-        
+
         XCTAssertEqual(request, deserializedRequest)
         XCTAssertNil(deserializedRequest.content)
     }

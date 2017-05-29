@@ -45,7 +45,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if unwind {
             self.performSegue(withIdentifier: "unwindToDevices", sender: self)
         } else {
@@ -130,7 +130,7 @@ class DeviceDetailsUIViewController: UIViewController, ColorWheelDelegate, Gradi
         if self.timer != nil {
             self.timer.invalidate()
         }
-        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateColor), userInfo: color, repeats: false);
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateColor), userInfo: color, repeats: false)
     }
 
     func updateColor() {

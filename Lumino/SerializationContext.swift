@@ -44,5 +44,5 @@ class SerializationContext {
         json[key] = value as JSON?
         return .none
     }
-    
+
 }

@@ -13,19 +13,20 @@ import MulticastDelegateSwift
 struct RequestKey : Hashable {
     private let requestType: String
     private let resource: String
-    
+
     init(_ requestType: String,_ resource: String) {
         self.requestType = requestType
         self.resource = resource
     }
-    
+
     static func ==(lhs: RequestKey, rhs: RequestKey) -> Bool {
         return lhs.requestType == rhs.requestType && lhs.resource == rhs.resource
     }
-    
+
     var hashValue: Int {
         return requestType.hashValue ^ resource.hashValue
     }
+
 }
 
 protocol WebSocketConnectionDelegate: class {
@@ -44,11 +45,11 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     private static let pingInterval = 3.0
     private static let pongTimeout = 2.0
     private static let disconnectTimeout = 1.0
-    
+
     private let readRequestType = "read"
     private let updateRequestType = "update"
     private let updatedEventType = "updated"
-    
+
     private let serializer: SerializationService
     private let service: NetService!
     private var socket: WebSocket!
@@ -60,24 +61,24 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
 
     var connectionDelegate = MulticastDelegate<WebSocketConnectionDelegate>()
     var communicationDelegate = MulticastDelegate<WebSocketCommunicationDelegate>()
-    
+
     var name: String {
         get {
             return service.name
         }
     }
-    
+
     var isConnected: Bool {
         get {
             return socket != nil && socket.isConnected
         }
     }
-    
+
     init(_ serializer: SerializationService,_ service: NetService) {
         self.serializer = serializer
         self.service = service
     }
-    
+
     func connect() {
         if service.port == -1 {
             print("resolving service \(service.name) ...")
@@ -91,35 +92,35 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
             socket.connect()
         }
     }
-    
+
     func netServiceDidResolveAddress(_ sender: NetService) {
         service.delegate = nil
         connect()
     }
-    
+
     func disconnect() {
         print("disconnecting from service \(service.name) ...")
         socket.disconnect(forceTimeout: WebSocketClient.disconnectTimeout)
     }
-    
+
     func requestColor() -> Optional<Error> {
         print("requesting color from \(service.name) ...")
         return self.sendRequest(requestType: readRequestType, resource: Color.resourceId, content: nil)
     }
-    
+
     func updateColor(_ color: Color) -> Optional<Error> {
         return self.sendRequest(requestType: updateRequestType, resource: Color.resourceId, content: color)
     }
-    
+
     func requestSettings() -> Optional<Error> {
         print("requesting settings from \(service.name) ...")
         return self.sendRequest(requestType: readRequestType, resource: Settings.resourceId, content: nil)
     }
-    
+
     func updateSettings(_ settings: Settings) -> Optional<Error> {
         return self.sendRequest(requestType: updateRequestType, resource: Settings.resourceId, content: settings)
     }
-    
+
     func websocketDidConnect(socket: WebSocket) {
         print("connected to service \(service.name)")
         clearPendingRequests()
@@ -128,22 +129,22 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
             delegate.websocketDidConnect(client: self)
         }
     }
-    
+
     func clearPendingRequests() {
         self.lastID = nil
         self.pendingRequests.removeAll()
     }
-    
+
     func sendPing() {
         print("send ping to service \(service.name)")
         self.socket.write(ping: Data())
-        self.pongTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pongTimeout, target: self, selector: #selector(self.disconnect), userInfo: nil, repeats: false);
+        self.pongTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pongTimeout, target: self, selector: #selector(self.disconnect), userInfo: nil, repeats: false)
     }
 
     public func websocketDidReceivePong(socket: WebSocket, data: Data?) {
         print("received pong from service \(service.name)")
         self.pongTimer.invalidate()
-        self.pingTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pingInterval, target: self, selector: #selector(self.sendPing), userInfo: nil, repeats: false);
+        self.pingTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pingInterval, target: self, selector: #selector(self.sendPing), userInfo: nil, repeats: false)
     }
 
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
@@ -158,7 +159,7 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
             delegate.websocketDidDisconnect(client: self)
         }
     }
-    
+
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         switch serializer.deserializeFromString(text) {
         case let .Value(obj):
@@ -169,13 +170,13 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
                 processEvent(event)
             default: break
             }
-        default: break;
+        default: break
         }
     }
-    
+
     func websocketDidReceiveData(socket: WebSocket, data: Data) {
     }
-    
+
     private func processResponse(_ response: Response) {
         if self.lastID == response.id {
             if let request = pendingRequests.popFirst() {
@@ -221,16 +222,16 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let len = UInt32(letters.length)
         var randomString = ""
-        
+
         for _ in 0 ..< 6 {
             let rand = arc4random_uniform(len)
             var nextChar = letters.character(at: Int(rand))
             randomString += NSString(characters: &nextChar, length: 1) as String
         }
-        
+
         return randomString
     }
-    
+
     private func sendRequest(requestType: String, resource: String, content: Serializible?) -> Optional<Error> {
         let lastID = getRandomID()
         let request = Request(id: lastID, requestType: requestType, resource: resource, content: content)
@@ -249,7 +250,7 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
             return sendRequest(request: request)
         }
     }
-    
+
     private func sendRequest(request: Request) -> Optional<Error> {
         self.lastID = request.id
         self.lastIDTime = DispatchTime.now()
@@ -260,4 +261,5 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
         case let .Error(error): return error
         }
     }
+
 }

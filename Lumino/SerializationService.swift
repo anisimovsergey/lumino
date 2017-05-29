@@ -10,25 +10,26 @@ import Foundation
 
 struct Metatype : Hashable {
     private let base: ObjectIdentifier
-    
+
     init(_ type: Any.Type) {
         base = ObjectIdentifier(type)
     }
-    
+
     static func ==(lhs: Metatype, rhs: Metatype) -> Bool {
         return lhs.base == rhs.base
     }
-    
+
     var hashValue: Int {
         return base.hashValue
     }
+
 }
 
 class SerializationService {
     static let typeField = "_type"
     private var serializersBySwiftType: Dictionary<Metatype, Serializer> = [:]
     private var serializersByJSONType: Dictionary<String, Serializer> = [:]
-    
+
     func addSerializer(_ type: Any.Type, _ serializer: Serializer) {
         serializersBySwiftType[Metatype(type)] = serializer
         serializersByJSONType[serializer.type] = serializer
@@ -41,7 +42,7 @@ class SerializationService {
     func getSerializer(_ type: String) -> Serializer? {
         return serializersByJSONType[type]
     }
-    
+
     func serializeToString(_ value: Serializible) -> Result<String> {
         switch self.serialize(value) {
             case let .Value(root):
@@ -54,7 +55,7 @@ class SerializationService {
             case let .Error(error): return .Error(error)
         }
     }
-    
+
     func serialize(_ value: Serializible) -> Result<JSONDictionary> {
         if let serializer = getSerializer(type(of: value)) {
             let context = SerializationContext(self)
@@ -69,7 +70,7 @@ class SerializationService {
             return .Error(SerializationError.serializerNotFound(type: type(of: value)))
         }
     }
-    
+
     func deserializeFromString(_ str: String) -> Result<Serializible> {
         let data: NSData = str.data(using: String.Encoding.utf8)! as NSData
         do {
@@ -82,7 +83,7 @@ class SerializationService {
             return .Error(error)
         }
     }
-    
+
     func deserialize(_ json: JSONDictionary) -> Result<Serializible> {
         if let type = json[SerializationService.typeField] as? String {
             if let serializer = getSerializer(type) {
@@ -95,4 +96,5 @@ class SerializationService {
             return .Error(SerializationError.expectingValueOfType(key: SerializationService.typeField, type: String.self))
         }
     }
+
 }

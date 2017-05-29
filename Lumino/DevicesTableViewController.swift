@@ -37,7 +37,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         self.nsbSearchTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.restartSerach), userInfo: nil, repeats: true)
     }
 
-    func start()  {
+    func start() {
         print("listening for services...")
         self.clients.removeAll()
         self.devices.removeAll()
@@ -55,10 +55,8 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
         cell.label?.text = device.name
         cell.isOn.isOn = device.isOn!
         cell.colorView.backgroundColor = device.color?.toUIColor(min: 0.5, range: 0.5)
-        
         cell.isOn.tag = indexPath.row
         cell.isOn.addTarget(self, action: #selector(self.switchIsChanged(_:)), for: UIControlEvents.valueChanged)
-        
         return cell
     }
 
@@ -169,7 +167,7 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails"{
+        if segue.identifier == "showDetails" {
             if let nextViewController = segue.destination as? DeviceDetailsUIViewController {
                 let row = self.tableView.indexPathForSelectedRow!.row
                 nextViewController.device = self.devices[row]
@@ -180,4 +178,5 @@ class DevicesTableViewController: UITableViewController, NetServiceBrowserDelega
     @IBAction func unwindToDevices(_ segue:UIStoryboardSegue) {
         print("unwind to devices")
     }
+
 }

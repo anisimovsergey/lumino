@@ -21,7 +21,7 @@ class ColorWheelView: UIView, UIGestureRecognizerDelegate {
     private var hueMarkerLayer: ColorSpotLayer!
     private var colorSpotLayer: ColorSpotLayer!
 
-    private var panStarted: Bool = false;
+    private var panStarted: Bool = false
 
     private var hueTapGestureRecognizer: UITapGestureRecognizer!
     private var huePanGestureRecognizer: UIPanGestureRecognizer!

@@ -20,19 +20,19 @@ class HueCircleLayer: CALayer {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     var radius: CGFloat = 0 {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     var lineWidth: CGFloat = 0 {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     override func draw(in context: CGContext) {
         let sliceAngle: CGFloat = 2.0 * .pi / CGFloat(segmentsNum)
         let path: CGMutablePath = CGMutablePath()
@@ -51,23 +51,23 @@ class HueCircleLayer: CALayer {
             context.rotate(by: -sliceAngle)
         }
     }
-    
+
     override func layoutSublayers() {
         super.layoutSublayers()
         updateMask()
     }
-    
+
     func updateMask() {
         let path: CGMutablePath = CGMutablePath()
         var transform = CGAffineTransform.identity
         transform = transform.translatedBy(x: bounds.size.width / 2.0, y: bounds.size.height / 2.0)
-        
+
         let rp = radius + lineWidth / 2
         path.addPath(UIBezierPath(ovalIn: CGRect(x: -rp, y: -rp, width: rp * 2, height: rp * 2)).cgPath, transform: transform)
-        
+
         let rm = radius - lineWidth / 2
         path.addPath(UIBezierPath(ovalIn: CGRect(x: -rm, y: -rm, width: rm * 2, height: rm * 2)).cgPath, transform: transform)
-        
+
         let mask = CAShapeLayer()
         mask.frame = self.bounds
         mask.path = path
@@ -75,4 +75,5 @@ class HueCircleLayer: CALayer {
         mask.fillRule = kCAFillRuleEvenOdd
         self.mask = mask
     }
+
 }
