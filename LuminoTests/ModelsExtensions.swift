@@ -45,3 +45,13 @@ extension Response: Equatable {
     }
 
 }
+
+extension Status: Equatable {
+
+    public static func == (lhs: Status, rhs: Status) -> Bool {
+        return (lhs.code == rhs.code) &&
+            (lhs.message == rhs.message)
+    }
+    
+}
+

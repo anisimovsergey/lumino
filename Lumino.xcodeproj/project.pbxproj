@@ -54,6 +54,7 @@
 		A5D004921EB4898A0088ADF5 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D004911EB4898A0088ADF5 /* EventTests.swift */; };
 		A5EB37F21E746BFB003B30F1 /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */; };
 		A5F5A1891ED54E4600DDED10 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5A1881ED54E4500DDED10 /* DeviceCell.swift */; };
+		A5FC1CC91EDD3AE40086AB83 /* StatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC1CC81EDD3AE40086AB83 /* StatusTests.swift */; };
 		A5FD7AEC1EBFD786003303E2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD7AEB1EBFD786003303E2 /* SettingsViewController.swift */; };
 		EA9F63D3D1DAF08C67D64DC9 /* Pods_LuminoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936429B6B348528AE4A8FC51 /* Pods_LuminoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -135,6 +136,7 @@
 		A5D004911EB4898A0088ADF5 /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		A5EB37F11E746BFB003B30F1 /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
 		A5F5A1881ED54E4500DDED10 /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		A5FC1CC81EDD3AE40086AB83 /* StatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTests.swift; sourceTree = "<group>"; };
 		A5FD7AEB1EBFD786003303E2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9279E95467D58D91A090F87 /* Pods-LuminoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoTests/Pods-LuminoTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1AEE3EEF81BC3D1A1EFC0FD /* Pods-LuminoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuminoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuminoUITests/Pods-LuminoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			children = (
 				A5D004881EB3F3E00088ADF5 /* SettingsTests.swift */,
 				A5D0048F1EB484200088ADF5 /* ColorTests.swift */,
+				A5FC1CC81EDD3AE40086AB83 /* StatusTests.swift */,
 				A5D004911EB4898A0088ADF5 /* EventTests.swift */,
 				A59D1D3D1EB6A987007D2DE0 /* RequestTests.swift */,
 				A59D1D3F1EB6AA56007D2DE0 /* ResponseTests.swift */,
@@ -675,6 +678,7 @@
 				A5D004891EB3F3E00088ADF5 /* SettingsTests.swift in Sources */,
 				A5D004901EB484200088ADF5 /* ColorTests.swift in Sources */,
 				A5D004921EB4898A0088ADF5 /* EventTests.swift in Sources */,
+				A5FC1CC91EDD3AE40086AB83 /* StatusTests.swift in Sources */,
 				A59D1D401EB6AA56007D2DE0 /* ResponseTests.swift in Sources */,
 				A59D1D3E1EB6A987007D2DE0 /* RequestTests.swift in Sources */,
 				A59D1D421EB6AC1D007D2DE0 /* ModelsExtensions.swift in Sources */,

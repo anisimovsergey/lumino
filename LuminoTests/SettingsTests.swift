@@ -20,6 +20,7 @@ class SettingsTests: XCTestCase {
     func testSerializationRoundTrip() {
         let settings = Settings.init(isOn: true, uniqueName: "uniqueName", deviceName: "deviceName")
         let deserializedSettings = service.roundTrip(settings)
+
         XCTAssertEqual(settings, deserializedSettings)
     }
 

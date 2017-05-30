@@ -9,19 +9,19 @@
 import XCTest
 @testable import Lumino
 
-class ColorTests: XCTestCase {
+class StatusTests: XCTestCase {
     let service = SerializationService()
 
     override func setUp() {
         super.setUp()
-        service.addSerializer(Color.self, ColorSerializer())
+        service.addSerializer(Status.self, StatusSerializer())
     }
 
     func testSerializationRoundTrip() {
-        let color = Color.init(h: 1, s: 2, v: 3)
-        let deserializedColor = service.roundTrip(color)
+        let status = Status.init(code: 1, message: "test")
+        let deserializedStatus = service.roundTrip(status)
 
-        XCTAssertEqual(color, deserializedColor)
+        XCTAssertEqual(status, deserializedStatus)
     }
-
+    
 }
