@@ -15,7 +15,7 @@ Devices            |  Color | Settings
 
 ## Functionality
 * The application can automatically discover all Lumino devices connected to your home network and maintain their list
-* You can switch individual devices on/off and control the their lights individually by changing hue, saturation and luminosity
+* You can switch individual devices on/off and control the their colors individually by changing hue, saturation and luminosity
 * You can also change the name of the Lumino device and make it more recognizable
 
 ## Build
