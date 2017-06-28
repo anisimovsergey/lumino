@@ -6,7 +6,7 @@ target 'Lumino' do
   use_frameworks!
 
   # Pods for Lumino
-  pod "Starscream", "~> 2.0"
+  pod "Starscream", "~> 2.0.4"
   pod "MulticastDelegateSwift", "~> 2.0"
 
   target 'LuminoTests' do
