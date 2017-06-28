@@ -1,5 +1,5 @@
 //
-//  Device.swift
+//  DeviceListItem.swift
 //  Lumino
 //
 //  Created by Sergey Anisimov on 05/05/2017.

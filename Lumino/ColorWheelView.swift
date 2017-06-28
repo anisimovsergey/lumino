@@ -1,5 +1,5 @@
 //
-//  GradientSilder.swift
+//  ColorWheelView.swift
 //  Lumino
 //
 //  Created by Sergey Anisimov on 18/03/2017.

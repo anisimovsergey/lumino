@@ -1,5 +1,5 @@
 //
-//  UIColorExtensions.swift
+//  ColorExtensions.swift
 //  Lumino
 //
 //  Created by Sergey Anisimov on 03/05/2017.
