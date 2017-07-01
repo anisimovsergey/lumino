@@ -41,7 +41,6 @@
 		A5BB15991EBC4A5600C4B27F /* DeviceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB15981EBC4A5600C4B27F /* DeviceListItem.swift */; };
 		A5C373841E07405D00697FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373831E07405D00697FF6 /* AppDelegate.swift */; };
 		A5C373891E07405D00697FF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C373871E07405D00697FF6 /* Main.storyboard */; };
-		A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738A1E07405D00697FF6 /* Assets.xcassets */; };
 		A5C3738E1E07405D00697FF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C3738C1E07405D00697FF6 /* LaunchScreen.storyboard */; };
 		A5C373A41E07405D00697FF6 /* LuminoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C373A31E07405D00697FF6 /* LuminoUITests.swift */; };
 		A5C672721E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C672711E0DE4F2003F7C03 /* DeviceDetailsUIViewController.swift */; };
@@ -118,7 +117,6 @@
 		A5C373801E07405D00697FF6 /* Lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C373831E07405D00697FF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C373881E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A5C3738A1E07405D00697FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5C3738D1E07405D00697FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5C3738F1E07405D00697FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C373941E07405D00697FF6 /* LuminoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuminoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,7 +265,6 @@
 				A5D004801EACA7990088ADF5 /* Serialization */,
 				A5C373831E07405D00697FF6 /* AppDelegate.swift */,
 				A5C373871E07405D00697FF6 /* Main.storyboard */,
-				A5C3738A1E07405D00697FF6 /* Assets.xcassets */,
 				A5C3738C1E07405D00697FF6 /* LaunchScreen.storyboard */,
 				A5C3738F1E07405D00697FF6 /* Info.plist */,
 			);
@@ -469,7 +466,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5C3738E1E07405D00697FF6 /* LaunchScreen.storyboard in Resources */,
-				A5C3738B1E07405D00697FF6 /* Assets.xcassets in Resources */,
 				A59CC51F1E1024E900B51B36 /* Podfile in Resources */,
 				A5C373891E07405D00697FF6 /* Main.storyboard in Resources */,
 			);
