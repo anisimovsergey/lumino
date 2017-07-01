@@ -7,60 +7,17 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="68.359886mm"
-   height="24.970984mm"
-   viewBox="0 0 242.22007 88.479861"
+   width="120mm"
+   height="40mm"
+   viewBox="0 0 425.19683 141.73228"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="navbar.svg">
   <defs
-     id="defs4">
-    <linearGradient
-       inkscape:collect="always"
-       id="linearGradient4148">
-      <stop
-         style="stop-color:#00ff12;stop-opacity:1"
-         offset="0"
-         id="stop4150" />
-      <stop
-         id="stop4158"
-         offset="0.18928172"
-         style="stop-color:#f0fa00;stop-opacity:1" />
-      <stop
-         style="stop-color:#f8b601;stop-opacity:1"
-         offset="0.31069025"
-         id="stop4164" />
-      <stop
-         id="stop4156"
-         offset="0.43209878"
-         style="stop-color:#ff0002;stop-opacity:1" />
-      <stop
-         style="stop-color:#fd00ff;stop-opacity:1"
-         offset="0.60956788"
-         id="stop4162" />
-      <stop
-         style="stop-color:#4e58ff;stop-opacity:1"
-         offset="0.7962963"
-         id="stop4160" />
-      <stop
-         style="stop-color:#00fffb;stop-opacity:1"
-         offset="1"
-         id="stop4152" />
-    </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4148"
-       id="linearGradient4154"
-       x1="98.571434"
-       y1="191.64792"
-       x2="330"
-       y2="191.64792"
-       gradientUnits="userSpaceOnUse" />
-  </defs>
+     id="defs4" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -68,21 +25,29 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="133.88972"
-     inkscape:cy="-107.32978"
+     inkscape:zoom="1.9943704"
+     inkscape:cx="212.59843"
+     inkscape:cy="70.866142"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
      fit-margin-top="2"
      fit-margin-left="2"
      fit-margin-right="2"
      fit-margin-bottom="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1137"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="1280"
+     inkscape:window-height="778"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="mm">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4221"
+       units="mm"
+       spacingx="3.543307"
+       spacingy="3.543307" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -99,19 +64,20 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-92.451082,-146.58322)">
+     transform="translate(-449.48979,-87.583761)"
+     style="display:inline">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:18.75px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4154);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="106.06602"
-       y="200.8036"
+       style="font-style:normal;font-weight:normal;font-size:162.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="481.19299"
+       y="208.744"
        id="text4136"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4138"
-         x="106.06602"
-         y="200.8036"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:semi-expanded;font-size:70px;font-family:'Harlow Solid Italic';-inkscape-font-specification:'Harlow Solid Italic, Italic Semi-Expanded';fill:url(#linearGradient4154);fill-opacity:1">Lumino</tspan></text>
+         x="481.19299"
+         y="208.744"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:162.5px;font-family:SignPainter;-inkscape-font-specification:SignPainter;fill:#ffffff;fill-opacity:1;">Lumino</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot4140"
@@ -122,5 +88,12 @@
            height="34.285713"
            x="71.428574"
            y="189.50507" /></flowRegion><flowPara
-         id="flowPara4146"></flowPara></flowRoot>  </g>
+         id="flowPara4146" /></flowRoot>    <rect
+       style="fill:none;fill-opacity:1"
+       id="rect4223"
+       width="425.19684"
+       height="141.73228"
+       x="449.48978"
+       y="87.583763" />
+  </g>
 </svg>

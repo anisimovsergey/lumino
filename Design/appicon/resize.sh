@@ -1,8 +1,8 @@
 #!/bin/bash
 
-INK=/cygdrive/c/Program\ Files/Inkscape/inkscape.exe
+INK=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 
-if [[ -z "$1" ]] 
+if [[ -z "$1" ]]
 then
 	echo "SVG file needed."
 	exit;
