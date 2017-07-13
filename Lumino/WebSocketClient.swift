@@ -60,6 +60,7 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     private var commTimer: Timer!
     private var pendingRequests: Dictionary<RequestKey, Request> = [:]
     private var lastID: String? = nil
+    private var pingCounter: uint = 0
 
     var connectionDelegate = MulticastDelegate<WebSocketConnectionDelegate>()
     var communicationDelegate = MulticastDelegate<WebSocketCommunicationDelegate>()
@@ -140,11 +141,21 @@ class WebSocketClient: NSObject, WebSocketDelegate, WebSocketPongDelegate, NetSe
     func sendPing() {
         print("send ping to service \(service.name)")
         self.socket.write(ping: Data())
-        self.pongTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pongTimeout, target: self, selector: #selector(self.disconnect), userInfo: nil, repeats: false)
+        self.pongTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pongTimeout, target: self, selector: #selector(self.noPong), userInfo: nil, repeats: false)
+    }
+    
+    func noPong() {
+        pingCounter += 1;
+        if (pingCounter > 3) {
+            disconnect()
+        } else {
+            sendPing()
+        }
     }
 
     public func websocketDidReceivePong(socket: WebSocket, data: Data?) {
         print("received pong from service \(service.name)")
+        pingCounter = 0;
         self.pongTimer.invalidate()
         self.pingTimer = Timer.scheduledTimer(timeInterval: WebSocketClient.pingInterval, target: self, selector: #selector(self.sendPing), userInfo: nil, repeats: false)
     }
